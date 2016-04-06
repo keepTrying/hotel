@@ -56,7 +56,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
     @Override
     public void onClick(View v) {
         if (v==login){
-            SeverManager.getInstance().login(this,"1332232223","34323432344refee3feeeeeeeeeeefde");
+            SeverManager.getInstance().user_login(this,"1332232223","34323432344refee3feeeeeeeeeeefde");
         }else if (v==register){
             Intent intent =new Intent(this,RegisterActivity.class);
             startActivity(intent);

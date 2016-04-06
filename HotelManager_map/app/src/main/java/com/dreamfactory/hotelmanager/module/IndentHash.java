@@ -21,7 +21,7 @@ public class IndentHash {
         List<Indent> working = new ArrayList<>();
         List<Indent> finished = new ArrayList<>();
         for (Indent var:list) {
-            indent_status status = indent_status.values()[var.getStatus()];
+            indent_status status = indent_status.values()[var.getPay()];
             switch (status){
                 case WILL_PAY:
                     will_pay.add(var);
