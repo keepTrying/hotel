@@ -1,10 +1,17 @@
 package com.dreamfactory.hotelmanager.tools;
 
+import android.app.Activity;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.media.Image;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
@@ -17,6 +24,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.dreamfactory.hotelmanager.activity.LoginActivity;
 import com.dreamfactory.hotelmanager.module.Indent;
 import com.dreamfactory.hotelmanager.module.Room;
 import com.dreamfactory.hotelmanager.module.User;
@@ -55,6 +63,19 @@ public class SeverManager{
     private static final String url_comment_query = "http://42.96.148.66/hotel/comment/query.php";
     private static final String url_upload_img = "http://42.96.148.66/hotel/upload_pic.php";
 
+    public ProgressBar progressbar;
+
+    public interface Sever_call_back{
+        void onResponseSuccess(String obj);
+        void onResponseError(int code);
+        void onErrorResponse(VolleyError volleyError);
+    }
+
+    private Sever_call_back callback;
+
+    public void setCallback(Sever_call_back callback) {
+        this.callback = callback;
+    }
 
     private static SeverManager severManager = new SeverManager();
 
@@ -75,14 +96,15 @@ public class SeverManager{
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String obj) {
-                        Status status = JSON.parseObject(obj, Status.class);
-                        if (status.getStatus()=="200") {
-                            Log.d("log in","success");
-                            User user = JSON.parseObject(obj, User.class);
-                            UserManager.getInstance().setUser(user);
-                        }else {
-                            Log.d("login","fail");
-                        }
+//                        Status status = JSON.parseObject(obj, Status.class);
+//                        if (status.getStatus()=="200") {
+//                            Log.d("log in","success");
+//                            User user = JSON.parseObject(obj, User.class);
+//                            UserManager.getInstance().setUser(user);
+//                        }else {
+//                            Log.d("login","fail");
+//                        }
+                        SeverManager.this.onResponse(obj);
                     }
                 },
                 new Response.ErrorListener() {
@@ -90,6 +112,7 @@ public class SeverManager{
                     public void onErrorResponse(VolleyError volleyError) {
                         //错误处理
                         Log.d("Error Message:",volleyError+"");
+                        callback.onErrorResponse(volleyError);
                     }
                 }){
             @Override
@@ -118,12 +141,13 @@ public class SeverManager{
                     @Override
                     public void onResponse(String obj) {
 
-                        Status status= JSON.parseObject(obj,Status.class);
-                        if (status.getStatus()=="200"){
-                            Log.d("register", "success");
-                        }else{
-                            Log.d("register","fail");
-                        }
+//                        Status status= JSON.parseObject(obj,Status.class);
+//                        if (status.getStatus()=="200"){
+//                            Log.d("register", "success");
+//                        }else{
+//                            Log.d("register","fail");
+//                        }
+                        SeverManager.this.onResponse(obj);
                     }
                 },
                 new Response.ErrorListener() {
@@ -131,6 +155,7 @@ public class SeverManager{
                     public void onErrorResponse(VolleyError volleyError) {
                         //错误处理
                         Log.d("Error Message:",volleyError+"");
+                        callback.onErrorResponse(volleyError);
                     }
                 }){
             @Override
@@ -164,12 +189,13 @@ public class SeverManager{
                     @Override
                     public void onResponse(String obj) {
 
-                        Status status= JSON.parseObject(obj,Status.class);
-                        if (status.getStatus()=="200"){
-                            Log.d("alter","success");
-                        }else{
-                            Log.d("alter","fail");
-                        }
+//                        Status status= JSON.parseObject(obj,Status.class);
+//                        if (status.getStatus()=="200"){
+//                            Log.d("alter","success");
+//                        }else{
+//                            Log.d("alter","fail");
+//                        }
+                        SeverManager.this.onResponse(obj);
                     }
                 },
                 new Response.ErrorListener() {
@@ -177,6 +203,7 @@ public class SeverManager{
                     public void onErrorResponse(VolleyError volleyError) {
                         //错误处理
                         Log.d("Error Message:",volleyError+"");
+                        callback.onErrorResponse(volleyError);
                     }
                 }){
             @Override
@@ -196,25 +223,26 @@ public class SeverManager{
         requestQueue.add(stringR);
     }
 
-    public void use_query(Context context, final String user_phone,final String user_id_num, final
+    public void user_query(Context context, final String user_phone,final String user_id_num, final
                           String user_name) {
         RequestQueue requestQueue= Volley.newRequestQueue(context);
 
         StringRequest stringR = new StringRequest( Request.Method.POST,
-                url_user_alter,
+                url_user_query,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String obj) {
 
 
-                        Status status= JSON.parseObject(obj,Status.class);
-                        if (status.getStatus()=="200"){
-                            Log.d("query","success");
-                            List<User> result=JSON.parseArray(obj,User.class);
-                        }else{
-                            Log.d("query","fail");
-
-                        }
+//                        Status status= JSON.parseObject(obj,Status.class);
+//                        if (status.getStatus()=="200"){
+//                            Log.d("query","success");
+//                            List<User> result=JSON.parseArray(obj,User.class);
+//                        }else{
+//                            Log.d("query","fail");
+//
+//                        }
+                        SeverManager.this.onResponse(obj);
                     }
                 },
                 new Response.ErrorListener() {
@@ -222,6 +250,7 @@ public class SeverManager{
                     public void onErrorResponse(VolleyError volleyError) {
                         //错误处理
                         Log.d("Error Message:",volleyError+"");
+                        callback.onErrorResponse(volleyError);
                     }
                 }){
             @Override
@@ -250,14 +279,15 @@ public class SeverManager{
                     public void onResponse(String obj) {
 
 
-                        Status status= JSON.parseObject(obj,Status.class);
-                        if (status.getStatus()=="200"){
-                            Log.d("answer","success");
-
-                        }else{
-                            Log.d("answer","fail");
-
-                        }
+//                        Status status= JSON.parseObject(obj,Status.class);
+//                        if (status.getStatus()=="200"){
+//                            Log.d("answer","success");
+//
+//                        }else{
+//                            Log.d("answer","fail");
+//
+//                        }
+                        SeverManager.this.onResponse(obj);
                     }
                 },
                 new Response.ErrorListener() {
@@ -265,6 +295,7 @@ public class SeverManager{
                     public void onErrorResponse(VolleyError volleyError) {
                         //错误处理
                         Log.d("Error Message:",volleyError+"");
+                        callback.onErrorResponse(volleyError);
                     }
                 }){
             @Override
@@ -292,17 +323,18 @@ public class SeverManager{
                     public void onResponse(String obj) {
 
 
-                        Status status= JSON.parseObject(obj,Status.class);
-                        if (status.getStatus()=="200"){
-                            Log.d("get_question","success");
-                            User user=JSON.parseObject(obj,User.class);
-                            String question=user.getUser_que();
-                            int id=user.getUser_id();
-
-                        }else{
-                            Log.d("get_question","fail");
-
-                        }
+//                        Status status= JSON.parseObject(obj,Status.class);
+//                        if (status.getStatus()=="200"){
+//                            Log.d("get_question","success");
+//                            User user=JSON.parseObject(obj,User.class);
+//                            String question=user.getUser_que();
+//                            int id=user.getUser_id();
+//
+//                        }else{
+//                            Log.d("get_question","fail");
+//
+//                        }
+                        SeverManager.this.onResponse(obj);
                     }
                 },
                 new Response.ErrorListener() {
@@ -310,6 +342,7 @@ public class SeverManager{
                     public void onErrorResponse(VolleyError volleyError) {
                         //错误处理
                         Log.d("Error Message:",volleyError+"");
+                        callback.onErrorResponse(volleyError);
                     }
                 }){
             @Override
@@ -337,15 +370,16 @@ public class SeverManager{
                     public void onResponse(String obj) {
 
 
-                        Status status= JSON.parseObject(obj,Status.class);
-                        if (status.getStatus()=="200"){
-                            Log.d("modify password","success");
-
-
-                        }else{
-                            Log.d("modify password","fail");
-
-                        }
+//                        Status status= JSON.parseObject(obj,Status.class);
+//                        if (status.getStatus()=="200"){
+//                            Log.d("modify password","success");
+//
+//
+//                        }else{
+//                            Log.d("modify password","fail");
+//
+//                        }
+                        SeverManager.this.onResponse(obj);
                     }
                 },
                 new Response.ErrorListener() {
@@ -353,6 +387,7 @@ public class SeverManager{
                     public void onErrorResponse(VolleyError volleyError) {
                         //错误处理
                         Log.d("Error Message:",volleyError+"");
+                        callback.onErrorResponse(volleyError);
                     }
                 }){
             @Override
@@ -384,15 +419,16 @@ public class SeverManager{
                     public void onResponse(String obj) {
 
 
-                        Status status= JSON.parseObject(obj,Status.class);
-                        if (status.getStatus()=="200"){
-                            Log.d("room add","success");
-
-
-                        }else{
-                            Log.d("room add","fail");
-
-                        }
+//                        Status status= JSON.parseObject(obj,Status.class);
+//                        if (status.getStatus()=="200"){
+//                            Log.d("room add","success");
+//
+//
+//                        }else{
+//                            Log.d("room add","fail");
+//
+//                        }
+                        SeverManager.this.onResponse(obj);
                     }
                 },
                 new Response.ErrorListener() {
@@ -400,6 +436,7 @@ public class SeverManager{
                     public void onErrorResponse(VolleyError volleyError) {
                         //错误处理
                         Log.d("Error Message:",volleyError+"");
+                        callback.onErrorResponse(volleyError);
                     }
                 }){
             @Override
@@ -432,15 +469,16 @@ public class SeverManager{
                     public void onResponse(String obj) {
 
 
-                        Status status= JSON.parseObject(obj,Status.class);
-                        if (status.getStatus()=="200"){
-                            Log.d("room alter","success");
-
-
-                        }else{
-                            Log.d("room alter","fail");
-
-                        }
+//                        Status status= JSON.parseObject(obj,Status.class);
+//                        if (status.getStatus()=="200"){
+//                            Log.d("room alter","success");
+//
+//
+//                        }else{
+//                            Log.d("room alter","fail");
+//
+//                        }
+                        SeverManager.this.onResponse(obj);
                     }
                 },
                 new Response.ErrorListener() {
@@ -448,6 +486,7 @@ public class SeverManager{
                     public void onErrorResponse(VolleyError volleyError) {
                         //错误处理
                         Log.d("Error Message:",volleyError+"");
+                        callback.onErrorResponse(volleyError);
                     }
                 }){
             @Override
@@ -481,15 +520,16 @@ public class SeverManager{
                     public void onResponse(String obj) {
 
 
-                        Status status= JSON.parseObject(obj,Status.class);
-                        if (status.getStatus()=="200"){
-                            Log.d("room query","success");
-                            List<Room> rooms = JSON.parseArray(obj,Room.class);
-
-                        }else{
-                            Log.d("room query","fail");
-
-                        }
+//                        Status status= JSON.parseObject(obj,Status.class);
+//                        if (status.getStatus()=="200"){
+//                            Log.d("room query","success");
+//                            List<Room> rooms = JSON.parseArray(obj,Room.class);
+//
+//                        }else{
+//                            Log.d("room query","fail");
+//
+//                        }
+                        SeverManager.this.onResponse(obj);
                     }
                 },
                 new Response.ErrorListener() {
@@ -497,6 +537,7 @@ public class SeverManager{
                     public void onErrorResponse(VolleyError volleyError) {
                         //错误处理
                         Log.d("Error Message:",volleyError+"");
+                        callback.onErrorResponse(volleyError);
                     }
                 }){
             @Override
@@ -532,15 +573,16 @@ public class SeverManager{
                     @Override
                     public void onResponse(String obj) {
 
-                        Status status= JSON.parseObject(obj,Status.class);
-                        if (status.getStatus()=="200"){
-                            Log.d("indent order","success");
-
-
-                        }else{
-                            Log.d("indent order","fail");
-
-                        }
+//                        Status status= JSON.parseObject(obj,Status.class);
+//                        if (status.getStatus()=="200"){
+//                            Log.d("indent order","success");
+//
+//
+//                        }else{
+//                            Log.d("indent order","fail");
+//
+//                        }
+                        SeverManager.this.onResponse(obj);
                     }
                 },
                 new Response.ErrorListener() {
@@ -548,6 +590,7 @@ public class SeverManager{
                     public void onErrorResponse(VolleyError volleyError) {
                         //错误处理
                         Log.d("Error Message:",volleyError+"");
+                        callback.onErrorResponse(volleyError);
                     }
                 }){
             @Override
@@ -585,15 +628,16 @@ public class SeverManager{
                     @Override
                     public void onResponse(String obj) {
 
-                        Status status= JSON.parseObject(obj,Status.class);
-                        if (status.getStatus()=="200"){
-                            Log.d("indent alter","success");
-
-
-                        }else{
-                            Log.d("indent alter","fail");
-
-                        }
+//                        Status status= JSON.parseObject(obj,Status.class);
+//                        if (status.getStatus()=="200"){
+//                            Log.d("indent alter","success");
+//
+//
+//                        }else{
+//                            Log.d("indent alter","fail");
+//
+//                        }
+                        SeverManager.this.onResponse(obj);
                     }
                 },
                 new Response.ErrorListener() {
@@ -601,6 +645,7 @@ public class SeverManager{
                     public void onErrorResponse(VolleyError volleyError) {
                         //错误处理
                         Log.d("Error Message:",volleyError+"");
+                        callback.onErrorResponse(volleyError);
                     }
                 }){
             @Override
@@ -642,15 +687,16 @@ public class SeverManager{
                     @Override
                     public void onResponse(String obj) {
 
-                        Status status= JSON.parseObject(obj,Status.class);
-                        if (status.getStatus()=="200"){
-                            Log.d("indent query","success");
-                            List<Indent> results = JSON.parseArray(obj,Indent.class);
-
-                        }else{
-                            Log.d("indent query","fail");
-
-                        }
+//                        Status status= JSON.parseObject(obj,Status.class);
+//                        if (status.getStatus()=="200"){
+//                            Log.d("indent query","success");
+//                            List<Indent> results = JSON.parseArray(obj,Indent.class);
+//
+//                        }else{
+//                            Log.d("indent query","fail");
+//
+//                        }
+                        SeverManager.this.onResponse(obj);
                     }
                 },
                 new Response.ErrorListener() {
@@ -658,6 +704,7 @@ public class SeverManager{
                     public void onErrorResponse(VolleyError volleyError) {
                         //错误处理
                         Log.d("Error Message:",volleyError+"");
+                        callback.onErrorResponse(volleyError);
                     }
                 }){
             @Override
@@ -694,14 +741,15 @@ public class SeverManager{
                     @Override
                     public void onResponse(String obj) {
 
-                        Status status= JSON.parseObject(obj,Status.class);
-                        if (status.getStatus()=="200"){
-                            Log.d("comment publish","success");
-
-                        }else{
-                            Log.d("comment publish","fail");
-
-                        }
+//                        Status status= JSON.parseObject(obj,Status.class);
+//                        if (status.getStatus()=="200"){
+//                            Log.d("comment publish","success");
+//
+//                        }else{
+//                            Log.d("comment publish","fail");
+//
+//                        }
+                        SeverManager.this.onResponse(obj);
                     }
                 },
                 new Response.ErrorListener() {
@@ -709,6 +757,7 @@ public class SeverManager{
                     public void onErrorResponse(VolleyError volleyError) {
                         //错误处理
                         Log.d("Error Message:",volleyError+"");
+                        callback.onErrorResponse(volleyError);
                     }
                 }){
             @Override
@@ -741,14 +790,15 @@ public class SeverManager{
                     @Override
                     public void onResponse(String obj) {
 
-                        Status status= JSON.parseObject(obj,Status.class);
-                        if (status.getStatus()=="200"){
-                            Log.d("comment alter","success");
-
-                        }else{
-                            Log.d("comment alter","fail");
-
-                        }
+//                        Status status= JSON.parseObject(obj,Status.class);
+//                        if (status.getStatus()=="200"){
+//                            Log.d("comment alter","success");
+//
+//                        }else{
+//                            Log.d("comment alter","fail");
+//
+//                        }
+                        SeverManager.this.onResponse(obj);
                     }
                 },
                 new Response.ErrorListener() {
@@ -756,6 +806,7 @@ public class SeverManager{
                     public void onErrorResponse(VolleyError volleyError) {
                         //错误处理
                         Log.d("Error Message:",volleyError+"");
+                        callback.onErrorResponse(volleyError);
                     }
                 }){
             @Override
@@ -775,6 +826,55 @@ public class SeverManager{
         };
         requestQueue.add(stringR);
     }
+    public void comment_query(Context context, final String user_id,final String
+            comment_text,final String
+                                      room_num,final String
+                                      comment_star,final String
+                                      comment_time_start,final String
+                                      comment_time_end) {
+        RequestQueue requestQueue= Volley.newRequestQueue(context);
+
+        StringRequest stringR = new StringRequest( Request.Method.POST,
+                url_comment_query,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String obj) {
+
+//                        Status status= JSON.parseObject(obj,Status.class);
+//                        if (status.getStatus()=="200"){
+//                            Log.d("comment query","success");
+//
+//                        }else{
+//                            Log.d("comment query","fail");
+//
+//                        }
+                        SeverManager.this.onResponse(obj);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        //错误处理
+                        Log.d("Error Message:",volleyError+"");
+                        callback.onErrorResponse(volleyError);
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                //用来保存post参数
+                HashMap<String, String> params = new HashMap<String, String>();
+                params.put("comment_star",comment_star);
+                params.put("comment_text",comment_text);
+                params.put("user_id", user_id);
+                params.put("room_num", room_num);
+                params.put("comment_id",comment_time_end);
+                params.put("comment_time", comment_time_start);
+
+                return params;
+            }
+        };
+        requestQueue.add(stringR);
+    }
 
     //    *******************************Upload
     // ******************************************************
@@ -786,15 +886,15 @@ public class SeverManager{
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String obj) {
-
-                        Status status= JSON.parseObject(obj,Status.class);
-                        if (status.getStatus()=="200"){
-                            Log.d("upload image","success");
-
-                        }else{
-                            Log.d("upload image","fail");
-
-                        }
+//                        Status status= JSON.parseObject(obj,Status.class);
+//                        if (status.getStatus()=="200"){
+//                            Log.d("upload image","success");
+//
+//                        }else{
+//                            Log.d("upload image","fail");
+//
+//                        }
+                        SeverManager.this.onResponse(obj);
                     }
                 },
                 new Response.ErrorListener() {
@@ -802,6 +902,7 @@ public class SeverManager{
                     public void onErrorResponse(VolleyError volleyError) {
                         //错误处理
                         Log.d("Error Message:",volleyError+"");
+                        callback.onErrorResponse(volleyError);
                     }
                 }){
 
@@ -820,6 +921,7 @@ public class SeverManager{
             @Override
             public String getBodyContentType() {
                 return super.getBodyContentType();
+
             }
         };
         requestQueue.add(stringR);
@@ -831,4 +933,35 @@ public class SeverManager{
                  return baos.toByteArray();
              }
 
+
+    public void onResponse(String obj){
+        Status status= JSON.parseObject(obj,Status.class);
+        if (status.getStatus().equals("200")){
+            callback.onResponseSuccess(obj);
+        }else{
+            callback.onResponseError(Integer.valueOf(status.getStatus()).intValue());
+            
+        }
+    }
+
+    /**
+     * 动态创建ProgressBar
+     * @param a
+     * @return
+     */
+    public void createProgressBar(Activity a)
+    {
+//        1.找到activity根部的ViewGroup，类型都为FrameLayout。
+        FrameLayout rootContainer = (FrameLayout) a.findViewById(android.R.id.content);//固定写法，返回根视图
+//        2.初始化控件显示的位置
+        FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, (FrameLayout.LayoutParams.MATCH_PARENT);
+        lp.gravity = Gravity.CENTER;
+//        3.设置控件显示位置
+        this.progressbar = new ProgressBar(a);
+        this.progressbar.setLayoutParams(lp);
+//        pb.setVisibility(View.GONE);//默认不显示
+//        4.将控件加到根节点下
+        rootContainer.addView(progressbar);
+//        return pb;
+    }
 }
