@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
+    android:layout_height="wrap_content" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_query_room"
+    tools:context="com.dreamfactory.hotelmanager.activity.QueryRoomActivity"
+    android:columnCount="2"
+    android:rowCount="9">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="房间号"
+        android:id="@+id/textView13"
+        android:layout_columnWeight="1"
+        android:height="0dp"
+        android:width="0dp"
+        android:layout_gravity="fill"
+        android:gravity="center" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/editText10"
+        android:layout_columnWeight="2"
+        android:width="0px"
+        android:height="0dp"
+        android:layout_gravity="fill"
+        android:gravity="center_vertical" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="最低费用"
+        android:id="@+id/textView18"
+        android:width="0px"
+        android:layout_columnWeight="1"
+        android:height="0dp"
+        android:layout_gravity="fill"
+        android:gravity="center" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/editText11"
+        android:layout_columnWeight="2"
+        android:width="0px"
+        android:height="0dp"
+        android:layout_gravity="fill|left"
+        android:hint="单位：元" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="最高费用"
+        android:id="@+id/textView19"
+        android:width="0px"
+        android:layout_columnWeight="1"
+        android:height="0dp"
+        android:layout_gravity="fill"
+        android:gravity="center" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/editText15"
+        android:layout_columnWeight="2"
+        android:width="0px"
+        android:height="0dp"
+        android:layout_gravity="fill|left"
+        android:hint="单位：元" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="最小面积"
+        android:id="@+id/textView20"
+        android:width="0px"
+        android:layout_columnWeight="1"
+        android:height="0dp"
+        android:layout_gravity="fill"
+        android:gravity="center" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/editText16"
+        android:layout_columnWeight="2"
+        android:width="0px"
+        android:height="0dp"
+        android:layout_gravity="fill|left"
+        android:hint="单位：平米" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="最大面积"
+        android:id="@+id/textView21"
+        android:width="0px"
+        android:layout_columnWeight="1"
+        android:height="0dp"
+        android:layout_gravity="fill"
+        android:gravity="center" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/editText17"
+        android:layout_columnWeight="2"
+        android:width="0px"
+        android:height="0dp"
+        android:layout_gravity="fill|left"
+        android:hint="单位：平米" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="房间类型"
+        android:id="@+id/textView22"
+        android:width="0px"
+        android:layout_columnWeight="1"
+        android:layout_gravity="center|fill"
+        android:gravity="center"
+        android:layout_row="5"
+        android:layout_column="0"
+        android:autoText="false" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:layout_columnWeight="1"
+        android:gravity="center"
+        android:layout_row="5"
+        android:layout_column="1"
+        android:entries="@array/room_type"
+        android:visibility="visible"
+        android:transitionGroup="false"
+        android:labelFor="@id/textView22"
+        android:spinnerMode="dropdown"
+        android:layout_gravity="center|fill" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="入住时间"
+        android:id="@+id/textView23"
+        android:width="0px"
+        android:layout_columnWeight="1"
+        android:layout_gravity="fill"
+        android:gravity="center" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/editText18"
+        android:layout_gravity="center|fill"
+        android:layout_columnWeight="2"
+        android:width="0dp"
+        android:hint="日期格式:年-月-日" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="离开时间"
+        android:id="@+id/textView24"
+        android:width="0px"
+        android:layout_columnWeight="1"
+        android:layout_gravity="fill"
+        android:gravity="center" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/editText19"
+        android:layout_gravity="center|fill"
+        android:layout_columnWeight="2"
+        android:width="0dp"
+        android:hint="日期格式:年-月-日" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="查询"
+        android:id="@+id/btn_query_room"
+        android:layout_gravity="center"
+        android:layout_columnSpan="2"
+        android:layout_marginTop="20dp" />
+
+</GridLayout>

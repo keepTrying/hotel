@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:id="@+id/room_grid_item_img"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="2.5dp"
+        android:layout_marginLeft="2.5dp"
+        android:layout_marginRight="2.5dp"
+        android:layout_marginBottom="3dp"
+        android:background="#c20e0e" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="房间号："
+        android:id="@+id/textView60"
+        android:layout_below="@+id/room_grid_item_img"
+        android:layout_alignLeft="@+id/room_grid_item_img"
+        android:layout_alignStart="@+id/room_grid_item_img"
+        android:textSize="10sp"
+        android:layout_marginTop="1dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="100001"
+        android:id="@+id/room_grid_item_room_num"
+        android:layout_below="@+id/room_grid_item_img"
+        android:layout_toRightOf="@+id/textView60"
+        android:textSize="12sp"
+        android:layout_alignRight="@+id/room_grid_item_img"
+        android:layout_alignEnd="@+id/room_grid_item_img" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="100元/天"
+        android:id="@+id/room_grid_item_price"
+        android:layout_below="@+id/room_grid_item_room_num"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>

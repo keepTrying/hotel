@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">HotelManager</string>
+    <string name="title_activity_query_room">QueryRoomActivity</string>
+    <string-array name="room_type">
+        <item>单人间</item>
+        <item>双人间</item>
+        <item>三人间</item>
+    </string-array>
+    <string name="title_item_list">Items</string>
+    <string name="title_item_detail">Item Detail</string>
+</resources>

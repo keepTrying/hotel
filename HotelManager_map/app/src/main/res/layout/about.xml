@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView4" >
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="210sp"
+                android:id="@+id/imageView"
+                android:src="@drawable/hotel"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="鹭岛国际社区是由滕王阁地产与澳大利亚柏涛、日本丸山正光、香港PAL、新加坡联设计、香港贝尔高林、新加坡特格、美国KLP建筑设计、香港戴德梁行等国际著名团队鼎立打造的集大型森林、湖泊、小岛生态为一体的城市国际化社区，是成都中心城区的超大型国际社区。 社区以“3大主题景观，2大国际会所，1种现代乡村主义建筑风格”为主轴线，融汇北欧森林、亚马逊热带雨林、夏威夷冲浪沙滩等特色景观，内嵌超五星级的豪华会所结合森林泳池、室内恒温泳池、露天咖啡吧（酒吧）、水上音乐舞台等，是成都非常具有标志性的尊贵休闲会所。 社区住宅样式多样，是成都外双楠具有标志性的欧式园林社区。多层次的住宅形式，配上如画般的风景，游泳池、景观池、喷水池倒映着碧蓝的天空，水流叮咚，绿叶摇曳中谱写着一首首欢快的乐曲。 被公认为继宽窄巷子、锦里之后的“成都第三张城市名片”的鹭岛步行街，集干净、整洁、鲜花绽放和时尚音乐等国际元素于一身，是成都极具休闲生活感的美式海派“现代名片级”步行街。漫步其中，四周萦绕着浓浓的欧美风情，不禁让人感叹这个童话般的欧洲小镇竟这么突如其来的降临在自己身边…… 社区附近公交站很多，交通便利，附近有21、23、41、42、53、72、84、90、92、151、164、165、175、343、368、516、840、904路等公交车。 距离天府广场6.8公里，乘坐出租车只需22分钟，到达龙祥路2号，即可看见门店前厅或从天府广场乘坐53路，到达大石东路转343路，到达龙祥路站，步行至门店前厅。 距离火车东站16.8公里，乘坐出租车约50分钟。 距离火车北站10.3公里，乘坐出租车约24分钟； 距离双流机场16.1公里，乘坐出租车约50分钟； 距离新会展中心14.5公里，乘坐出租车约40分钟； 距离武侯祠、锦里4.7公里，从龙祥路步行520米到龙爪村站坐8路或21路经过7站到达洗面桥横街西站下车，步行350米到达武侯祠。 距离杜甫草堂3.3公里，从龙祥路步行到280米到龙华北路北站坐165路经过5站到杜甫草堂站下车。"
+                android:id="@+id/textView14"
+                android:inputType="none" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

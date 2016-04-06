@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:id="@+id/scrollView3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="false" >
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/btn_recommend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_weight="0.5"
+                    android:layout_marginLeft="16dp"
+                    android:layout_margin="16dp"
+                    android:text="房间推荐" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="16dp"
+                    android:text="房间查询"
+                    android:id="@+id/btn_query"
+                    android:layout_weight="0.5"
+                    android:layout_marginRight="16dp"
+                    android:layout_margin="16dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <Button
+                    android:id="@+id/btn_my"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="16dp"
+                    android:text="个人管理"
+                    android:layout_weight="0.5"
+                    android:layout_marginLeft="16dp"
+                    android:layout_margin="16dp" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="16dp"
+                    android:text="我的订单"
+                    android:id="@+id/btn_history"
+                    android:layout_weight="0.5"
+                    android:layout_marginRight="16dp"
+                    android:layout_margin="16dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <Button
+                    android:id="@+id/btn_point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="16dp"
+                    android:text="积分管理"
+                    android:layout_weight="0.5"
+                    android:layout_marginLeft="16dp"
+                    android:layout_margin="16dp" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="16dp"
+                    android:text="我的房间"
+                    android:id="@+id/btn_room"
+                    android:layout_weight="0.5"
+                    android:layout_marginRight="16dp"
+                    android:layout_margin="16dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <Button
+                    android:id="@+id/btn_surround"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="16dp"
+                    android:text="周边服务"
+                    android:layout_weight="0.5"
+                    android:layout_marginLeft="16dp"
+                    android:layout_margin="16dp" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="16dp"
+                    android:text="关于我们"
+                    android:id="@+id/btn_about"
+                    android:layout_weight="0.5"
+                    android:layout_marginRight="16dp"
+                    android:layout_margin="16dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
