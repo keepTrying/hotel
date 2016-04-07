@@ -25,8 +25,8 @@ public class AnswerActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_answer);
         submit_btn = (Button) findViewById(R.id.button_submit);
-        m_tv_que = (TextView) findViewById(R.id.phone_tv);
-        m_et_ans = (EditText) findViewById(R.id.id_num_tv);
+        m_tv_que = (TextView) findViewById(R.id.tv_que);
+        m_et_ans = (EditText) findViewById(R.id.et_ans);
 
         final String user_id = savedInstanceState.getString("user_id");
         final String user_que = savedInstanceState.getString("usr_que");

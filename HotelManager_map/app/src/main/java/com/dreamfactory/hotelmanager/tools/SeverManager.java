@@ -966,13 +966,15 @@ public class SeverManager{
 
 
     public void onResponse(String obj){
-        dissmissLoading();
+
         Status status= JSON.parseObject(obj,Status.class);
         if (status.getStatus().equals("200")){
             callback.onResponseSuccess(obj);
+            dissmissLoading();
         }else{
 
             callback.onResponseError(Integer.valueOf(status.getStatus()).intValue());
+            dissmissLoading();
             
         }
     }
