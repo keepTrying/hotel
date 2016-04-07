@@ -18,7 +18,6 @@ public class AnswerActivity extends Activity {
     private Button submit_btn;
     private TextView m_tv_que;
     private EditText m_et_ans;
-    private String user_id;
 
 
     @Override
@@ -28,6 +27,11 @@ public class AnswerActivity extends Activity {
         submit_btn = (Button) findViewById(R.id.button_submit);
         m_tv_que = (TextView) findViewById(R.id.phone_tv);
         m_et_ans = (EditText) findViewById(R.id.id_num_tv);
+
+        final String user_id = savedInstanceState.getString("user_id");
+        final String user_que = savedInstanceState.getString("usr_que");
+
+        m_tv_que.setText(user_que);
 
         submit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,7 +46,10 @@ public class AnswerActivity extends Activity {
                     @Override
                     public void onResponseSuccess(String obj) {
                         Toast.makeText(AnswerActivity.this, "请设置新密码", Toast.LENGTH_SHORT).show();
+                        Bundle bundle = new Bundle();
+                        bundle.putString("user_id",user_id);
                         Intent intent = new Intent(AnswerActivity.this, RestorePwActivity.class);
+                        intent.putExtras(bundle);
                         startActivity(intent);
                         finish();
                     }

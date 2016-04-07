@@ -22,7 +22,7 @@
         android:id="@+id/textView32"
         android:layout_alignTop="@+id/textView28"
         android:layout_toRightOf="@+id/textView28"
-        android:layout_toEndOf="@+id/textView28" />
+        android:layout_toEndOf="@+id/textView_point" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -107,7 +107,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="兑换"
-                    android:id="@+id/button5" />
+                    android:id="@+id/btn_reward_0" />
 
             </LinearLayout>
         </TableRow>
@@ -174,7 +174,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="兑换"
-                    android:id="@+id/button7" />
+                    android:id="@+id/btn_reward_1" />
             </LinearLayout>
         </TableRow>
 
@@ -239,7 +239,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="兑换"
-                    android:id="@+id/button8" />
+                    android:id="@+id/btn_reward_2" />
             </LinearLayout>
         </TableRow>
 
@@ -304,7 +304,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="兑换"
-                    android:id="@+id/button9" />
+                    android:id="@+id/btn_reward_3" />
             </LinearLayout>
         </TableRow>
 

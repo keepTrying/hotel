@@ -32,13 +32,15 @@ public class RestorePwActivity extends AppCompatActivity {
     private Button submit_btn;
     private EditText m_et_pw;
     private EditText m_et_cpw;
-    private String user_id;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restore_pw);
+
+        final String user_id = savedInstanceState.getString("user_id");
+
         submit_btn = (Button) findViewById(R.id.btn_submit);
         m_et_pw = (EditText) findViewById(R.id.et_pw);
         m_et_cpw = (EditText) findViewById(R.id.et_cpw);
