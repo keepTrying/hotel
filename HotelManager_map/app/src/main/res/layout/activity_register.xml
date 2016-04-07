@@ -95,12 +95,12 @@ android:paddingTop="@dimen/activity_vertical_margin" tools:context=".LoginActivi
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="年龄"
-                android:id="@+id/textView3"
+                android:id="@+id/textView_years"
                 android:layout_gravity="top"
                 android:textSize="26sp" />
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/years_tv"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:hint="请输入年龄"
@@ -129,7 +129,7 @@ android:paddingTop="@dimen/activity_vertical_margin" tools:context=".LoginActivi
                 android:textSize="26sp" />
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/email_tv"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:hint="请输入邮箱地址"
@@ -153,12 +153,12 @@ android:paddingTop="@dimen/activity_vertical_margin" tools:context=".LoginActivi
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="密码"
-                android:id="@+id/textView4"
+                android:id="@+id/textView_pw"
                 android:layout_gravity="top"
                 android:textSize="26sp" />
 
             <EditText
-                android:id="@+id/editText3"
+                android:id="@+id/pw_tv"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:hint="请输入密码"
@@ -187,7 +187,7 @@ android:paddingTop="@dimen/activity_vertical_margin" tools:context=".LoginActivi
                 android:textSize="26sp" />
 
             <EditText
-                android:id="@+id/editText"
+                android:id="@+id/cpw_tv"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:hint="请再次输入密码"
@@ -211,12 +211,12 @@ android:paddingTop="@dimen/activity_vertical_margin" tools:context=".LoginActivi
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="手机"
-                android:id="@+id/textView4"
+                android:id="@+id/textView_phone"
                 android:layout_gravity="top"
                 android:textSize="26sp" />
 
             <EditText
-                android:id="@+id/editText3"
+                android:id="@+id/phone_tv"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:hint="请输入手机号码"
@@ -240,12 +240,12 @@ android:paddingTop="@dimen/activity_vertical_margin" tools:context=".LoginActivi
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="身份证号"
-                android:id="@+id/textView5"
+                android:id="@+id/textView_id_num"
                 android:layout_gravity="top"
                 android:textSize="26sp" />
 
             <EditText
-                android:id="@+id/editText4"
+                android:id="@+id/id_num_tv"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:hint="请输入身份证号"
@@ -269,12 +269,12 @@ android:paddingTop="@dimen/activity_vertical_margin" tools:context=".LoginActivi
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="姓名"
-                android:id="@+id/textView5"
+                android:id="@+id/textView_name"
                 android:layout_gravity="top"
                 android:textSize="26sp" />
 
             <EditText
-                android:id="@+id/editText4"
+                android:id="@+id/name_tv"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:hint="请输入真实姓名"
@@ -298,12 +298,12 @@ android:paddingTop="@dimen/activity_vertical_margin" tools:context=".LoginActivi
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="安全问题"
-                android:id="@+id/textView4"
+                android:id="@+id/textView_que"
                 android:layout_gravity="top"
                 android:textSize="26sp" />
 
             <EditText
-                android:id="@+id/editText3"
+                android:id="@+id/que_tv"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:hint="请输入安全提问"
@@ -327,12 +327,12 @@ android:paddingTop="@dimen/activity_vertical_margin" tools:context=".LoginActivi
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="安全答案"
-                android:id="@+id/textView4"
+                android:id="@+id/textView_ans"
                 android:layout_gravity="top"
                 android:textSize="26sp" />
 
             <EditText
-                android:id="@+id/editText3"
+                android:id="@+id/ans_tv"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:hint="请输入安全答案"
@@ -348,7 +348,7 @@ android:paddingTop="@dimen/activity_vertical_margin" tools:context=".LoginActivi
         </LinearLayout>
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/submit"
             android:layout_width="match_parent"
             android:layout_height="50sp"
             android:layout_marginTop="18dp"

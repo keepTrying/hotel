@@ -15,8 +15,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <AutoCompleteTextView
-                android:id="@+id/phoneTextView"
+            <EditText
+                android:id="@+id/phone_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="请输入手机号码"
@@ -25,10 +25,22 @@
                 android:singleLine="true" />
 
             <EditText
-                android:id="@+id/idText"
+                android:id="@+id/id_num_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="请输入身份证号码"
+                android:imeActionId="@+id/login"
+                android:imeActionLabel="@string/action_sign_in_short"
+                android:imeOptions="actionUnspecified"
+                android:inputType="text"
+                android:maxLines="1"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/name_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="请输入您的真实姓名"
                 android:imeActionId="@+id/login"
                 android:imeActionLabel="@string/action_sign_in_short"
                 android:imeOptions="actionUnspecified"
@@ -41,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="提交"
-                android:id="@+id/button4"
+                android:id="@+id/button_submit"
                 android:layout_gravity="right" />
         </LinearLayout>
     </ScrollView>

@@ -20,7 +20,7 @@
             android:textSize="26sp" />
 
         <EditText
-            android:id="@+id/editText6"
+            android:id="@+id/et_pw"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="请设置新密码"
@@ -49,7 +49,7 @@
             android:textSize="26sp" />
 
         <EditText
-            android:id="@+id/editText5"
+            android:id="@+id/et_cpw"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="请再次输入密码"
@@ -68,7 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="提交"
-        android:id="@+id/button2"
+        android:id="@+id/btn_submit"
         android:layout_gravity="right" />
 
 </LinearLayout>

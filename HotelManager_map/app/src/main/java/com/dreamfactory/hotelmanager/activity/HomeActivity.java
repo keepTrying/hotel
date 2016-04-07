@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.dreamfactory.hotelmanager.R;
 
@@ -66,16 +67,40 @@ public class HomeActivity extends AppCompatActivity implements OnClickListener {
             intent= new Intent(HomeActivity.this,QueryRoomActivity.class);
             startActivity(intent);
         }else if(v==btn_my){
-            intent= new Intent(HomeActivity.this,UserInfoActivity.class);
+            SharedPreferences sp = getSharedPreferences("user",MODE_PRIVATE);
+            if (!sp.getBoolean("login",false)){
+                Toast.makeText(HomeActivity.this,"请先登录！",Toast.LENGTH_SHORT).show();
+                intent=new Intent(HomeActivity.this,LoginActivity.class);
+            }else {
+                intent = new Intent(HomeActivity.this, UserInfoActivity.class);
+            }
             startActivity(intent);
         }else if(v==btn_history){
-            intent= new Intent(HomeActivity.this,IndentActivity.class);
+            SharedPreferences sp = getSharedPreferences("user",MODE_PRIVATE);
+            if (!sp.getBoolean("login",false)){
+                Toast.makeText(HomeActivity.this,"请先登录！",Toast.LENGTH_SHORT).show();
+                intent=new Intent(HomeActivity.this,LoginActivity.class);
+            }else {
+                intent = new Intent(HomeActivity.this, IndentActivity.class);
+            }
             startActivity(intent);
         }else if(v==btn_point){
-            intent= new Intent(HomeActivity.this,PointActivity.class);
+            SharedPreferences sp = getSharedPreferences("user",MODE_PRIVATE);
+            if (!sp.getBoolean("login",false)){
+                Toast.makeText(HomeActivity.this,"请先登录！",Toast.LENGTH_SHORT).show();
+                intent=new Intent(HomeActivity.this,LoginActivity.class);
+            }else {
+                intent = new Intent(HomeActivity.this, PointActivity.class);
+            }
             startActivity(intent);
         }else if(v==btn_room){
-            intent= new Intent(HomeActivity.this,MyRoomActivity.class);
+            SharedPreferences sp = getSharedPreferences("user",MODE_PRIVATE);
+            if (!sp.getBoolean("login",false)){
+                Toast.makeText(HomeActivity.this,"请先登录！",Toast.LENGTH_SHORT).show();
+                intent=new Intent(HomeActivity.this,LoginActivity.class);
+            }else {
+                intent = new Intent(HomeActivity.this, MyRoomActivity.class);
+            }
             startActivity(intent);
         }else if(v==btn_surround){
             intent= new Intent(HomeActivity.this,NearbyActivity.class);
@@ -102,20 +127,32 @@ public class HomeActivity extends AppCompatActivity implements OnClickListener {
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
             case R.id.action_login:
-                SharedPreferences sp = getSharedPreferences("HomeActivity",MODE_PRIVATE);
-                SharedPreferences.Editor mEditor = sp.edit();
-                mEditor.putBoolean("login", !sp.getBoolean("login", true));
-                mEditor.commit();
-                if (!sp.getBoolean("login",false)) {
+                SharedPreferences sp = getSharedPreferences("user",MODE_PRIVATE);
+                if (sp.getBoolean("login",false)==false) {
                     intent = new Intent(this, LoginActivity.class);
                     startActivity(intent);
                     return true;
                 }else{
                     //TODO logout
+                    SharedPreferences.Editor mEditor = sp.edit();
+                    mEditor.putBoolean("login",false);
+                    mEditor.commit();
+                    Toast.makeText(HomeActivity.this,"注销成功！",Toast.LENGTH_SHORT).show();
                 }
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+
+        SharedPreferences sp = getSharedPreferences("user",MODE_PRIVATE);
+
+        MenuItem item = menu.findItem(R.id.action_login);
+        item.setTitle(sp.getBoolean("login", false) ? "注销" : "登录");
+
+        return super.onPrepareOptionsMenu(menu);
     }
 
 

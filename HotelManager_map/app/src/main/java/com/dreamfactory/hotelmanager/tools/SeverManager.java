@@ -1,14 +1,19 @@
 package com.dreamfactory.hotelmanager.tools;
 
+import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.media.Image;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -24,6 +29,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.dreamfactory.hotelmanager.R;
 import com.dreamfactory.hotelmanager.activity.LoginActivity;
 import com.dreamfactory.hotelmanager.module.Indent;
 import com.dreamfactory.hotelmanager.module.Room;
@@ -63,12 +69,16 @@ public class SeverManager{
     private static final String url_comment_query = "http://42.96.148.66/hotel/comment/query.php";
     private static final String url_upload_img = "http://42.96.148.66/hotel/upload_pic.php";
 
+    private AlertDialog dialog;
+
     public ProgressBar progressbar;
+    public Context mContext;
+
 
     public interface Sever_call_back{
         void onResponseSuccess(String obj);
         void onResponseError(int code);
-        void onErrorResponse(VolleyError volleyError);
+        void onErrorResponse(String volleyError);
     }
 
     private Sever_call_back callback;
@@ -77,13 +87,16 @@ public class SeverManager{
         this.callback = callback;
     }
 
-    private static SeverManager severManager = new SeverManager();
+    private static SeverManager severManager = null;
 
-    public static SeverManager getInstance() {
-        return severManager;
+    public static SeverManager getInstance(Context context,Sever_call_back callback) {
+        return new SeverManager(context,callback);
     }
 
-    private SeverManager() {
+    private SeverManager(Context context,Sever_call_back callback) {
+        this.mContext=context;
+        this.showLoading();
+        this.callback=callback;
     }
 
 //    *******************************User******************************************************
@@ -111,8 +124,10 @@ public class SeverManager{
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
                         //错误处理
-                        Log.d("Error Message:",volleyError+"");
-                        callback.onErrorResponse(volleyError);
+                        dissmissLoading();
+                        Log.d("Error Message:", volleyError + "");
+                        SeverManager.this.callback.onErrorResponse(volleyError
+                                .getLocalizedMessage());
                     }
                 }){
             @Override
@@ -154,8 +169,9 @@ public class SeverManager{
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
                         //错误处理
+                        dissmissLoading();
                         Log.d("Error Message:",volleyError+"");
-                        callback.onErrorResponse(volleyError);
+                        callback.onErrorResponse(volleyError.getLocalizedMessage());
                     }
                 }){
             @Override
@@ -202,8 +218,9 @@ public class SeverManager{
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
                         //错误处理
-                        Log.d("Error Message:",volleyError+"");
-                        callback.onErrorResponse(volleyError);
+                        dissmissLoading();
+                        Log.d("Error Message:", volleyError + "");
+                        callback.onErrorResponse(volleyError.getLocalizedMessage());
                     }
                 }){
             @Override
@@ -249,8 +266,9 @@ public class SeverManager{
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
                         //错误处理
+                        dissmissLoading();
                         Log.d("Error Message:",volleyError+"");
-                        callback.onErrorResponse(volleyError);
+                        callback.onErrorResponse(volleyError.getLocalizedMessage());
                     }
                 }){
             @Override
@@ -294,8 +312,9 @@ public class SeverManager{
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
                         //错误处理
+                        dissmissLoading();
                         Log.d("Error Message:",volleyError+"");
-                        callback.onErrorResponse(volleyError);
+                        callback.onErrorResponse(volleyError.getLocalizedMessage());
                     }
                 }){
             @Override
@@ -341,8 +360,9 @@ public class SeverManager{
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
                         //错误处理
+                        dissmissLoading();
                         Log.d("Error Message:",volleyError+"");
-                        callback.onErrorResponse(volleyError);
+                        callback.onErrorResponse(volleyError.getLocalizedMessage());
                     }
                 }){
             @Override
@@ -386,8 +406,9 @@ public class SeverManager{
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
                         //错误处理
+                        dissmissLoading();
                         Log.d("Error Message:",volleyError+"");
-                        callback.onErrorResponse(volleyError);
+                        callback.onErrorResponse(volleyError.getLocalizedMessage());
                     }
                 }){
             @Override
@@ -435,8 +456,9 @@ public class SeverManager{
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
                         //错误处理
+                        dissmissLoading();
                         Log.d("Error Message:",volleyError+"");
-                        callback.onErrorResponse(volleyError);
+                        callback.onErrorResponse(volleyError.getLocalizedMessage());
                     }
                 }){
             @Override
@@ -485,8 +507,9 @@ public class SeverManager{
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
                         //错误处理
+                        dissmissLoading();
                         Log.d("Error Message:",volleyError+"");
-                        callback.onErrorResponse(volleyError);
+                        callback.onErrorResponse(volleyError.getLocalizedMessage());
                     }
                 }){
             @Override
@@ -536,8 +559,9 @@ public class SeverManager{
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
                         //错误处理
+                        dissmissLoading();
                         Log.d("Error Message:",volleyError+"");
-                        callback.onErrorResponse(volleyError);
+                        callback.onErrorResponse(volleyError.getLocalizedMessage());
                     }
                 }){
             @Override
@@ -589,8 +613,9 @@ public class SeverManager{
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
                         //错误处理
+                        dissmissLoading();
                         Log.d("Error Message:",volleyError+"");
-                        callback.onErrorResponse(volleyError);
+                        callback.onErrorResponse(volleyError.getLocalizedMessage());
                     }
                 }){
             @Override
@@ -644,8 +669,9 @@ public class SeverManager{
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
                         //错误处理
+                        dissmissLoading();
                         Log.d("Error Message:",volleyError+"");
-                        callback.onErrorResponse(volleyError);
+                        callback.onErrorResponse(volleyError.getLocalizedMessage());
                     }
                 }){
             @Override
@@ -703,8 +729,9 @@ public class SeverManager{
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
                         //错误处理
+                        dissmissLoading();
                         Log.d("Error Message:",volleyError+"");
-                        callback.onErrorResponse(volleyError);
+                        callback.onErrorResponse(volleyError.getLocalizedMessage());
                     }
                 }){
             @Override
@@ -756,8 +783,9 @@ public class SeverManager{
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
                         //错误处理
+                        dissmissLoading();
                         Log.d("Error Message:",volleyError+"");
-                        callback.onErrorResponse(volleyError);
+                        callback.onErrorResponse(volleyError.getLocalizedMessage());
                     }
                 }){
             @Override
@@ -805,8 +833,9 @@ public class SeverManager{
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
                         //错误处理
+                        dissmissLoading();
                         Log.d("Error Message:",volleyError+"");
-                        callback.onErrorResponse(volleyError);
+                        callback.onErrorResponse(volleyError.getLocalizedMessage());
                     }
                 }){
             @Override
@@ -855,8 +884,9 @@ public class SeverManager{
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
                         //错误处理
+                        dissmissLoading();
                         Log.d("Error Message:",volleyError+"");
-                        callback.onErrorResponse(volleyError);
+                        callback.onErrorResponse(volleyError.getLocalizedMessage());
                     }
                 }){
             @Override
@@ -901,8 +931,9 @@ public class SeverManager{
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
                         //错误处理
+                        dissmissLoading();
                         Log.d("Error Message:",volleyError+"");
-                        callback.onErrorResponse(volleyError);
+                        callback.onErrorResponse(volleyError.getLocalizedMessage());
                     }
                 }){
 
@@ -935,33 +966,27 @@ public class SeverManager{
 
 
     public void onResponse(String obj){
+        dissmissLoading();
         Status status= JSON.parseObject(obj,Status.class);
         if (status.getStatus().equals("200")){
             callback.onResponseSuccess(obj);
         }else{
+
             callback.onResponseError(Integer.valueOf(status.getStatus()).intValue());
             
         }
     }
 
-    /**
-     * 动态创建ProgressBar
-     * @param a
-     * @return
-     */
-    public void createProgressBar(Activity a)
-    {
-//        1.找到activity根部的ViewGroup，类型都为FrameLayout。
-        FrameLayout rootContainer = (FrameLayout) a.findViewById(android.R.id.content);//固定写法，返回根视图
-//        2.初始化控件显示的位置
-        FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, (FrameLayout.LayoutParams.MATCH_PARENT);
-        lp.gravity = Gravity.CENTER;
-//        3.设置控件显示位置
-        this.progressbar = new ProgressBar(a);
-        this.progressbar.setLayoutParams(lp);
-//        pb.setVisibility(View.GONE);//默认不显示
-//        4.将控件加到根节点下
-        rootContainer.addView(progressbar);
-//        return pb;
+    public void showLoading(){
+        dialog = new AlertDialog.Builder(mContext).setCancelable(false).setView(R.layout
+                .loading).show();
+
+//        WindowManager.LayoutParams layoutParams=new WindowManager.LayoutParams();
+//        layoutParams.=0.5f;
+//        dialog.getWindow().setAttributes(layoutParams);
+    }
+
+    public void dissmissLoading(){
+        dialog.dismiss();
     }
 }

@@ -2,6 +2,7 @@ package com.dreamfactory.hotelmanager.activity;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -10,7 +11,9 @@ import android.view.View.OnClickListener;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
@@ -20,7 +23,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.dreamfactory.hotelmanager.R;
+import com.dreamfactory.hotelmanager.module.User;
 import com.dreamfactory.hotelmanager.tools.SeverManager;
+import com.dreamfactory.hotelmanager.tools.UserManager;
 
 import org.json.JSONObject;
 
@@ -31,7 +36,7 @@ import java.util.Set;
 public class LoginActivity extends AppCompatActivity implements OnClickListener {
 
     // UI references.
-    private AutoCompleteTextView mEmailView;
+    private AutoCompleteTextView mPhoneView;
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
@@ -50,13 +55,61 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
         register.setOnClickListener(this);
         forget.setOnClickListener(this);
 
+        mPhoneView=(AutoCompleteTextView)findViewById(R.id.phone_tv);
+        mPasswordView=(EditText)findViewById(R.id.pw_tv);
+
+        mPhoneView.setText("1332232223");
+        mPasswordView.setText("34323432344refee3feeeeeeeeeeefde");
+
 
     }
 
     @Override
     public void onClick(View v) {
         if (v==login){
-            SeverManager.getInstance().user_login(this,"1332232223","34323432344refee3feeeeeeeeeeefde");
+            SeverManager.getInstance(this,new SeverManager.Sever_call_back(){
+                @Override
+                public void onResponseSuccess(String obj) {
+                    Log.d("log in","success");
+                    User user = JSON.parseObject(obj, User.class);
+                    UserManager.getInstance().setUser(user);
+
+                    SharedPreferences sp = getSharedPreferences("user",MODE_PRIVATE);
+                    SharedPreferences.Editor mEditor = sp.edit();
+                    mEditor.putBoolean("login", true);
+                    mEditor.putInt("user_id", user.getUser_id());
+                    mEditor.putString("user_nick", user.getUser_nick());
+                    mEditor.putInt("user_type", user.getUser_type());
+                    mEditor.putInt("user_gender", user.getUser_gender());
+                    mEditor.putInt("user_years", user.getUser_years());
+                    mEditor.putString("user_email", user.getUser_email());
+                    mEditor.putString("user_time", user.getUser_time());
+                    mEditor.putInt("user_point", user.getUser_point());
+                    mEditor.putString("user_id_num", user.getUser_id_num());
+                    mEditor.putString("user_name", user.getUser_name());
+
+                    mEditor.commit();
+                    Toast.makeText(LoginActivity.this,"登录成功",Toast
+                            .LENGTH_SHORT)
+                            .show();
+                    finish();
+                }
+
+                @Override
+                public void onResponseError(int code) {
+                    Log.d("login","fail");
+                    Toast.makeText(LoginActivity.this,String.format("fail，code：%d",code),Toast
+                            .LENGTH_SHORT)
+                            .show();
+                }
+
+                @Override
+                public void onErrorResponse(String volleyError) {
+                    Log.d("login","fail");
+                    Toast.makeText(LoginActivity.this,volleyError,Toast.LENGTH_SHORT).show();
+                }
+            }).user_login(this,mPhoneView.getText().toString(),
+                    mPasswordView.getText().toString());
         }else if (v==register){
             Intent intent =new Intent(this,RegisterActivity.class);
             startActivity(intent);
