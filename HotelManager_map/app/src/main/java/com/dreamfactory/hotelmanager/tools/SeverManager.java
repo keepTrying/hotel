@@ -20,6 +20,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
@@ -1001,9 +1002,11 @@ public class SeverManager{
 
     public void onResponse(String obj){
 
+        Object atr2=JSON.parse(obj);
+        com.alibaba.fastjson.JSONObject status2 = JSON.parseObject(obj);
         Status status= JSON.parseObject(obj,Status.class);
         if (status.getStatus().equals("200")){
-            callback.onResponseSuccess(obj);
+            callback.onResponseSuccess(status.getData());
             dissmissLoading();
         }else{
 

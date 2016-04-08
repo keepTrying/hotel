@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
                 @Override
                 public void onResponseSuccess(String obj) {
                     Log.d("log in", "success");
-                    User user = JSON.parseObject();
+                    User user = JSON.parseObject(obj,User.class);
                     UserManager.getInstance(LoginActivity.this).setUser(user);
 
                     SharedPreferences sp = getSharedPreferences("user",MODE_PRIVATE);

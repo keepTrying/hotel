@@ -158,68 +158,68 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="申请服务"
                 android:id="@+id/textView48"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="false"
+                android:layout_alignParentLeft="false"
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/textView_room_facility" />
 
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="早餐"
+                android:id="@+id/btn_order"
+                android:layout_below="@+id/textView48"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="按摩"
+                android:id="@+id/btn_knead"
+                android:layout_below="@+id/btn_order"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_gravity="center_horizontal" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="续租"
+                android:id="@+id/btn_continue"
+                android:layout_below="@+id/btn_knead"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="评价"
+                android:id="@+id/btn_comment"
+                android:layout_below="@+id/btn_continue"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="退房"
+                android:id="@+id/btn_refund"
+                android:layout_below="@+id/btn_comment"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
         </RelativeLayout>
     </ScrollView>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="早餐"
-        android:id="@+id/btn_order"
-        android:layout_below="@+id/textView_room_facility"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="按摩"
-        android:id="@+id/btn_knead"
-        android:layout_below="@+id/textView_room_facility"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_gravity="center_horizontal" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="续租"
-        android:id="@+id/btn_continue"
-        android:layout_below="@+id/textView_room_facility"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="评价"
-        android:id="@+id/btn_comment"
-        android:layout_below="@+id/textView_room_facility"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="退房"
-        android:id="@+id/btn_refund"
-        android:layout_below="@+id/textView_room_facility"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
 </LinearLayout>

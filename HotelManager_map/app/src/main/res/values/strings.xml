@@ -6,6 +6,17 @@
         <item>双人间</item>
         <item>三人间</item>
     </string-array>
+    <string-array name="room_service">
+        <item>早餐</item>
+        <item>按摩</item>
+        <item>续租</item>
+        <item>评价</item>
+        <item>退房</item>
+    </string-array>
+    <integer-array name="room_service_cost">
+        <item>5</item>
+        <item>100</item>
+    </integer-array>
     <string name="title_item_list">Items</string>
     <string name="title_item_detail">Item Detail</string>
     <string name="room_detail_put_key">RoomDetailPUtKey</string>

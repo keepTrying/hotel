@@ -1,6 +1,9 @@
 package com.dreamfactory.hotelmanager.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +17,7 @@ import com.dreamfactory.hotelmanager.R;
 import com.dreamfactory.hotelmanager.module.Room;
 import com.dreamfactory.hotelmanager.module.UserHistory;
 import com.dreamfactory.hotelmanager.tools.SeverManager;
+import com.dreamfactory.hotelmanager.tools.UserManager;
 
 public class MyRoomActivity extends Activity implements View.OnClickListener {
 
@@ -30,6 +34,8 @@ public class MyRoomActivity extends Activity implements View.OnClickListener {
     private Button btn_comment;
     private Button btn_refund;
 
+    private String room_num;
+
 
 
     @Override
@@ -37,6 +43,8 @@ public class MyRoomActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_room);
         UserHistory history=(UserHistory)getIntent().getExtras().getSerializable("myroom");
+
+        room_num=history.getRoom_num()+"";
 
         imageView=(NetworkImageView)findViewById(R.id.imageView_room);
         tv_room_num=(TextView)findViewById(R.id.textView_room_num);
@@ -82,7 +90,7 @@ public class MyRoomActivity extends Activity implements View.OnClickListener {
                 SeverManager.loadImage(MyRoomActivity.this,imageView,room.getRoom_img(),R
                         .mipmap.ic_launcher,R.mipmap.ic_launcher);
 
-                tv_room_num.setText(room.getRoom_num());
+                tv_room_num.setText(room.getRoom_num()+"");
                 tv_room_type.setText(room_type);
                 tv_room_cost.setText(room.getRoom_cost()+"元/天");
                 tv_room_area.setText(room.getRoom_area()+"平米");
@@ -112,11 +120,73 @@ public class MyRoomActivity extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         //TODO create indent
-
+        String text;
         switch (v.getId()){
             case R.id.btn_order:
+                new AlertDialog.Builder(MyRoomActivity.this)
+                        .setTitle("早餐")
+                        .setMessage("确认支付10元？")
+                        .setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                SeverManager.getInstance(MyRoomActivity.this, new SeverManager.Sever_call_back() {
+                                    @Override
+                                    public void onResponseSuccess(String obj) {
+                                        Toast.makeText(MyRoomActivity.this,"支付成功！",Toast.LENGTH_SHORT).show();
+                                    }
+
+                                    @Override
+                                    public void onResponseError(int code) {
+                                        Toast.makeText(MyRoomActivity.this,String.format("支付失败！错误码:%d",code),Toast.LENGTH_SHORT).show();
+                                    }
+
+                                    @Override
+                                    public void onErrorResponse(String volleyError) {
+                                        Toast.makeText(MyRoomActivity.this,String.format("支付失败！错误:%s",volleyError),Toast.LENGTH_SHORT).show();
+
+                                    }
+                                }).indent_order(MyRoomActivity.this,null,null,room_num, UserManager.getInstance(MyRoomActivity.this).getUser().getUser_id()+"",10+"",1+"");
+                            }
+                        })
+                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        }).show();
                 break;
             case R.id.btn_knead :
+                new AlertDialog.Builder(MyRoomActivity.this)
+                        .setTitle("按摩")
+                        .setMessage("确认支付100元？")
+                        .setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                SeverManager.getInstance(MyRoomActivity.this, new SeverManager.Sever_call_back() {
+                                    @Override
+                                    public void onResponseSuccess(String obj) {
+                                        Toast.makeText(MyRoomActivity.this,"支付成功！",Toast.LENGTH_SHORT).show();
+                                    }
+
+                                    @Override
+                                    public void onResponseError(int code) {
+                                        Toast.makeText(MyRoomActivity.this,String.format("支付失败！错误码:%d",code),Toast.LENGTH_SHORT).show();
+                                    }
+
+                                    @Override
+                                    public void onErrorResponse(String volleyError) {
+                                        Toast.makeText(MyRoomActivity.this,String.format("支付失败！错误:%s",volleyError),Toast.LENGTH_SHORT).show();
+
+                                    }
+                                }).indent_order(MyRoomActivity.this,null,null,room_num, UserManager.getInstance(MyRoomActivity.this).getUser().getUser_id()+"",100+"",2+"");
+                            }
+                        })
+                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        }).show();
                 break;
             case R.id.btn_continue :
                 break;
