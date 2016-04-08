@@ -48,7 +48,7 @@
         android:layout_marginLeft="2dp"
         android:layout_marginRight="10dp" />
 
-    <ImageView
+    <com.android.volley.toolbox.NetworkImageView
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:id="@+id/r_img"

@@ -47,9 +47,10 @@ public class Room_list_adapter extends BaseAdapter {
         ImageView img_icon = (ImageView) convertView.findViewById(R.id.r_img);
         TextView txt_num = (TextView) convertView.findViewById(R.id.r_num);
         TextView txt_price = (TextView) convertView.findViewById(R.id.r_price);
-        img_icon.setBackgroundResource(mData.get(position).getImg());
-        txt_num.setText(mData.get(position).getNum());
-        txt_price.setText( mData.get(position).getCost());
+//        img_icon.setBackgroundResource(mData.get(position).getImg());
+        img_icon.setBackgroundResource(R.drawable.hotel);
+        txt_num.setText(mData.get(position).getRoom_num()+"");
+        txt_price.setText(mData.get(position).getRoom_cost()+"元/天");
         return convertView;
     }
 }

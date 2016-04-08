@@ -26,7 +26,9 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.dreamfactory.hotelmanager.R;
@@ -278,6 +280,8 @@ public class SeverManager{
                 params.put("user_phone", user_phone);
                 params.put("user_id_num",user_id_num);
                 params.put("user_name", user_name);
+                params.put("page",0+"");
+                params.put("num_page",999+"");
                 return params;
             }
         };
@@ -575,6 +579,9 @@ public class SeverManager{
                 params.put("room_num",room_num);
                 params.put("room_type",room_type);
 
+                params.put("page",0+"");
+                params.put("num_page",999+"");
+
                 return params;
             }
         };
@@ -749,6 +756,9 @@ public class SeverManager{
                 params.put("indent_type", indent_type);
                 params.put("pay", pay);
 
+                params.put("page",0+"");
+                params.put("num_page",999+"");
+
                 return params;
             }
         };
@@ -900,13 +910,16 @@ public class SeverManager{
                 params.put("comment_id",comment_time_end);
                 params.put("comment_time", comment_time_start);
 
+                params.put("page",0+"");
+                params.put("num_page",999+"");
+
                 return params;
             }
         };
         requestQueue.add(stringR);
     }
 
-    //    *******************************Upload
+    //    *******************************Image
     // ******************************************************
     public void upload_img(Context context, final Bitmap bitmap) {
         RequestQueue requestQueue= Volley.newRequestQueue(context);
@@ -957,6 +970,27 @@ public class SeverManager{
         };
         requestQueue.add(stringR);
     }
+
+    public static void loadImage(Context context,NetworkImageView networkImageView,String url,int
+            img_default,int img_fail){
+        RequestQueue requestQueue= Volley.newRequestQueue(context);
+        ImageLoader imageLoader = new ImageLoader(requestQueue, new ImageLoader.ImageCache() {
+            @Override
+            public Bitmap getBitmap(String s) {
+                return null;
+            }
+
+            @Override
+            public void putBitmap(String s, Bitmap bitmap) {
+
+            }
+        });
+
+        networkImageView.setDefaultImageResId(img_default);
+        networkImageView.setErrorImageResId(img_fail);
+        networkImageView.setImageUrl(url,imageLoader);
+    }
+
 
     public byte[] Bitmap2Bytes(Bitmap bm) {
                  ByteArrayOutputStream baos = new ByteArrayOutputStream();

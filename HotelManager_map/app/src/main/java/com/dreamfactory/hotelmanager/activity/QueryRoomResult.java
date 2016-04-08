@@ -14,10 +14,13 @@ import com.dreamfactory.hotelmanager.R;
 import com.dreamfactory.hotelmanager.adapter.Room_list_adapter;
 import com.dreamfactory.hotelmanager.module.Room;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 public class QueryRoomResult extends AppCompatActivity implements AdapterView.OnItemClickListener {
+
+//    public static final String KEY_PUT = "queryroomresult_put";
 
     private List<Room> mData = null;
     private Context mContext;
@@ -28,17 +31,20 @@ public class QueryRoomResult extends AppCompatActivity implements AdapterView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_query_room_result);
+
+        mData = getIntent().getExtras().getParcelableArrayList(QueryRoomActivity.KEY_PUT);
+
         mContext = QueryRoomResult.this;
         final LayoutInflater inflater = LayoutInflater.from(this);
         View headView = inflater.inflate(R.layout.list_head, null, false);
         list_room = (ListView) findViewById(R.id.listView);
         list_room.addHeaderView(headView);
-        mData = new LinkedList<Room>();
-        mData.add(new Room(100, 999008, R.mipmap.ic_launcher));
-        mData.add(new Room(100, 999008, R.mipmap.ic_launcher));
-        mData.add(new Room(100, 999008, R.mipmap.ic_launcher));
-        mData.add(new Room(100, 999008, R.mipmap.ic_launcher));
-        mData.add(new Room(100, 999008, R.mipmap.ic_launcher));
+//        mData = new LinkedList<Room>();
+//        mData.add(new Room(999008,1,999.0f,100, "img","什么都有"));
+//        mData.add(new Room(999008,1,999.0f,100, "img","什么都有"));
+//        mData.add(new Room(999008,1,999.0f,100, "img","什么都有"));
+//        mData.add(new Room(999008,1,999.0f,100, "img","什么都有"));
+//        mData.add(new Room(999008,1,999.0f,100, "img","什么都有"));
         mAdapter = new Room_list_adapter((LinkedList<Room>) mData, mContext);
         list_room.setAdapter(mAdapter);
         list_room.setOnItemClickListener(this);
@@ -50,7 +56,11 @@ public class QueryRoomResult extends AppCompatActivity implements AdapterView.On
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Room room = mData.get(position);
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(getString(R.string.room_detail_put_key),room);
         Intent intent =new Intent(this,RoomDetail.class);
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 }

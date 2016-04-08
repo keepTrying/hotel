@@ -1,62 +1,118 @@
 package com.dreamfactory.hotelmanager.module;
 
 import android.media.Image;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import static java.lang.String.format;
 
 /**
  * Created by yangpeidong on 16/3/24.
  */
-public class Room {
-    private int num;
-    private int type;
-    private float area;
-    private float cost;
-    private int img;
+public class Room implements Parcelable{
+    private int room_num;
+    private int room_type;
+    private float room_area;
+    private float room_cost;
+    private String room_img;
+    private String room_facility;
 
-    public Room(float cost, int num, int img) {
-        this.cost = cost;
-        this.num = num;
-        this.img = img;
+    public Room(int room_num, int room_type, float room_area, float room_cost, String room_img, String room_facility) {
+        this.room_num = room_num;
+        this.room_type = room_type;
+        this.room_area = room_area;
+        this.room_cost = room_cost;
+        this.room_img = room_img;
+        this.room_facility = room_facility;
     }
 
-    public String getNum() {
-        return format("%d",num);
+    public Room(){}
+
+
+
+    public int getRoom_num() {
+        return room_num;
     }
 
-    public void setNum(int num) {
-        this.num = num;
+    public void setRoom_num(int room_num) {
+        this.room_num = room_num;
     }
 
-    public int getType() {
-        return type;
+    public int getRoom_type() {
+        return room_type;
     }
 
-    public void setType(int type) {
-        this.type = type;
+    public void setRoom_type(int room_type) {
+        this.room_type = room_type;
     }
 
-    public float getArea() {
-        return area;
+    public float getRoom_area() {
+        return room_area;
     }
 
-    public void setArea(float area) {
-        this.area = area;
+    public void setRoom_area(float room_area) {
+        this.room_area = room_area;
     }
 
-    public String getCost() {
-        return format("%.2f元",cost);
+    public float getRoom_cost() {
+        return room_cost;
     }
 
-    public void setCost(float cost) {
-        this.cost = cost;
+    public void setRoom_cost(float room_cost) {
+        this.room_cost = room_cost;
     }
 
-    public int getImg() {
-        return img;
+    public String getRoom_img() {
+        return room_img;
     }
 
-    public void setImg(int img) {
-        this.img = img;
+    public void setRoom_img(String room_img) {
+        this.room_img = room_img;
     }
+
+    public String getRoom_facility() {
+        return room_facility;
+    }
+
+    public void setRoom_facility(String room_facility) {
+        this.room_facility = room_facility;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(room_num);
+        dest.writeInt(room_type);
+        dest.writeFloat(room_area);
+        dest.writeFloat(room_cost);
+        dest.writeString(room_img);
+        dest.writeString(room_facility);
+    }
+
+    protected Room(Parcel in) {
+        room_num = in.readInt();
+        room_type = in.readInt();
+        room_area = in.readFloat();
+        room_cost = in.readFloat();
+        room_img = in.readString();
+        room_facility = in.readString();
+    }
+
+    public static final Creator<Room> CREATOR = new Creator<Room>() {
+        @Override
+        public Room createFromParcel(Parcel in) {
+            return new Room(in);
+        }
+
+        @Override
+        public Room[] newArray(int size) {
+            return new Room[size];
+        }
+    };
+
+
 }

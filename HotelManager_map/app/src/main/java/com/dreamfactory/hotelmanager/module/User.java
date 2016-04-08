@@ -1,13 +1,14 @@
 package com.dreamfactory.hotelmanager.module;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by yangpeidong on 16/4/1.
  */
-public class User {
+public class User implements Serializable{
     private int user_id;
     private String user_nick;
     private int user_type;

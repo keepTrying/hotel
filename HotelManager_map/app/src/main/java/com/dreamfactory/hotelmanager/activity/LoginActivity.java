@@ -74,9 +74,9 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
                     User user = JSON.parseObject(obj, User.class);
                     UserManager.getInstance(LoginActivity.this).setUser(user);
 
-//                    SharedPreferences sp = getSharedPreferences("user",MODE_PRIVATE);
-//                    SharedPreferences.Editor mEditor = sp.edit();
-//                    mEditor.putBoolean("login", true);
+                    SharedPreferences sp = getSharedPreferences("user",MODE_PRIVATE);
+                    SharedPreferences.Editor mEditor = sp.edit();
+                    mEditor.putBoolean("login", true);
 //                    mEditor.putInt("user_id", user.getUser_id());
 //                    mEditor.putString("user_nick", user.getUser_nick());
 //                    mEditor.putInt("user_type", user.getUser_type());
@@ -88,7 +88,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
 //                    mEditor.putString("user_id_num", user.getUser_id_num());
 //                    mEditor.putString("user_name", user.getUser_name());
 //
-//                    mEditor.commit();
+                    mEditor.commit();
 
                     Toast.makeText(LoginActivity.this,"登录成功",Toast
                             .LENGTH_SHORT)

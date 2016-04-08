@@ -14,6 +14,13 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.dreamfactory.hotelmanager.R;
+import com.dreamfactory.hotelmanager.module.User;
+import com.dreamfactory.hotelmanager.module.UserHistory;
+import com.dreamfactory.hotelmanager.tools.TimeHelper;
+import com.dreamfactory.hotelmanager.tools.UserManager;
+
+import java.io.Serializable;
+import java.util.List;
 
 
 public class HomeActivity extends AppCompatActivity implements OnClickListener {
@@ -98,10 +105,27 @@ public class HomeActivity extends AppCompatActivity implements OnClickListener {
             if (!sp.getBoolean("login",false)){
                 Toast.makeText(HomeActivity.this,"请先登录！",Toast.LENGTH_SHORT).show();
                 intent=new Intent(HomeActivity.this,LoginActivity.class);
+                startActivity(intent);
             }else {
-                intent = new Intent(HomeActivity.this, MyRoomActivity.class);
+                //if living in a room now
+                User user= UserManager.getInstance(HomeActivity.this).getUser();
+                List<UserHistory> histories = user.getUser_history();
+                for (UserHistory history : histories){
+                    String time_begin = history.getTime_begin();
+                    String time_end = history.getTime_end();
+                    if (TimeHelper.isNowBetweenDates(time_begin,time_end)){
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("myroom", history);
+                        intent = new Intent(HomeActivity.this, MyRoomActivity.class);
+                        intent.putExtras(bundle);
+                        startActivity(intent);
+                        return;
+                    }
+                }
+                Toast.makeText(HomeActivity.this,"对不起，您当前没有入住我们的酒店",Toast.LENGTH_SHORT).show();
+                return;
             }
-            startActivity(intent);
+
         }else if(v==btn_surround){
             intent= new Intent(HomeActivity.this,NearbyActivity.class);
             startActivity(intent);
