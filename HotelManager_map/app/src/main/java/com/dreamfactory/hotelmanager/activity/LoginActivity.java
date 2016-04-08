@@ -70,24 +70,14 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
             SeverManager.getInstance(this,new SeverManager.Sever_call_back(){
                 @Override
                 public void onResponseSuccess(String obj) {
-                    Log.d("log in","success");
-                    User user = JSON.parseObject(obj, User.class);
+                    Log.d("log in", "success");
+                    User user = JSON.parseObject();
                     UserManager.getInstance(LoginActivity.this).setUser(user);
 
                     SharedPreferences sp = getSharedPreferences("user",MODE_PRIVATE);
                     SharedPreferences.Editor mEditor = sp.edit();
                     mEditor.putBoolean("login", true);
-//                    mEditor.putInt("user_id", user.getUser_id());
-//                    mEditor.putString("user_nick", user.getUser_nick());
-//                    mEditor.putInt("user_type", user.getUser_type());
-//                    mEditor.putInt("user_gender", user.getUser_gender());
-//                    mEditor.putInt("user_years", user.getUser_years());
-//                    mEditor.putString("user_email", user.getUser_email());
-//                    mEditor.putString("user_time", user.getUser_time());
-//                    mEditor.putInt("user_point", user.getUser_point());
-//                    mEditor.putString("user_id_num", user.getUser_id_num());
-//                    mEditor.putString("user_name", user.getUser_name());
-//
+
                     mEditor.commit();
 
                     Toast.makeText(LoginActivity.this,"登录成功",Toast
