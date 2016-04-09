@@ -80,7 +80,8 @@
                 android:id="@+id/comment_content"
                 android:layout_gravity="center"
                 android:textStyle="italic"
-                android:textColor="#020202" />
+                android:textColor="#020202"
+                android:minHeight="50dp" />
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -119,7 +120,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="发表评论"
-        android:id="@+id/button14"
+        android:id="@+id/button_commit"
         android:layout_marginTop="20dp" />
 
 </LinearLayout>

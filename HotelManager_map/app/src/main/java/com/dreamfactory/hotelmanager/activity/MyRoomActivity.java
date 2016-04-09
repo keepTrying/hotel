@@ -27,6 +27,7 @@ public class MyRoomActivity extends Activity implements View.OnClickListener {
     private TextView tv_room_cost;
     private TextView tv_room_area;
     private TextView tv_room_facility;
+    private TextView tv_room_rent_time;
 
     private Button btn_breakfast;
     private Button btn_knead;
@@ -42,7 +43,7 @@ public class MyRoomActivity extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_room);
-        UserHistory history=(UserHistory)getIntent().getExtras().getSerializable("myroom");
+        final UserHistory history=(UserHistory)getIntent().getExtras().getSerializable("myroom");
 
         room_num=history.getRoom_num()+"";
 
@@ -52,6 +53,7 @@ public class MyRoomActivity extends Activity implements View.OnClickListener {
         tv_room_cost=(TextView)findViewById(R.id.textView_room_cost);
         tv_room_area=(TextView)findViewById(R.id.textView_room_area);
         tv_room_facility=(TextView)findViewById(R.id.textView_room_facility);
+        tv_room_rent_time=(TextView)findViewById(R.id.textView_rent_time);
 
         btn_breakfast = (Button)findViewById(R.id.btn_order);
         btn_breakfast.setOnClickListener(this);
@@ -87,15 +89,17 @@ public class MyRoomActivity extends Activity implements View.OnClickListener {
                 }
 
                 //TODO set image
-                SeverManager.loadImage(MyRoomActivity.this,imageView,room.getRoom_img(),R
-                        .mipmap.ic_launcher,R.mipmap.ic_launcher);
+                SeverManager.loadImage(MyRoomActivity.this, imageView, room.getRoom_img(), R
+                        .mipmap.ic_launcher, R.mipmap.ic_launcher);
 
-                tv_room_num.setText(room.getRoom_num()+"");
+                tv_room_num.setText(room.getRoom_num() + "");
                 tv_room_type.setText(room_type);
                 tv_room_cost.setText(room.getRoom_cost()+"元/天");
                 tv_room_area.setText(room.getRoom_area()+"平米");
                 tv_room_facility.setText(room.getRoom_facility());
 
+                String rent_time=history.getTime_begin()+" ~ "+history.getTime_end();
+                tv_room_rent_time.setText(rent_time);
 
             }
 
@@ -190,9 +194,12 @@ public class MyRoomActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.btn_continue :
                 break;
+
             case R.id.btn_comment :
+
                 break;
             case R.id.btn_refund :
+
                 break;
             default:
                 break;

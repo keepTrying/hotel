@@ -31,7 +31,6 @@
                 android:id="@+id/imageView_room"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:background="#984040"
                 android:layout_alignBottom="@+id/textView_room_area"
                 android:layout_alignParentTop="true" />
 
@@ -156,12 +155,34 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="租期"
+                android:id="@+id/textView9"
+                android:layout_alignParentBottom="false"
+                android:layout_alignParentLeft="false"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/textView_room_facility" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="2015-10-3 ~ 2016-10-6"
+                android:id="@+id/textView_rent_time"
+                android:layout_below="@+id/textView9"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="申请服务"
                 android:id="@+id/textView48"
                 android:layout_alignParentBottom="false"
                 android:layout_alignParentLeft="false"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/textView_room_facility" />
+                android:layout_below="@+id/textView_rent_time" />
 
             <Button
                 android:layout_width="match_parent"
