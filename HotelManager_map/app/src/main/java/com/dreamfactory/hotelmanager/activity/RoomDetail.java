@@ -54,7 +54,7 @@ public class RoomDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room_detail);
 
-        Bundle bundle = getIntent().getExtras();
+//        Bundle bundle = getIntent().getExtras();
 //        if (bundle.getString("class").equals(QueryRoomResult.class.toString())){
 //
 //        }else{
@@ -124,7 +124,7 @@ public class RoomDetail extends AppCompatActivity {
             public void onErrorResponse(String volleyError) {
                 Toast.makeText(RoomDetail.this, String.format("评论显示失败！错误：%s",volleyError), Toast.LENGTH_SHORT).show();
             }
-        }).comment_query(RoomDetail.this, "", "", room.getRoom_num() + "", "", "", "");
+        }).comment_query(RoomDetail.this, "", "", room.getRoom_num() + "", "", "", "","");
 
 
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:gravity="center_vertical">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -21,8 +21,7 @@
             <com.android.volley.toolbox.NetworkImageView
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:id="@+id/comment_pic"
-                android:background="#a11818" />
+                android:id="@+id/comment_pic" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -70,8 +69,10 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center" >
+                android:layout_gravity="center|right"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:textAlignment="gravity">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -79,7 +80,6 @@
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="评论时间："
                     android:id="@+id/textView30"
-                    android:layout_marginLeft="50dp"
                     android:textColor="#858585" />
 
                 <TextView
@@ -110,7 +110,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="商家回复："
-            android:id="@+id/textView29"
+            android:id="@+id/comment_lb_reply"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="5dp"
             android:layout_gravity="center"

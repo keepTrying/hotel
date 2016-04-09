@@ -48,7 +48,7 @@ public class UserInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_info);
 
-        m_et_nick_name = (EditText) findViewById(R.id.editText_name);
+        m_et_nick_name = (EditText) findViewById(R.id.editText_nick);
         m_et_years = (EditText) findViewById(R.id.editText_years);
         m_et_email = (EditText) findViewById(R.id.editText_email);
         m_et_phone = (EditText) findViewById(R.id.editText_phone);
@@ -60,9 +60,9 @@ public class UserInfoActivity extends AppCompatActivity {
         me= UserManager.getInstance(UserInfoActivity.this).getUser();
 
         m_et_nick_name.setText(me.getUser_nick());
-        m_et_years.setText(me.getUser_years());
+        m_et_years.setText(me.getUser_years()+"");
         m_et_email.setText(me.getUser_email());
-        m_et_phone.setText(me.getUser_phone());
+        m_et_phone.setText(me.getUser_phone()+"");
         m_et_id_num.setText(me.getUser_id_num());
         m_et_name.setText(me.getUser_name());
         m_rb_male.setSelected(me.getUser_gender()==0?true:false);

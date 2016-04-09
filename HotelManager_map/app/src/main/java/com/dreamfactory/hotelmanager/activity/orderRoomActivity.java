@@ -26,7 +26,7 @@ public class orderRoomActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_room);
         final int room_num = getIntent().getIntExtra(RoomDetail.PUT_KEY_ROOM_NUM,0);
-        final float room_cost = getIntent().getIntExtra(RoomDetail.PUT_KEY_ROOM_COST,0);
+        final float room_cost = getIntent().getFloatExtra(RoomDetail.PUT_KEY_ROOM_COST,0);
 
         textView_room_num=(TextView)findViewById(R.id.textView_room_num);
         textView_cost=(TextView)findViewById(R.id.textView_cost);

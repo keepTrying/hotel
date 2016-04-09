@@ -822,7 +822,7 @@ public class SeverManager{
                                         comment_star,final String
                                       comment_time,final String
                                       comment_id,final String
-                                      comment_replay) {
+                                      comment_replay,final String user_name) {
         RequestQueue requestQueue= Volley.newRequestQueue(context);
 
         StringRequest stringR = new StringRequest( Request.Method.POST,
@@ -862,8 +862,7 @@ public class SeverManager{
                 params.put("comment_id",comment_id);
                 params.put("comment_time", comment_time);
                 params.put("comment_replay", comment_replay);
-                final String user_nick =  UserManager.getInstance(context).getUser().getUser_nick();
-                params.put("user_name", user_nick);
+                params.put("user_name", user_name);
 
                 return params;
             }
@@ -875,7 +874,7 @@ public class SeverManager{
                                       room_num,final String
                                       comment_star,final String
                                       comment_time_start,final String
-                                      comment_time_end) {
+                                      comment_time_end,final String user_name) {
         RequestQueue requestQueue= Volley.newRequestQueue(context);
 
         StringRequest stringR = new StringRequest( Request.Method.POST,
@@ -914,8 +913,7 @@ public class SeverManager{
                 params.put("room_num", room_num);
                 params.put("comment_id",comment_time_end);
                 params.put("comment_time", comment_time_start);
-                final String user_nick =  UserManager.getInstance(context).getUser().getUser_nick();
-                params.put("user_name", user_nick);
+                params.put("user_name", user_name);
 
                 params.put("page",0+"");
                 params.put("num_page",999+"");
@@ -1008,8 +1006,8 @@ public class SeverManager{
 
     public void onResponse(String obj){
 
-        Object atr2=JSON.parse(obj);
-        com.alibaba.fastjson.JSONObject status2 = JSON.parseObject(obj);
+//        Object atr2=JSON.parse(obj);
+//        com.alibaba.fastjson.JSONObject status2 = JSON.parseObject(obj);
         Status status= JSON.parseObject(obj,Status.class);
         if (status.getStatus().equals("200")){
             callback.onResponseSuccess(status.getData());

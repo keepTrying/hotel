@@ -41,7 +41,7 @@ public class CommentActivity extends Activity {
 
         networkImageView.setDefaultImageResId(R.mipmap.ic_launcher);
         tv_user_name.setText(UserManager.getInstance(CommentActivity.this).getUser().getUser_name());
-        tv_comment_time.setText(TimeHelper.getStringDateShort());
+        tv_comment_time.setText(TimeHelper.getStringDate());
 
         btn_commit=(Button)findViewById(R.id.button_commit);
         btn_commit.setOnClickListener(new View.OnClickListener() {

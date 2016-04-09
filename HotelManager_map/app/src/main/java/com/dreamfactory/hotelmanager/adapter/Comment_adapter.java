@@ -50,6 +50,7 @@ public class Comment_adapter extends BaseAdapter {
         TextView txt_nick = (TextView) convertView.findViewById(R.id.comment_name);
         TextView txt_content = (TextView) convertView.findViewById(R.id.comment_content);
         TextView txt_time = (TextView) convertView.findViewById(R.id.comment_time);
+        TextView txt_lb_reply=(TextView) convertView.findViewById(R.id.comment_lb_reply);
         TextView txt_reply= (TextView) convertView.findViewById(R.id.comment_reply);
         RatingBar ratingBar = (RatingBar) convertView.findViewById(R.id.comment_rate);
 
@@ -58,7 +59,12 @@ public class Comment_adapter extends BaseAdapter {
         txt_nick.setText(mData.get(position).getUser_name());
         txt_content.setText(mData.get(position).getComment_text());
         txt_time.setText(mData.get(position).getComment_time());
-        txt_reply.setText((CharSequence) mData.get(position).getComment_reply());
+        if (mData.get(position).getComment_reply().isEmpty()){
+            txt_lb_reply.setVisibility(View.INVISIBLE);
+            txt_reply.setVisibility(View.INVISIBLE);
+        }else{
+            txt_reply.setText((CharSequence) mData.get(position).getComment_reply());
+        }
         ratingBar.setRating(mData.get(position).getComment_star());
         return convertView;
     }
