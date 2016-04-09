@@ -12,16 +12,17 @@ import com.dreamfactory.hotelmanager.R;
 import com.dreamfactory.hotelmanager.module.Room;
 
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by yangpeidong on 16/3/24.
  */
 public class Room_list_adapter extends BaseAdapter {
 
-    private LinkedList<Room> mData;
+    private List<Room> mData;
     private Context mContext;
 
-    public Room_list_adapter(LinkedList<Room> mData, Context mContext) {
+    public Room_list_adapter(List<Room> mData, Context mContext) {
         this.mData = mData;
         this.mContext = mContext;
     }

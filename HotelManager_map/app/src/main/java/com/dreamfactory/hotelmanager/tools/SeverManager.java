@@ -767,7 +767,7 @@ public class SeverManager{
     }
     //    *******************************Comment
     // ******************************************************
-    public void comment_publish(Context context, final String user_id,final String
+    public void comment_publish(final Context context, final String user_id,final String
             comment_text,final String
                                      room_num,final String
                                      comment_star) {
@@ -807,6 +807,8 @@ public class SeverManager{
                 params.put("comment_text",comment_text);
                 params.put("user_id", user_id);
                 params.put("room_num", room_num);
+                final String user_nick =  UserManager.getInstance(context).getUser().getUser_nick();
+                params.put("user_name", user_nick);
 
                 return params;
             }
@@ -814,7 +816,7 @@ public class SeverManager{
         requestQueue.add(stringR);
     }
 
-    public void comment_alter(Context context, final String user_id,final String
+    public void comment_alter(final Context context, final String user_id,final String
             comment_text,final String
                                         room_num,final String
                                         comment_star,final String
@@ -860,13 +862,15 @@ public class SeverManager{
                 params.put("comment_id",comment_id);
                 params.put("comment_time", comment_time);
                 params.put("comment_replay", comment_replay);
+                final String user_nick =  UserManager.getInstance(context).getUser().getUser_nick();
+                params.put("user_name", user_nick);
 
                 return params;
             }
         };
         requestQueue.add(stringR);
     }
-    public void comment_query(Context context, final String user_id,final String
+    public void comment_query(final Context context, final String user_id,final String
             comment_text,final String
                                       room_num,final String
                                       comment_star,final String
@@ -910,6 +914,8 @@ public class SeverManager{
                 params.put("room_num", room_num);
                 params.put("comment_id",comment_time_end);
                 params.put("comment_time", comment_time_start);
+                final String user_nick =  UserManager.getInstance(context).getUser().getUser_nick();
+                params.put("user_name", user_nick);
 
                 params.put("page",0+"");
                 params.put("num_page",999+"");

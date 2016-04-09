@@ -34,7 +34,6 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:id="@+id/comment_pic"
-                android:background="#a11818"
                 android:layout_marginTop="20dp"
                 android:layout_gravity="center_horizontal" />
 
@@ -42,7 +41,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="xiaoming"
                 android:id="@+id/comment_name"
                 android:layout_gravity="center_horizontal"
                 android:textStyle="bold"
@@ -72,23 +70,32 @@
 
             </RatingBar>
 
-            <TextView
+            <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="国家卫计委新闻发言人熊煌23日回应非法经营疫苗案件时表示，从目前的研判分析看，未发现疑似预防接种异常反应增多的情况。熊煌说，目前国家卫计委正与有关部门保持密切沟通，同时要求地方卫生计生部门与相关部门联系，坚决查处违法违规购进和使用第二类疫苗的行为。"
                 android:id="@+id/comment_content"
                 android:layout_gravity="center"
                 android:textStyle="italic"
                 android:textColor="#020202"
-                android:minHeight="50dp" />
+                android:minHeight="100dp"
+                android:background="#f3e3e3"
+                android:hint="请输入评论内容"
+                android:editable="true"
+                android:clickable="true"
+                android:enabled="true"
+                android:focusable="true"
+                android:inputType="text"
+                android:gravity="left|top"
+                android:padding="5dp" />
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:gravity="center" >
+                android:gravity="center"
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"

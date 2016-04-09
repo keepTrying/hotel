@@ -45,7 +45,7 @@ public class QueryRoomResult extends AppCompatActivity implements AdapterView.On
 //        mData.add(new Room(999008,1,999.0f,100, "img","什么都有"));
 //        mData.add(new Room(999008,1,999.0f,100, "img","什么都有"));
 //        mData.add(new Room(999008,1,999.0f,100, "img","什么都有"));
-        mAdapter = new Room_list_adapter((LinkedList<Room>) mData, mContext);
+        mAdapter = new Room_list_adapter(mData, mContext);
         list_room.setAdapter(mAdapter);
         list_room.setOnItemClickListener(this);
     }
@@ -56,7 +56,7 @@ public class QueryRoomResult extends AppCompatActivity implements AdapterView.On
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Room room = mData.get(position);
+        Room room = mData.get(position-1);
         Bundle bundle = new Bundle();
         bundle.putParcelable(getString(R.string.room_detail_put_key),room);
         Intent intent =new Intent(this,RoomDetail.class);

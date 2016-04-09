@@ -11,8 +11,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
+import com.android.volley.toolbox.NetworkImageView;
 import com.dreamfactory.hotelmanager.adapter.Comment_adapter;
 import com.dreamfactory.hotelmanager.module.Indent;
 import com.dreamfactory.hotelmanager.module.Room;
@@ -44,7 +46,7 @@ public class RoomDetail extends AppCompatActivity {
 
     private Button btn_order;
 
-    private ImageView imgview;
+    private NetworkImageView imgview;
 
 
     @Override
@@ -58,7 +60,7 @@ public class RoomDetail extends AppCompatActivity {
 //        }else{
 //
 //        }
-        room=bundle.getParcelable(getString(R.string.room_detail_put_key));
+        room=getIntent().getExtras().getParcelable(getString(R.string.room_detail_put_key));
 
         final String room_type = getResources().getStringArray(R.array.room_type)[room
                 .getRoom_type()+1];
@@ -68,7 +70,7 @@ public class RoomDetail extends AppCompatActivity {
         tv_room_cost =(TextView)findViewById(R.id.textView_room_cost);
         tv_room_area =(TextView)findViewById(R.id.textView_room_area);
         tv_room_facility=(TextView)findViewById(R.id.textView_room_facility);
-        imgview=(ImageView)findViewById(R.id.imageView_room);
+        imgview=(NetworkImageView)findViewById(R.id.imageView_room);
 
         tv_room_num.setText(room.getRoom_num()+"");
         tv_room_type.setText(room_type);
@@ -77,7 +79,7 @@ public class RoomDetail extends AppCompatActivity {
         tv_room_facility.setText(room.getRoom_facility());
 
         //TODO set pic for imageview
-
+        SeverManager.loadImage(RoomDetail.this,imgview,room.getRoom_img(),R.mipmap.ic_launcher,R.mipmap.ic_launcher);
 
 
 
@@ -109,20 +111,20 @@ public class RoomDetail extends AppCompatActivity {
 //                mData.add(new Comment(100001,"2014年2月2日","当然你也可以在res/values/下另外创建一个ids.xml文件，把上面这段代码贴上去！ 除了这个还有一个要注意的地方，就是这个区分类别的标志要从0开始算，不然会报下面 这样的错误：",000001,999001,2,"当然你也可以在res/values/下另外创建一个ids.xml文件，把上面这段代码贴上去！ 除了这个还有一个要注意的地方，就是这个区分类别的标志要从0开始算，不然会报下面 这样的错误：",R.mipmap.ic_launcher,"小米"));
 //                mData.add(new Comment(100001,"2014年2月2日","当然你也可以在res/values/下另外创建一个ids.xml文件，把上面这段代码贴上去！ 除了这个还有一个要注意的地方，就是这个区分类别的标志要从0开始算，不然会报下面 这样的错误：",000001,999001,2,"当然你也可以在res/values/下另外创建一个ids.xml文件，把上面这段代码贴上去！ 除了这个还有一个要注意的地方，就是这个区分类别的标志要从0开始算，不然会报下面 这样的错误：",R.mipmap.ic_launcher,"小米"));
 //                mData.add(new Comment(100001,"2014年2月2日","当然你也可以在res/values/下另外创建一个ids.xml文件，把上面这段代码贴上去！ 除了这个还有一个要注意的地方，就是这个区分类别的标志要从0开始算，不然会报下面 这样的错误：",000001,999001,2,"当然你也可以在res/values/下另外创建一个ids.xml文件，把上面这段代码贴上去！ 除了这个还有一个要注意的地方，就是这个区分类别的标志要从0开始算，不然会报下面 这样的错误：",R.mipmap.ic_launcher,"小米"));
-                mAdapter = new Comment_adapter((LinkedList<Comment>) mData, mContext);
+                mAdapter = new Comment_adapter(mData, mContext);
                 list_comment.setAdapter(mAdapter);
             }
 
             @Override
             public void onResponseError(int code) {
-
+                Toast.makeText(RoomDetail.this,String.format("评论显示失败！错误码：%d",code),Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onErrorResponse(String volleyError) {
-
+                Toast.makeText(RoomDetail.this, String.format("评论显示失败！错误：%s",volleyError), Toast.LENGTH_SHORT).show();
             }
-        }).comment_query(RoomDetail.this, null, null, room.getRoom_num() + "", null, null, null);
+        }).comment_query(RoomDetail.this, "", "", room.getRoom_num() + "", "", "", "");
 
 
 

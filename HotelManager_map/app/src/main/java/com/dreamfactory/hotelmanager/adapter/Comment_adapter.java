@@ -13,16 +13,17 @@ import com.dreamfactory.hotelmanager.R;
 import com.dreamfactory.hotelmanager.module.Comment;
 
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by yangpeidong on 16/3/24.
  */
 public class Comment_adapter extends BaseAdapter {
 
-    private LinkedList<Comment> mData;
+    private List<Comment> mData;
     private Context mContext;
 
-    public Comment_adapter(LinkedList<Comment> mData, Context mContext) {
+    public Comment_adapter(List<Comment> mData, Context mContext) {
         this.mData = mData;
         this.mContext = mContext;
     }
@@ -52,12 +53,13 @@ public class Comment_adapter extends BaseAdapter {
         TextView txt_reply= (TextView) convertView.findViewById(R.id.comment_reply);
         RatingBar ratingBar = (RatingBar) convertView.findViewById(R.id.comment_rate);
 
-        pic.setBackgroundResource(mData.get(position).getImg());
-        txt_nick.setText(mData.get(position).getuName());
-        txt_content.setText(mData.get(position).getContent());
-        txt_time.setText(mData.get(position).getTime());
-        txt_reply.setText((CharSequence) mData.get(position).getReply());
-        ratingBar.setRating(mData.get(position).getStar());
+        //pic.setBackgroundResource(mData.get(position).get());
+        pic.setBackgroundResource(R.mipmap.ic_launcher);
+        txt_nick.setText(mData.get(position).getUser_name());
+        txt_content.setText(mData.get(position).getComment_text());
+        txt_time.setText(mData.get(position).getComment_time());
+        txt_reply.setText((CharSequence) mData.get(position).getComment_reply());
+        ratingBar.setRating(mData.get(position).getComment_star());
         return convertView;
     }
 }
