@@ -8,50 +8,47 @@ import java.util.Date;
  */
 public class Indent {
 
-    int id;
-    Date time_begin;
-    Date time_end;
+
+    String time_begin;
+    String time_end;
     int pay;
     int room_num;
-    int type;
-    String time;
+    int indent_status;
     int user_id;
     float cost;
+    int indent_type;
+    int indent_id;
+    String indent_time;
 
-    public Indent(int id, Date time_begin, Date time_end, int status, int room_num, int type, String time, int user_id, float cost) {
-        this.id = id;
+
+    public Indent(){}
+
+    public Indent(String time_begin, String time_end, int pay, int room_num, int indent_status, int user_id, float cost, int indent_type, int indent_id, String indent_time) {
         this.time_begin = time_begin;
         this.time_end = time_end;
-        this.pay = status;
+        this.pay = pay;
         this.room_num = room_num;
-        this.type = type;
-        this.time = time;
+        this.indent_status = indent_status;
         this.user_id = user_id;
         this.cost = cost;
+        this.indent_type = indent_type;
+        this.indent_id = indent_id;
+        this.indent_time = indent_time;
     }
 
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Date getTime_begin() {
+    public String getTime_begin() {
         return time_begin;
     }
 
-    public void setTime_begin(Date time_begin) {
+    public void setTime_begin(String time_begin) {
         this.time_begin = time_begin;
     }
 
-    public Date getTime_end() {
+    public String getTime_end() {
         return time_end;
     }
 
-    public void setTime_end(Date time_end) {
+    public void setTime_end(String time_end) {
         this.time_end = time_end;
     }
 
@@ -71,20 +68,12 @@ public class Indent {
         this.room_num = room_num;
     }
 
-    public int getType() {
-        return type;
+    public int getIndent_status() {
+        return indent_status;
     }
 
-    public void setType(int type) {
-        this.type = type;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
+    public void setIndent_status(int indent_status) {
+        this.indent_status = indent_status;
     }
 
     public int getUser_id() {
@@ -101,5 +90,29 @@ public class Indent {
 
     public void setCost(float cost) {
         this.cost = cost;
+    }
+
+    public int getIndent_type() {
+        return indent_type;
+    }
+
+    public void setIndent_type(int indent_type) {
+        this.indent_type = indent_type;
+    }
+
+    public int getIndent_id() {
+        return indent_id;
+    }
+
+    public void setIndent_id(int indent_id) {
+        this.indent_id = indent_id;
+    }
+
+    public String getIndent_time() {
+        return indent_time;
+    }
+
+    public void setIndent_time(String indent_time) {
+        this.indent_time = indent_time;
     }
 }

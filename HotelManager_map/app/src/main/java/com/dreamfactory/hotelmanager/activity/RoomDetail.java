@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -16,16 +15,12 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.android.volley.toolbox.NetworkImageView;
 import com.dreamfactory.hotelmanager.adapter.Comment_adapter;
-import com.dreamfactory.hotelmanager.module.Indent;
 import com.dreamfactory.hotelmanager.module.Room;
 import com.dreamfactory.hotelmanager.tools.SeverManager;
 import com.dreamfactory.hotelmanager.view.ListViewForScrollView;
 import com.dreamfactory.hotelmanager.R;
 import com.dreamfactory.hotelmanager.module.Comment;
 
-import org.w3c.dom.Text;
-
-import java.util.LinkedList;
 import java.util.List;
 
 public class RoomDetail extends AppCompatActivity {
@@ -63,7 +58,7 @@ public class RoomDetail extends AppCompatActivity {
         room=getIntent().getExtras().getParcelable(getString(R.string.room_detail_put_key));
 
         final String room_type = getResources().getStringArray(R.array.room_type)[room
-                .getRoom_type()+1];
+                .getRoom_type()-1];
 
         tv_room_num =(TextView)findViewById(R.id.textView_room_num);
         tv_room_type =(TextView)findViewById(R.id.textView_room_type);
@@ -87,7 +82,7 @@ public class RoomDetail extends AppCompatActivity {
         btn_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(RoomDetail.this,orderRoomActivity.class);
+                Intent intent=new Intent(RoomDetail.this,OrderRoomActivity.class);
                 intent.putExtra(PUT_KEY_ROOM_NUM,room.getRoom_num());
                 intent.putExtra(PUT_KEY_ROOM_COST,room.getRoom_cost());
                 startActivity(intent);
@@ -117,14 +112,17 @@ public class RoomDetail extends AppCompatActivity {
 
             @Override
             public void onResponseError(int code) {
-                Toast.makeText(RoomDetail.this,String.format("评论显示失败！错误码：%d",code),Toast.LENGTH_SHORT).show();
+                if (code==433)
+                    Toast.makeText(RoomDetail.this,String.format("当前房间没有评论信息！"),Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(RoomDetail.this,String.format("评论显示失败！错误码：%d",code),Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onErrorResponse(String volleyError) {
                 Toast.makeText(RoomDetail.this, String.format("评论显示失败！错误：%s",volleyError), Toast.LENGTH_SHORT).show();
             }
-        }).comment_query(RoomDetail.this, "", "", room.getRoom_num() + "", "", "", "","");
+        }).comment_query(RoomDetail.this, "", "", room.getRoom_num() + "", "", "", "", "");
 
 
 

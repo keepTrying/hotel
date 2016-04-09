@@ -651,7 +651,6 @@ public class SeverManager{
                                      indent_type,final String
                                      pay,final String
                                      indent_status,final String
-                                     indent_time,final String
                                      indent_id) {
         RequestQueue requestQueue= Volley.newRequestQueue(context);
 
@@ -691,7 +690,7 @@ public class SeverManager{
                 params.put("room_num", room_num);
                 params.put("user_id", user_id);
                 params.put("cost",cost);
-                params.put("indent_time",indent_time);
+//                params.put("indent_time",indent_time);
                 params.put("indent_id",indent_id);
                 params.put("indent_status",indent_status);
                 params.put("indent_type", indent_type);

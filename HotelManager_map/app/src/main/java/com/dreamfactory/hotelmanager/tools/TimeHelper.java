@@ -207,7 +207,14 @@ public class TimeHelper {
 
     public static boolean isNowBetweenTwoTime(String begin,String end){
         String now =TimeHelper.getStringDate();
-        if (!(TimeHelper.getStringSeconds(begin, now)>0)&&TimeHelper.getStringSeconds(now,end)<0)
+        if (!(TimeHelper.getStringSeconds(begin, now)>0)&&TimeHelper.getStringSeconds(now, end)<0)
+            return true;
+        else
+            return false;
+    }
+
+    public static boolean isTwoTimeOpposing(String time1_begin,String time1_end,String time2_begin,String time2_end){
+        if (TimeHelper.getDays(time1_end,time2_begin)>=0||TimeHelper.getDays(time2_end,time1_begin)>=0)
             return true;
         else
             return false;

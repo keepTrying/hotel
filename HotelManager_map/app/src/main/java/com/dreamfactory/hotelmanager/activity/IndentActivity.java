@@ -27,10 +27,10 @@ public class IndentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_indent);
 
         List<Indent> indents = new ArrayList<Indent>();
-        for(int i=0;i<10;i++){
-            Indent indent = new Indent(000001, new Date(23,1,2), Date.valueOf("2013-02-12"),i%5,100001,i%3,"2015年2月3日",20001,108.4f);
-            indents.add(indent);
-        }
+//        for(int i=0;i<10;i++){
+//            Indent indent = new Indent(000001, new Date(23,1,2), Date.valueOf("2013-02-12"),i%5,100001,i%3,"2015年2月3日",20001,108.4f);
+//            indents.add(indent);
+//        }
         final HashMap<String,List<Indent>> listHashMap = IndentHash.getData(indents);
         final List<String> titles = new ArrayList<String>(listHashMap.keySet());
         adapter = new IndentAdapter(this,titles,listHashMap);

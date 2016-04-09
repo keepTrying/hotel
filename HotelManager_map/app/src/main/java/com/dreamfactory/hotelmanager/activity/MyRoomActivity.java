@@ -6,8 +6,10 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,10 +17,16 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.android.volley.toolbox.NetworkImageView;
 import com.dreamfactory.hotelmanager.R;
+import com.dreamfactory.hotelmanager.module.Indent;
 import com.dreamfactory.hotelmanager.module.Room;
+import com.dreamfactory.hotelmanager.module.User;
 import com.dreamfactory.hotelmanager.module.UserHistory;
 import com.dreamfactory.hotelmanager.tools.SeverManager;
+import com.dreamfactory.hotelmanager.tools.TimeHelper;
 import com.dreamfactory.hotelmanager.tools.UserManager;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MyRoomActivity extends Activity implements View.OnClickListener {
 
@@ -38,13 +46,18 @@ public class MyRoomActivity extends Activity implements View.OnClickListener {
 
     private String room_num;
 
+    private Room room;
+    private Indent indent;
+
+    private UserHistory history;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_room);
-        final UserHistory history=(UserHistory)getIntent().getExtras().getSerializable("myroom");
+        history=(UserHistory)getIntent().getExtras().getSerializable("myroom");
 
         room_num=history.getRoom_num()+"";
 
@@ -71,7 +84,7 @@ public class MyRoomActivity extends Activity implements View.OnClickListener {
             @Override
             public void onResponseSuccess(String obj) {
 
-                Room room = JSON.parseArray(obj,Room.class).get(0);
+                room = JSON.parseArray(obj,Room.class).get(0);
 
                 int type = room.getRoom_type();
                 String room_type="";
@@ -194,14 +207,161 @@ public class MyRoomActivity extends Activity implements View.OnClickListener {
                         }).show();
                 break;
             case R.id.btn_continue :
+                LayoutInflater factory = LayoutInflater.from(MyRoomActivity.this);
+                final View textEntryView = factory.inflate(R.layout.continue_room_dialog, null);
+                AlertDialog dlg = new AlertDialog.Builder(MyRoomActivity.this)
+                        .setView(textEntryView)
+                        .setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+
+                                EditText editText = (EditText) textEntryView.findViewById(R.id.editText_time);
+                                final String input = editText.getText().toString();
+                                try {
+                                    if (TimeHelper.getDays(history.getTime_end(),input)>0)
+                                    {
+                                        Toast.makeText(MyRoomActivity.this,"请核实您输入的日期!",Toast.LENGTH_SHORT).show();
+                                        return;
+                                    }
+                                }catch (Exception e) {
+                                    Toast.makeText(MyRoomActivity.this, "您输入的日期格式有误!", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+
+                                SeverManager.getInstance(MyRoomActivity.this, new SeverManager.Sever_call_back() {
+                                    @Override
+                                    public void onResponseSuccess(String obj) {
+                                        List<Indent> indents = JSON.parseArray(obj,Indent.class);
+                                        for (Indent var:indents){
+                                            if (var.getUser_id()==UserManager.getInstance(MyRoomActivity.this).getUser().getUser_id()&&var.getTime_end().equals(history.getTime_end())){
+                                                indent=var;
+                                            }
+                                        }
+                                        for (Indent var:indents){
+                                            if (TimeHelper.getDays(var.getTime_begin(), input)<0){
+                                                Toast.makeText(MyRoomActivity.this,String.format("对不起，%s 至 %s 已经有人预定本房间！",var.getTime_begin(),var.getTime_end()),Toast.LENGTH_SHORT).show();
+                                                return;
+                                            }
+                                        }
+
+                                        AlertDialog dialog2 = new AlertDialog.Builder(MyRoomActivity.this).setMessage(String.format("确认支付%f元？",TimeHelper.getDays(input,history.getTime_end())*room.getRoom_cost())).setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                SeverManager.getInstance(MyRoomActivity.this, new SeverManager.Sever_call_back() {
+                                                    @Override
+                                                    public void onResponseSuccess(String obj) {
+
+                                                        User user=UserManager.getInstance(MyRoomActivity.this).getUser();
+                                                        List<UserHistory> histories=user.getUser_history();
+                                                        histories.remove(history);
+                                                        history.setTime_end(input);
+                                                        histories.add(history);
+                                                        user.setUser_history(histories);
+                                                        UserManager.getInstance(MyRoomActivity.this).setUser(user);
+
+                                                        tv_room_rent_time.setText(String.format("%s ~ %s", history.getTime_begin(), history.getTime_end()));
+
+                                                        Toast.makeText(MyRoomActivity.this,"支付成功!",Toast.LENGTH_SHORT).show();
+                                                    }
+
+                                                    @Override
+                                                    public void onResponseError(int code) {
+                                                        Toast.makeText(MyRoomActivity.this,String.format("支付失败，错误码：%d",code),Toast.LENGTH_SHORT).show();
+                                                    }
+
+                                                    @Override
+                                                    public void onErrorResponse(String volleyError) {
+                                                        Toast.makeText(MyRoomActivity.this,String.format("支付失败，错误：%s",volleyError),Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }).indent_alter(MyRoomActivity.this,indent.getTime_begin(),input,indent.getRoom_num()+"",indent.getUser_id()+"",indent.getCost()+"",indent.getIndent_type()+"",indent.getPay()+"",indent.getIndent_status()+"",indent.getIndent_id()+"");
+                                            }
+                                        }).show();
+
+                                    }
+
+                                    @Override
+                                    public void onResponseError(int code) {
+                                        Toast.makeText(MyRoomActivity.this,String.format("退房失败，错误码：%d",code),Toast.LENGTH_SHORT).show();
+                                    }
+
+                                    @Override
+                                    public void onErrorResponse(String volleyError) {
+                                        Toast.makeText(MyRoomActivity.this,String.format("退房失败，错误：%s",volleyError),Toast.LENGTH_SHORT).show();
+                                    }
+                                }).indent_query(MyRoomActivity.this, history.getTime_begin(),"", room_num,"", "", 1 + "", 1+"", "", "", "");
+
+
+
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+
+
+                            }
+                        })
+                        .create();
+                dlg.show();
                 break;
 
             case R.id.btn_comment :
-                Intent intent=new Intent(MyRoomActivity.this,CommentActivity.class);
-                intent.putExtra("room_num",room_num);
-                startActivity(intent);
+                SeverManager.getInstance(MyRoomActivity.this, new SeverManager.Sever_call_back() {
+                    @Override
+                    public void onResponseSuccess(String obj) {
+                        Toast.makeText(MyRoomActivity.this, "对不起，您已经评价过了！", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onResponseError(int code) {
+                        if (code == 433) {
+                            Intent intent = new Intent(MyRoomActivity.this, CommentActivity.class);
+                            intent.putExtra("room_num", room_num);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(MyRoomActivity.this, "对不起，网络连接失败！", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onErrorResponse(String volleyError) {
+                        Toast.makeText(MyRoomActivity.this, "对不起，网络连接失败！", Toast.LENGTH_SHORT).show();
+                    }
+                }).comment_query(MyRoomActivity.this, UserManager.getInstance(MyRoomActivity.this).getUser().getUser_id() + "", "", room_num, "", history.getTime_begin(), history.getTime_end(), "");
                 break;
             case R.id.btn_refund :
+
+                    SeverManager.getInstance(MyRoomActivity.this, new SeverManager.Sever_call_back() {
+                        @Override
+                        public void onResponseSuccess(String obj) {
+                            Indent indent = (Indent) JSON.parseArray(obj).get(0);
+                            SeverManager.getInstance(MyRoomActivity.this, new SeverManager.Sever_call_back() {
+                                @Override
+                                public void onResponseSuccess(String obj) {
+                                    Toast.makeText(MyRoomActivity.this,"退房成功，请到前台办理手续!",Toast.LENGTH_SHORT).show();
+                                }
+
+                                @Override
+                                public void onResponseError(int code) {
+                                    Toast.makeText(MyRoomActivity.this,String.format("退房失败，错误码：%d",code),Toast.LENGTH_SHORT).show();
+                                }
+
+                                @Override
+                                public void onErrorResponse(String volleyError) {
+                                    Toast.makeText(MyRoomActivity.this,String.format("退房失败，错误：%s",volleyError),Toast.LENGTH_SHORT).show();
+                                }
+                            }).indent_alter(MyRoomActivity.this,indent.getTime_begin(),indent.getTime_end(),indent.getRoom_num()+"",indent.getUser_id()+"",indent.getCost()+"",indent.getIndent_type()+"",indent.getPay()+"",indent.getIndent_status()+1+"",indent.getIndent_id()+"");
+                        }
+
+                        @Override
+                        public void onResponseError(int code) {
+                            Toast.makeText(MyRoomActivity.this,String.format("退房失败，错误码：%d",code),Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onErrorResponse(String volleyError) {
+                            Toast.makeText(MyRoomActivity.this,String.format("退房失败，错误：%s",volleyError),Toast.LENGTH_SHORT).show();
+                        }
+                    }).indent_query(MyRoomActivity.this, history.getTime_begin(), history.getTime_end(), "", UserManager.getInstance(MyRoomActivity.this).getUser().getUser_id() + "", "", 1 + "", "", "", "", "");
+
 
                 break;
             default:

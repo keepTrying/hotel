@@ -19,10 +19,9 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="1105"
-        android:id="@+id/textView32"
+        android:id="@+id/textView_point"
         android:layout_alignTop="@+id/textView28"
-        android:layout_toRightOf="@+id/textView28"
-        android:layout_toEndOf="@+id/textView_point" />
+        android:layout_toRightOf="@+id/textView28" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -31,8 +30,8 @@
         android:text="奖项设置"
         android:id="@+id/textView34"
         android:layout_below="@+id/textView28"
-        android:layout_alignRight="@+id/textView32"
-        android:layout_alignEnd="@+id/textView32"
+        android:layout_alignRight="@+id/textView_point"
+        android:layout_alignEnd="@+id/textView_point"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="true"
         android:layout_marginTop="20dp" />

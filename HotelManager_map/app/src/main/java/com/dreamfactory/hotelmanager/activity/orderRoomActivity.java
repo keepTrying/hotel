@@ -13,7 +13,7 @@ import com.dreamfactory.hotelmanager.tools.SeverManager;
 import com.dreamfactory.hotelmanager.tools.TimeHelper;
 import com.dreamfactory.hotelmanager.tools.UserManager;
 
-public class orderRoomActivity extends Activity {
+public class OrderRoomActivity extends Activity {
 
     private TextView textView_room_num;
     private TextView textView_cost;
@@ -26,7 +26,7 @@ public class orderRoomActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_room);
         final int room_num = getIntent().getIntExtra(RoomDetail.PUT_KEY_ROOM_NUM,0);
-        final float room_cost = getIntent().getFloatExtra(RoomDetail.PUT_KEY_ROOM_COST,0);
+        final float room_cost = getIntent().getFloatExtra(RoomDetail.PUT_KEY_ROOM_COST, 0);
 
         textView_room_num=(TextView)findViewById(R.id.textView_room_num);
         textView_cost=(TextView)findViewById(R.id.textView_cost);
@@ -47,15 +47,16 @@ public class orderRoomActivity extends Activity {
                 }catch (Exception e){
                     return;
                 }
-                SeverManager.getInstance(orderRoomActivity.this, new SeverManager.Sever_call_back() {
+                SeverManager.getInstance(OrderRoomActivity.this, new SeverManager.Sever_call_back() {
                     @Override
                     public void onResponseSuccess(String obj) {
-                        Toast.makeText(orderRoomActivity.this,"预订成功",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(OrderRoomActivity.this,"预订成功",Toast.LENGTH_SHORT).show();
+                        finish();
                     }
 
                     @Override
                     public void onResponseError(int code) {
-                        Toast.makeText(orderRoomActivity.this,String.format("预订失败，错误码：%d",code),
+                        Toast.makeText(OrderRoomActivity.this,String.format("预订失败，错误码：%d",code),
                                 Toast
                                 .LENGTH_SHORT)
                                 .show();
@@ -63,16 +64,16 @@ public class orderRoomActivity extends Activity {
 
                     @Override
                     public void onErrorResponse(String volleyError) {
-                        Toast.makeText(orderRoomActivity.this,String.format("预订失败，错误：%s",volleyError),
+                        Toast.makeText(OrderRoomActivity.this,String.format("预订失败，错误：%s",volleyError),
                                 Toast.LENGTH_SHORT).show();
                     }
-                }).indent_order(orderRoomActivity.this,
+                }).indent_order(OrderRoomActivity.this,
                         editText_start.getText().toString(),
                         editText_end.getText().toString(),
                         room_num+"",
-                        UserManager.getInstance(orderRoomActivity.this).getUser().getUser_id()+"",
+                        UserManager.getInstance(OrderRoomActivity.this).getUser().getUser_id()+"",
                         room_cost*days+"",
-                        0+"");
+                        1+"");
             }
         });
     }

@@ -105,12 +105,14 @@ public class UserInfoActivity extends AppCompatActivity {
                         public void onResponseError(int code) {
                             Toast.makeText(UserInfoActivity.this, String.format("修改失败，错误码：%d",
                                     code), Toast.LENGTH_SHORT).show();
+                            m_btn_submit.setEnabled(true);
                         }
 
                         @Override
                         public void onErrorResponse(String volleyError) {
                             Toast.makeText(UserInfoActivity.this, String.format("修改失败，原因：%s",
                                     volleyError), Toast.LENGTH_SHORT).show();
+                            m_btn_submit.setEnabled(true);
 
                         }
                     }).user_alter(UserInfoActivity.this, m_et_nick_name.getText().toString(), gender, m_et_years.getText().toString(), m_et_email.getText().toString(), m_et_phone.getText().toString(), m_et_id_num.getText().toString(), m_et_name.getText().toString());
