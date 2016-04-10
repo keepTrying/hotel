@@ -11,7 +11,6 @@ public class Indent {
 
     String time_begin;
     String time_end;
-    int pay;
     int room_num;
     int indent_status;
     int user_id;
@@ -22,19 +21,6 @@ public class Indent {
 
 
     public Indent(){}
-
-    public Indent(String time_begin, String time_end, int pay, int room_num, int indent_status, int user_id, float cost, int indent_type, int indent_id, String indent_time) {
-        this.time_begin = time_begin;
-        this.time_end = time_end;
-        this.pay = pay;
-        this.room_num = room_num;
-        this.indent_status = indent_status;
-        this.user_id = user_id;
-        this.cost = cost;
-        this.indent_type = indent_type;
-        this.indent_id = indent_id;
-        this.indent_time = indent_time;
-    }
 
     public String getTime_begin() {
         return time_begin;
@@ -50,14 +36,6 @@ public class Indent {
 
     public void setTime_end(String time_end) {
         this.time_end = time_end;
-    }
-
-    public int getPay() {
-        return pay;
-    }
-
-    public void setPay(int pay) {
-        this.pay = pay;
     }
 
     public int getRoom_num() {

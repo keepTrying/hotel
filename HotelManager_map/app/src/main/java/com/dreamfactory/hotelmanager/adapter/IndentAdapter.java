@@ -87,7 +87,7 @@ public class IndentAdapter extends BaseExpandableListAdapter{
         tv_time.setText(indent.getIndent_time());
         TextView tv_type= (TextView) convertView.findViewById(R.id.indent_type);
         String[] types = new String[]{"订房", "早餐", "按摩"};
-        tv_type.setText(types[indent.getIndent_type()]);
+        tv_type.setText(types[indent.getIndent_type()-1]);
 
         return convertView;
 

@@ -591,12 +591,13 @@ public class SeverManager{
 
     //    *******************************Indent
     // ******************************************************
-    public void indent_order(Context context, final String time_begin,final String
-            time_end,final String
-                                   room_num,final String
-                                   user_id,final String
-                                   cost,final String
-                                   indent_type) {
+    public void indent_order(Context context,
+                             final String time_begin,
+                             final String time_end,
+                             final String room_num,
+                             final String user_id,
+                             final String cost,
+                             final String indent_type) {
         RequestQueue requestQueue= Volley.newRequestQueue(context);
 
         StringRequest stringR = new StringRequest( Request.Method.POST,
@@ -643,15 +644,15 @@ public class SeverManager{
         requestQueue.add(stringR);
     }
 
-    public void indent_alter(Context context, final String time_begin,final String
-            time_end,final String
-                                     room_num,final String
-                                     user_id,final String
-                                     cost,final String
-                                     indent_type,final String
-                                     pay,final String
-                                     indent_status,final String
-                                     indent_id) {
+    public void indent_alter(Context context,
+                             final String time_begin,
+                             final String time_end,
+                             final String room_num,
+                             final String user_id,
+                             final String cost,
+                             final String indent_type,
+                             final String indent_status,
+                             final String indent_id) {
         RequestQueue requestQueue= Volley.newRequestQueue(context);
 
         StringRequest stringR = new StringRequest( Request.Method.POST,
@@ -694,7 +695,6 @@ public class SeverManager{
                 params.put("indent_id",indent_id);
                 params.put("indent_status",indent_status);
                 params.put("indent_type", indent_type);
-                params.put("pay", pay);
 
                 return params;
             }
@@ -702,16 +702,18 @@ public class SeverManager{
         requestQueue.add(stringR);
     }
 
-    public void indent_query(Context context, final String time_begin,final String
-            time_end,final String
-                                     room_num,final String
-                                     user_id,final String
-                                     cost,final String
-                                     indent_type,final String
-                                     pay,final String
-                                     indent_status,final String
-                                     indent_time,final String
-                                     indent_id) {
+    public void indent_query(Context context,
+                             final String time_begin,
+                             final String time_end,
+                             final String cost_max,
+                             final String cost_min,
+                             final String indent_time_begin,
+                             final String indent_time_end,
+                             final String room_num,
+                             final String indent_id,
+                             final String indent_status,
+                             final String user_id,
+                             final String indent_type) {
         RequestQueue requestQueue= Volley.newRequestQueue(context);
 
         StringRequest stringR = new StringRequest( Request.Method.POST,
@@ -749,12 +751,13 @@ public class SeverManager{
                 params.put("time_end",time_end);
                 params.put("room_num", room_num);
                 params.put("user_id", user_id);
-                params.put("cost",cost);
-                params.put("indent_time",indent_time);
+                params.put("cost_min",cost_min);
+                params.put("cost_max",cost_max);
+                params.put("indent_time_begin",indent_time_begin);
+                params.put("indent_time_end",indent_time_end);
                 params.put("indent_id",indent_id);
                 params.put("indent_status",indent_status);
                 params.put("indent_type", indent_type);
-                params.put("pay", pay);
 
                 params.put("page",0+"");
                 params.put("num_page",999+"");
@@ -868,12 +871,14 @@ public class SeverManager{
         };
         requestQueue.add(stringR);
     }
-    public void comment_query(final Context context, final String user_id,final String
-            comment_text,final String
-                                      room_num,final String
-                                      comment_star,final String
-                                      comment_time_start,final String
-                                      comment_time_end,final String user_name) {
+    public void comment_query(final Context context,
+                              final String user_id,
+                              final String comment_text,
+                              final String room_num,
+                              final String comment_star,
+                              final String comment_time_start,
+                              final String comment_time_end,
+                              final String user_name) {
         RequestQueue requestQueue= Volley.newRequestQueue(context);
 
         StringRequest stringR = new StringRequest( Request.Method.POST,
@@ -913,6 +918,7 @@ public class SeverManager{
                 params.put("comment_id",comment_time_end);
                 params.put("comment_time", comment_time_start);
                 params.put("user_name", user_name);
+                params.put("comment_id","");
 
                 params.put("page",0+"");
                 params.put("num_page",999+"");

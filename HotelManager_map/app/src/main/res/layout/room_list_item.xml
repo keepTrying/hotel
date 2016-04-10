@@ -6,7 +6,7 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical">
 
@@ -39,7 +39,7 @@
         android:layout_marginLeft="50dp" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="100元/天"
@@ -52,7 +52,6 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:id="@+id/r_img"
-        android:background="#931212"
         android:baselineAlignBottom="false"
         android:cropToPadding="false"
         android:layout_gravity="center_vertical|right" />

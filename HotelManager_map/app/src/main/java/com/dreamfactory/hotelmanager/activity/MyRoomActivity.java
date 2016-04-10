@@ -6,6 +6,8 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -26,9 +28,13 @@ import com.dreamfactory.hotelmanager.tools.TimeHelper;
 import com.dreamfactory.hotelmanager.tools.UserManager;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
-public class MyRoomActivity extends Activity implements View.OnClickListener {
+public class MyRoomActivity extends AppCompatActivity implements View.OnClickListener {
 
     private NetworkImageView imageView;
     private TextView tv_room_num;
@@ -143,27 +149,27 @@ public class MyRoomActivity extends Activity implements View.OnClickListener {
             case R.id.btn_order:
                 new AlertDialog.Builder(MyRoomActivity.this)
                         .setTitle("早餐")
-                        .setMessage("确认支付10元？")
+                        .setMessage("确认要申请早餐服务？")
                         .setPositiveButton("确认", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 SeverManager.getInstance(MyRoomActivity.this, new SeverManager.Sever_call_back() {
                                     @Override
                                     public void onResponseSuccess(String obj) {
-                                        Toast.makeText(MyRoomActivity.this,"支付成功！",Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(MyRoomActivity.this,"申请成功！请在40分钟内支付，否则失效",Toast.LENGTH_SHORT).show();
                                     }
 
                                     @Override
                                     public void onResponseError(int code) {
-                                        Toast.makeText(MyRoomActivity.this,String.format("支付失败！错误码:%d",code),Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(MyRoomActivity.this,String.format("申请失败！错误码:%d",code),Toast.LENGTH_SHORT).show();
                                     }
 
                                     @Override
                                     public void onErrorResponse(String volleyError) {
-                                        Toast.makeText(MyRoomActivity.this,String.format("支付失败！错误:%s",volleyError),Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(MyRoomActivity.this,String.format("申请失败！错误:%s",volleyError),Toast.LENGTH_SHORT).show();
 
                                     }
-                                }).indent_order(MyRoomActivity.this,null,null,room_num, UserManager.getInstance(MyRoomActivity.this).getUser().getUser_id()+"",10+"",1+"");
+                                }).indent_order(MyRoomActivity.this,TimeHelper.getStringDateShort(),TimeHelper.getStringDateShort(),room_num, UserManager.getInstance(MyRoomActivity.this).getUser().getUser_id()+"",10+"",2+"");
                             }
                         })
                         .setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -176,27 +182,27 @@ public class MyRoomActivity extends Activity implements View.OnClickListener {
             case R.id.btn_knead :
                 new AlertDialog.Builder(MyRoomActivity.this)
                         .setTitle("按摩")
-                        .setMessage("确认支付100元？")
+                        .setMessage("确认要申请按摩服务？")
                         .setPositiveButton("确认", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 SeverManager.getInstance(MyRoomActivity.this, new SeverManager.Sever_call_back() {
                                     @Override
                                     public void onResponseSuccess(String obj) {
-                                        Toast.makeText(MyRoomActivity.this,"支付成功！",Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(MyRoomActivity.this,"申请成功！请在40分钟内支付，否则失效",Toast.LENGTH_SHORT).show();
                                     }
 
                                     @Override
                                     public void onResponseError(int code) {
-                                        Toast.makeText(MyRoomActivity.this,String.format("支付失败！错误码:%d",code),Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(MyRoomActivity.this,String.format("申请失败！错误码:%d",code),Toast.LENGTH_SHORT).show();
                                     }
 
                                     @Override
                                     public void onErrorResponse(String volleyError) {
-                                        Toast.makeText(MyRoomActivity.this,String.format("支付失败！错误:%s",volleyError),Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(MyRoomActivity.this,String.format("申请失败！错误:%s",volleyError),Toast.LENGTH_SHORT).show();
 
                                     }
-                                }).indent_order(MyRoomActivity.this,null,null,room_num, UserManager.getInstance(MyRoomActivity.this).getUser().getUser_id()+"",100+"",2+"");
+                                }).indent_order(MyRoomActivity.this,TimeHelper.getStringDateShort(),TimeHelper.getStringDateShort(),room_num, UserManager.getInstance(MyRoomActivity.this).getUser().getUser_id()+"",100+"",3+"");
                             }
                         })
                         .setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -230,28 +236,35 @@ public class MyRoomActivity extends Activity implements View.OnClickListener {
                                 SeverManager.getInstance(MyRoomActivity.this, new SeverManager.Sever_call_back() {
                                     @Override
                                     public void onResponseSuccess(String obj) {
-                                        List<Indent> indents = JSON.parseArray(obj,Indent.class);
-                                        for (Indent var:indents){
-                                            if (var.getUser_id()==UserManager.getInstance(MyRoomActivity.this).getUser().getUser_id()&&var.getTime_end().equals(history.getTime_end())){
-                                                indent=var;
+                                        List<Indent> indents = JSON.parseArray(obj, Indent.class);
+                                        List<Indent> filter_indents = new ArrayList<Indent>();
+                                        for (Indent var : indents) {
+                                            if (var.getUser_id() == UserManager.getInstance(MyRoomActivity.this).getUser().getUser_id() && var.getTime_end().equals(history.getTime_end()) && var.getIndent_type() == 1 && var.getIndent_status() == 2) {
+                                                indent = var;
+                                                continue;
+                                            } else if (var.getIndent_type() != 1 || var.getIndent_status() >2 || TimeHelper.getDays(var.getTime_begin(), history.getTime_end()) < 0) {
+                                                continue;
                                             }
+
+                                            filter_indents.add(indent);
                                         }
-                                        for (Indent var:indents){
-                                            if (TimeHelper.getDays(var.getTime_begin(), input)<0){
-                                                Toast.makeText(MyRoomActivity.this,String.format("对不起，%s 至 %s 已经有人预定本房间！",var.getTime_begin(),var.getTime_end()),Toast.LENGTH_SHORT).show();
+
+                                        for (Indent var : filter_indents) {
+                                            if (TimeHelper.getDays(var.getTime_begin(), input) < 0) {
+                                                Toast.makeText(MyRoomActivity.this, String.format("对不起，%s 至 %s 已经有人预定本房间！", var.getTime_begin(), var.getTime_end()), Toast.LENGTH_SHORT).show();
                                                 return;
                                             }
                                         }
 
-                                        AlertDialog dialog2 = new AlertDialog.Builder(MyRoomActivity.this).setMessage(String.format("确认支付%f元？",TimeHelper.getDays(input,history.getTime_end())*room.getRoom_cost())).setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                                        AlertDialog dialog2 = new AlertDialog.Builder(MyRoomActivity.this).setMessage(String.format("确认支付%.2f元？", TimeHelper.getDays(input, history.getTime_end()) * room.getRoom_cost())).setPositiveButton("确认", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
                                                 SeverManager.getInstance(MyRoomActivity.this, new SeverManager.Sever_call_back() {
                                                     @Override
                                                     public void onResponseSuccess(String obj) {
 
-                                                        User user=UserManager.getInstance(MyRoomActivity.this).getUser();
-                                                        List<UserHistory> histories=user.getUser_history();
+                                                        User user = UserManager.getInstance(MyRoomActivity.this).getUser();
+                                                        List<UserHistory> histories = user.getUser_history();
                                                         histories.remove(history);
                                                         history.setTime_end(input);
                                                         histories.add(history);
@@ -260,19 +273,19 @@ public class MyRoomActivity extends Activity implements View.OnClickListener {
 
                                                         tv_room_rent_time.setText(String.format("%s ~ %s", history.getTime_begin(), history.getTime_end()));
 
-                                                        Toast.makeText(MyRoomActivity.this,"支付成功!",Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(MyRoomActivity.this, "支付成功!", Toast.LENGTH_SHORT).show();
                                                     }
 
                                                     @Override
                                                     public void onResponseError(int code) {
-                                                        Toast.makeText(MyRoomActivity.this,String.format("支付失败，错误码：%d",code),Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(MyRoomActivity.this, String.format("支付失败，错误码：%d", code), Toast.LENGTH_SHORT).show();
                                                     }
 
                                                     @Override
                                                     public void onErrorResponse(String volleyError) {
-                                                        Toast.makeText(MyRoomActivity.this,String.format("支付失败，错误：%s",volleyError),Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(MyRoomActivity.this, String.format("支付失败，错误：%s", volleyError), Toast.LENGTH_SHORT).show();
                                                     }
-                                                }).indent_alter(MyRoomActivity.this,indent.getTime_begin(),input,indent.getRoom_num()+"",indent.getUser_id()+"",indent.getCost()+"",indent.getIndent_type()+"",indent.getPay()+"",indent.getIndent_status()+"",indent.getIndent_id()+"");
+                                                }).indent_alter(MyRoomActivity.this, indent.getTime_begin(), input, indent.getRoom_num() + "", indent.getUser_id() + "", indent.getCost() + TimeHelper.getDays(input, history.getTime_end()) * room.getRoom_cost() + "", indent.getIndent_type() + "", indent.getIndent_status() + "", indent.getIndent_id() + "");
                                             }
                                         }).show();
 
@@ -280,14 +293,14 @@ public class MyRoomActivity extends Activity implements View.OnClickListener {
 
                                     @Override
                                     public void onResponseError(int code) {
-                                        Toast.makeText(MyRoomActivity.this,String.format("退房失败，错误码：%d",code),Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(MyRoomActivity.this, String.format("续租失败，错误码：%d", code), Toast.LENGTH_SHORT).show();
                                     }
 
                                     @Override
                                     public void onErrorResponse(String volleyError) {
-                                        Toast.makeText(MyRoomActivity.this,String.format("退房失败，错误：%s",volleyError),Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(MyRoomActivity.this, String.format("续租失败，错误：%s", volleyError), Toast.LENGTH_SHORT).show();
                                     }
-                                }).indent_query(MyRoomActivity.this, history.getTime_begin(),"", room_num,"", "", 1 + "", 1+"", "", "", "");
+                                }).indent_query(MyRoomActivity.this,history.getTime_begin(),"","","","","",room_num,"","","",1+"");
 
 
 
@@ -325,14 +338,14 @@ public class MyRoomActivity extends Activity implements View.OnClickListener {
                     public void onErrorResponse(String volleyError) {
                         Toast.makeText(MyRoomActivity.this, "对不起，网络连接失败！", Toast.LENGTH_SHORT).show();
                     }
-                }).comment_query(MyRoomActivity.this, UserManager.getInstance(MyRoomActivity.this).getUser().getUser_id() + "", "", room_num, "", history.getTime_begin(), history.getTime_end(), "");
+                }).comment_query(MyRoomActivity.this, UserManager.getInstance(MyRoomActivity.this).getUser().getUser_id() + "", "", room_num, "", TimeHelper.date2Time(history.getTime_begin()), TimeHelper.date2Time(history.getTime_end()), "");
                 break;
             case R.id.btn_refund :
 
                     SeverManager.getInstance(MyRoomActivity.this, new SeverManager.Sever_call_back() {
                         @Override
                         public void onResponseSuccess(String obj) {
-                            Indent indent = (Indent) JSON.parseArray(obj).get(0);
+                            Indent indent = (Indent) JSON.parseArray(obj,Indent.class).get(0);
                             SeverManager.getInstance(MyRoomActivity.this, new SeverManager.Sever_call_back() {
                                 @Override
                                 public void onResponseSuccess(String obj) {
@@ -348,7 +361,7 @@ public class MyRoomActivity extends Activity implements View.OnClickListener {
                                 public void onErrorResponse(String volleyError) {
                                     Toast.makeText(MyRoomActivity.this,String.format("退房失败，错误：%s",volleyError),Toast.LENGTH_SHORT).show();
                                 }
-                            }).indent_alter(MyRoomActivity.this,indent.getTime_begin(),indent.getTime_end(),indent.getRoom_num()+"",indent.getUser_id()+"",indent.getCost()+"",indent.getIndent_type()+"",indent.getPay()+"",indent.getIndent_status()+1+"",indent.getIndent_id()+"");
+                            }).indent_alter(MyRoomActivity.this,indent.getTime_begin(),indent.getTime_end(),indent.getRoom_num()+"",indent.getUser_id()+"",indent.getCost()+"",indent.getIndent_type()+"",indent.getIndent_status()+1+"",indent.getIndent_id()+"");
                         }
 
                         @Override
@@ -360,7 +373,7 @@ public class MyRoomActivity extends Activity implements View.OnClickListener {
                         public void onErrorResponse(String volleyError) {
                             Toast.makeText(MyRoomActivity.this,String.format("退房失败，错误：%s",volleyError),Toast.LENGTH_SHORT).show();
                         }
-                    }).indent_query(MyRoomActivity.this, history.getTime_begin(), history.getTime_end(), "", UserManager.getInstance(MyRoomActivity.this).getUser().getUser_id() + "", "", 1 + "", "", "", "", "");
+                    }).indent_query(MyRoomActivity.this, history.getTime_begin(), history.getTime_end(), "", "", "", "", room_num, "", 2 + "", UserManager.getInstance(MyRoomActivity.this).getUser().getUser_id() + "", 1 + "");
 
 
                 break;

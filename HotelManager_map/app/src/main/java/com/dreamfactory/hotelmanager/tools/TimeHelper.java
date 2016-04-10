@@ -207,17 +207,29 @@ public class TimeHelper {
 
     public static boolean isNowBetweenTwoTime(String begin,String end){
         String now =TimeHelper.getStringDate();
-        if (!(TimeHelper.getStringSeconds(begin, now)>0)&&TimeHelper.getStringSeconds(now, end)<0)
-            return true;
-        else
-            return false;
+        return isTimeBetweenTwoTime(now,begin,end);
     }
 
     public static boolean isTwoTimeOpposing(String time1_begin,String time1_end,String time2_begin,String time2_end){
-        if (TimeHelper.getDays(time1_end,time2_begin)>=0||TimeHelper.getDays(time2_end,time1_begin)>=0)
+        if (TimeHelper.getDays(time1_end,time2_begin)>=0||TimeHelper.getDays(time2_end, time1_begin)>=0)
             return true;
         else
             return false;
     }
 
+    public static boolean isTimeBetweenTwoDate(String time,String date_1,String date_2){
+        date_1=date2Time(date_1);
+        date_2=date2Time(date_2);
+        return isTimeBetweenTwoTime(time,date_1,date_2);
+    }
+
+    public static boolean isTimeBetweenTwoTime(String time,String begin,String end){
+        if (!(TimeHelper.getStringSeconds(begin, time)>0)&&TimeHelper.getStringSeconds(time, end)<0)
+            return true;
+        else
+            return false;
+    }
+    public static String date2Time(String date){
+        return date+" 00:00:00";
+    }
 }

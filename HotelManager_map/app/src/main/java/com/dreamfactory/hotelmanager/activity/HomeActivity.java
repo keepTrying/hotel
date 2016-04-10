@@ -60,7 +60,10 @@ public class HomeActivity extends AppCompatActivity implements OnClickListener {
         btn_surround.setOnClickListener(this);
         btn_about.setOnClickListener(this);
 
-
+        SharedPreferences sp = getSharedPreferences("user",MODE_PRIVATE);
+        SharedPreferences.Editor mEditor = sp.edit();
+        mEditor.putBoolean("login", false);
+        mEditor.commit();
 
     }
 

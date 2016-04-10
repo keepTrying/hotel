@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class RecommendActivity extends Activity implements AdapterView.OnItemClickListener{
+public class RecommendActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
 
     public final static String PUT_KEY ="room_from_recommendactivity";
 

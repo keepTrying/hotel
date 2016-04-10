@@ -1,5 +1,6 @@
 package com.dreamfactory.hotelmanager.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class QueryRoomResult extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class QueryRoomResult extends Activity implements AdapterView.OnItemClickListener {
 
 //    public static final String KEY_PUT = "queryroomresult_put";
 
@@ -50,9 +51,9 @@ public class QueryRoomResult extends AppCompatActivity implements AdapterView.On
         list_room.setOnItemClickListener(this);
     }
 
-    public void onListItemClick(ListMenuItemView view){
-
-    }
+//    public void onListItemClick(ListMenuItemView view){
+//
+//    }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

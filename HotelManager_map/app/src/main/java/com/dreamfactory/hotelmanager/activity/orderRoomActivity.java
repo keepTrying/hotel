@@ -2,6 +2,7 @@ package com.dreamfactory.hotelmanager.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,7 +14,7 @@ import com.dreamfactory.hotelmanager.tools.SeverManager;
 import com.dreamfactory.hotelmanager.tools.TimeHelper;
 import com.dreamfactory.hotelmanager.tools.UserManager;
 
-public class OrderRoomActivity extends Activity {
+public class OrderRoomActivity extends AppCompatActivity {
 
     private TextView textView_room_num;
     private TextView textView_cost;
@@ -63,11 +64,11 @@ public class OrderRoomActivity extends Activity {
                     }
 
                     @Override
-                    public void onErrorResponse(String volleyError) {
-                        Toast.makeText(OrderRoomActivity.this,String.format("预订失败，错误：%s",volleyError),
-                                Toast.LENGTH_SHORT).show();
-                    }
-                }).indent_order(OrderRoomActivity.this,
+                public void onErrorResponse(String volleyError) {
+                    Toast.makeText(OrderRoomActivity.this,String.format("预订失败，错误：%s",volleyError),
+                            Toast.LENGTH_SHORT).show();
+                }
+            }).indent_order(OrderRoomActivity.this,
                         editText_start.getText().toString(),
                         editText_end.getText().toString(),
                         room_num+"",

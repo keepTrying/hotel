@@ -3,6 +3,7 @@ package com.dreamfactory.hotelmanager.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -21,7 +22,7 @@ import java.util.Map;
 
 import static com.dreamfactory.hotelmanager.R.string.room_detail_put_key;
 
-public class RoomGridActivity extends Activity{
+public class RoomGridActivity extends AppCompatActivity {
 
     private GridView gridView;
 //    private List<Map<String,Object>> data_list;

@@ -53,7 +53,7 @@
         </activity>
         <activity
             android:name=".activity.HomeActivity"
-            android:label="HotelManager"
+            android:label="酒店管理"
             android:launchMode="singleTop"
             android:theme="@style/Base.Theme.AppCompat.Light.DarkActionBar" >
             <intent-filter>
@@ -68,30 +68,39 @@
         </activity>
         <activity
             android:name=".activity.QueryRoomActivity"
-            android:label="@string/title_activity_query_room"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:label="@string/title_activity_query_room">
         </activity>
-        <activity android:name=".activity.QueryRoomResult" >
+        <activity android:name=".activity.QueryRoomResult">
         </activity>
-        <activity android:name=".activity.RoomDetail" >
+        <activity android:name=".activity.RoomDetail"
+            android:label="房间详情">
         </activity>
-        <activity android:name=".activity.IndentActivity" >
+        <activity android:name=".activity.IndentActivity"
+            android:label="我的订单">
         </activity>
-        <activity android:name=".activity.PointActivity" >
+        <activity android:name=".activity.PointActivity"
+            android:label="积分兑换">
         </activity>
-        <activity android:name=".activity.MyRoomActivity" >
+        <activity android:name=".activity.MyRoomActivity"
+            android:label="我的房间">
         </activity>
-        <activity android:name=".activity.CommentActivity" >
+        <activity android:name=".activity.CommentActivity"
+            android:label="发表评论">
         </activity>
-        <activity android:name=".activity.RecommendActivity" >
+        <activity android:name=".activity.RecommendActivity"
+            android:label="房间类型">
         </activity>
-        <activity android:name=".activity.RoomGridActivity" >
+        <activity android:name=".activity.RoomGridActivity"
+            android:label="房间列表">
         </activity>
-        <activity android:name=".activity.NearbyActivity" >
+        <activity android:name=".activity.NearbyActivity"
+            android:label="周边服务">
         </activity>
-        <activity android:name=".activity.AnswerActivity" >
+        <activity android:name=".activity.AnswerActivity"
+            android:label="安全验证">
         </activity>
-        <activity android:name=".activity.OrderRoomActivity" >
+        <activity android:name=".activity.OrderRoomActivity"
+            android:label="预定房间">
         </activity>
     </application>
 

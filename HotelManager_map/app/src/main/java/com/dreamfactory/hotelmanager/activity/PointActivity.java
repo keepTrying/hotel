@@ -43,6 +43,9 @@ public class PointActivity extends AppCompatActivity implements View.OnClickList
         btn_reward_3=(Button)findViewById(R.id.btn_reward_3);
 
         btn_reward_0.setOnClickListener(this);
+        btn_reward_1.setOnClickListener(this);
+        btn_reward_2.setOnClickListener(this);
+        btn_reward_3.setOnClickListener(this);
     }
 
     @Override
