@@ -23,6 +23,7 @@ public class User implements Serializable{
     private String user_name;
     private String user_que;
     private String user_ans;
+    private String user_img;
     private List<UserHistory> user_history=new ArrayList<UserHistory>();
 
     public User(){}
@@ -146,5 +147,13 @@ public class User implements Serializable{
 
     public void setUser_ans(String user_ans) {
         this.user_ans = user_ans;
+    }
+
+    public String getUser_img() {
+        return user_img;
+    }
+
+    public void setUser_img(String user_img) {
+        this.user_img = user_img;
     }
 }

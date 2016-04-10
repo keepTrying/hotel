@@ -93,7 +93,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
 
                 if (m_et_pw.getText().toString().equals(m_et_cpw.getText().toString())){
-                    String male = m_rb_male.isSelected() ? 1 + "" : 0 + "";
+                    String male = m_rb_male.isSelected() ? 1 + "" : 2 + "";
 
                     SeverManager.getInstance(RegisterActivity.this, new SeverManager.Sever_call_back() {
                         @Override

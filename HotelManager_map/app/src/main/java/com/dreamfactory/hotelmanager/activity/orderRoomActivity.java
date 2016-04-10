@@ -44,7 +44,7 @@ public class OrderRoomActivity extends AppCompatActivity {
                 long days=0;
 
                 try {
-                    days = TimeHelper.getDays(editText_start.getText().toString(), editText_end.getText().toString());
+                    days = TimeHelper.getDays( editText_end.getText().toString(),editText_start.getText().toString());
                 }catch (Exception e){
                     return;
                 }

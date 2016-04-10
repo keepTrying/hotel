@@ -7,6 +7,7 @@ import android.app.Dialog;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.util.Log;
 import android.view.Gravity;
@@ -43,6 +44,7 @@ import com.dreamfactory.hotelmanager.module.Status;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -93,13 +95,18 @@ public class SeverManager{
     private static SeverManager severManager = null;
 
     public static SeverManager getInstance(Context context,Sever_call_back callback) {
-        return new SeverManager(context,callback);
+        if (severManager==null) {
+            severManager= new SeverManager(context, callback);
+        }
+        return severManager;
     }
 
-    private SeverManager(Context context,Sever_call_back callback) {
-        this.mContext=context;
-        this.showLoading();
-        this.callback=callback;
+    private  SeverManager(Context context, Sever_call_back callback) {
+        if (severManager==null) {
+            this.mContext = context;
+            this.showLoading();
+            this.callback = callback;
+        }
     }
 
 //    *******************************User******************************************************
@@ -147,10 +154,17 @@ public class SeverManager{
             requestQueue.add(stringR);
     }
 
-    public void user_register(Context context, final String user_nick, final String user_gender,
-                              final
-    String user_years,final String user_email,final String user_phone,final String user_id_num, final
-    String user_name,final String user_que,final String user_ans,final String user_password) {
+    public void user_register(Context context,
+                              final String user_nick,
+                              final String user_gender,
+                              final String user_years,
+                              final String user_email,
+                              final String user_phone,
+                              final String user_id_num,
+                              final String user_name,
+                              final String user_que,
+                              final String user_ans,
+                              final String user_password) {
         RequestQueue requestQueue= Volley.newRequestQueue(context);
 
         StringRequest stringR = new StringRequest( Request.Method.POST,
@@ -191,6 +205,7 @@ public class SeverManager{
                 params.put("user_que",user_que);
                 params.put("user_ans", user_ans);
                 params.put("user_password",user_password);
+                params.put("user_type",1+"");
                 return params;
             }
         };
@@ -931,7 +946,7 @@ public class SeverManager{
 
     //    *******************************Image
     // ******************************************************
-    public void upload_img(Context context, final Bitmap bitmap) {
+    public static void upload_img(final Context context, final Bitmap bitmap, final String url) {
         RequestQueue requestQueue= Volley.newRequestQueue(context);
 
         StringRequest stringR = new StringRequest( Request.Method.POST,
@@ -947,7 +962,7 @@ public class SeverManager{
 //                            Log.d("upload image","fail");
 //
 //                        }
-                        SeverManager.this.onResponse(obj);
+                        onResponse(obj);
                     }
                 },
                 new Response.ErrorListener() {
@@ -956,7 +971,7 @@ public class SeverManager{
                         //错误处理
                         dissmissLoading();
                         Log.d("Error Message:",volleyError+"");
-                        callback.onErrorResponse(volleyError.getLocalizedMessage());
+                        severManager.callback.onErrorResponse(volleyError.getLocalizedMessage());
                     }
                 }){
 
@@ -977,7 +992,16 @@ public class SeverManager{
                 return super.getBodyContentType();
 
             }
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String, String> params = new HashMap<String, String>();
+                params.put("path",url.substring(25));
+                return params;
+            }
         };
+
+
         requestQueue.add(stringR);
     }
 
@@ -987,6 +1011,12 @@ public class SeverManager{
         ImageLoader imageLoader = new ImageLoader(requestQueue, new ImageLoader.ImageCache() {
             @Override
             public Bitmap getBitmap(String s) {
+//                if (s.contains("file://")) {
+//                    return BitmapFactory.decodeFile(s);
+//                } else {
+//                    // Here you can add an actual cache
+//                    return null;
+//                }
                 return null;
             }
 
@@ -1002,7 +1032,7 @@ public class SeverManager{
     }
 
 
-    public byte[] Bitmap2Bytes(Bitmap bm) {
+    public static byte[] Bitmap2Bytes(Bitmap bm) {
                  ByteArrayOutputStream baos = new ByteArrayOutputStream();
                  bm.compress(Bitmap.CompressFormat.PNG, 100, baos);
                  return baos.toByteArray();
@@ -1034,7 +1064,8 @@ public class SeverManager{
 //        dialog.getWindow().setAttributes(layoutParams);
     }
 
-    public void dissmissLoading(){
-        dialog.dismiss();
+    public static void dissmissLoading(){
+        severManager.dialog.dismiss();
+        severManager=null;
     }
 }

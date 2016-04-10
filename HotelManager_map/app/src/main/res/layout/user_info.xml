@@ -22,7 +22,23 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
+
+                <FrameLayout
+                    android:layout_width="70dp"
+                    android:layout_height="70dp">
+
+                    <com.android.volley.toolbox.NetworkImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:id="@+id/image_user" />
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:id="@+id/image_user2"
+
+                         />
+                </FrameLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -30,8 +46,8 @@
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="昵称"
                     android:id="@+id/nick_name_tv"
-                    android:layout_gravity="top"
-                    android:textSize="26sp" />
+                    android:textSize="26sp"
+                    android:layout_gravity="center" />
 
                 <EditText
                     android:id="@+id/editText_nick"
@@ -45,13 +61,16 @@
                     android:maxLines="1"
                     android:singleLine="true"
                     android:layout_marginLeft="5dp"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:layout_gravity="center" />
+
             </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -65,7 +84,8 @@
                 <RadioGroup
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal"
+                    android:id="@+id/radiogroup">
 
                     <RadioButton
                         android:layout_width="wrap_content"
@@ -79,7 +99,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="女"
-                        android:id="@+id/radioButton4"
+                        android:id="@+id/radioButton_female"
                         android:checked="false"
                         android:layout_gravity="center_vertical" />
                 </RadioGroup>
@@ -232,15 +252,16 @@
 
             <Button
                 android:id="@+id/button_modify"
-                android:layout_width="match_parent"
-                android:layout_height="50sp"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
                 android:text="修改"
                 android:gravity="center"
                 android:textAlignment="center"
-                android:textSize="26sp"
+                android:textSize="20sp"
                 android:enabled="true"
-                android:focusable="false" />
+                android:focusable="false"
+                android:layout_gravity="center_horizontal" />
 
             <!--<Button-->
                 <!--android:id="@+id/button13"-->
