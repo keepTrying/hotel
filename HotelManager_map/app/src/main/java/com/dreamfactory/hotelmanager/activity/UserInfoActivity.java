@@ -77,10 +77,11 @@ public class UserInfoActivity extends AppCompatActivity {
     private RadioButton m_rb_male;
     private RadioGroup m_rg;
     private Button m_btn_submit;
-    private NetworkImageView m_img;
+//    private NetworkImageView m_img;
     private ImageView m_img2;
 
-    private Bitmap mBitmap;
+    private  int img_position;
+//    private Bitmap mBitmap;
     private Context mContext;
     private User me;
     private Uri mOutPutFileUri;
@@ -107,7 +108,7 @@ public class UserInfoActivity extends AppCompatActivity {
         m_et_name = (EditText) findViewById(R.id.editText_name);
         m_rb_male = (RadioButton) findViewById(R.id.radioButton_male);
         m_btn_submit = (Button) findViewById(R.id.button_modify);
-        m_img=(NetworkImageView) findViewById(R.id.image_user);
+//        m_img=(NetworkImageView) findViewById(R.id.image_user);
         m_img2=(ImageView) findViewById(R.id.image_user2);
         m_rg = (RadioGroup) findViewById(R.id.radiogroup);
 
@@ -125,6 +126,7 @@ public class UserInfoActivity extends AppCompatActivity {
         me= UserManager.getInstance(UserInfoActivity.this).getUser();
 
         m_gender=me.getUser_gender();
+        img_position=me.getUser_img()-1;
 
         m_et_nick_name.setText(me.getUser_nick());
         m_et_years.setText(me.getUser_years()+"");
@@ -132,26 +134,29 @@ public class UserInfoActivity extends AppCompatActivity {
         m_et_phone.setText(me.getUser_phone()+"");
         m_et_id_num.setText(me.getUser_id_num());
         m_et_name.setText(me.getUser_name());
-        m_rg.check(m_gender==1?R.id.radioButton_male:R.id.radioButton_female);
+        m_rg.check(m_gender == 1 ? R.id.radioButton_male : R.id.radioButton_female);
+        m_img2.setImageDrawable(getDrawable(ChoosePic.icons[img_position]));
 
-        SeverManager.loadImage(mContext,m_img,me.getUser_img(),R.mipmap.ic_launcher,R.mipmap.ic_launcher);
+//        SeverManager.loadImage(mContext,m_img,me.getUser_img(),R.mipmap.ic_launcher,R.mipmap.ic_launcher);
         m_img2.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
 //                CharSequence[] items = {"相册", "相机"};
-                CharSequence[] items = {"相册"};
-                new AlertDialog.Builder(mContext)
-                        .setTitle("选择图片来源")
-                        .setItems(items, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                if( which == 0 ){
-                                    gallery();
-                                }else{
-                                    camera();
-                                }
-                            }
-                        })
-                        .create().show();
+//                CharSequence[] items = {"相册"};
+//                new AlertDialog.Builder(mContext)
+//                        .setTitle("选择图片来源")
+//                        .setItems(items, new DialogInterface.OnClickListener() {
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                if( which == 0 ){
+//                                    gallery();
+//                                }else{
+//                                    camera();
+//                                }
+//                            }
+//                        })
+//                        .create().show();
+                Intent intent=new Intent(mContext,ChoosePic.class);
+                startActivityForResult(intent,ChoosePic.PUT_KEY);
             }
         });
 
@@ -203,7 +208,7 @@ public class UserInfoActivity extends AppCompatActivity {
                             m_btn_submit.setEnabled(true);
 
                         }
-                    }).user_alter(UserInfoActivity.this, m_et_nick_name.getText().toString(), m_gender+"", m_et_years.getText().toString(), m_et_email.getText().toString(), m_et_phone.getText().toString(), m_et_id_num.getText().toString(), m_et_name.getText().toString());
+                    }).user_alter(UserInfoActivity.this, m_et_nick_name.getText().toString(), m_gender+"", m_et_years.getText().toString(), m_et_email.getText().toString(), m_et_phone.getText().toString(), m_et_id_num.getText().toString(), m_et_name.getText().toString(),img_position+1+"");
 
                 
             }
@@ -256,8 +261,8 @@ public class UserInfoActivity extends AppCompatActivity {
         else if (requestCode == PHOTO_REQUEST_CUT) {
             // 从剪切图片返回的数据
             if (data != null) {
-                mBitmap = data.getParcelableExtra("data");
-                m_img2.setImageBitmap(mBitmap);
+//                mBitmap = data.getParcelableExtra("data");
+//                m_img2.setImageBitmap(mBitmap);
 
                 new AlertDialog.Builder(mContext)
                         .setMessage("确认要上传头像图片吗？")
@@ -265,11 +270,6 @@ public class UserInfoActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 //                                SeverManager.upload_img(mContext,mBitmap,UserManager.getInstance(mContext).getUser().getUser_img());
-
-
-
-
-
 
                             }
                         })
@@ -298,6 +298,11 @@ public class UserInfoActivity extends AppCompatActivity {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
+        }else if(requestCode==ChoosePic.PUT_KEY){
+
+            img_position=getIntent().getIntExtra("image",0);
+            m_img2.setImageDrawable(getDrawable(ChoosePic.icons[img_position]));
 
         }
 

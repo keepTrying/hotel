@@ -214,7 +214,7 @@ public class SeverManager{
 
     public void user_alter(Context context, final String user_nick, final String user_gender,final
     String user_years,final String user_email,final String user_phone,final String user_id_num, final
-                         String user_name) {
+                         String user_name,final String user_img) {
         RequestQueue requestQueue= Volley.newRequestQueue(context);
 
         StringRequest stringR = new StringRequest( Request.Method.POST,
@@ -252,6 +252,7 @@ public class SeverManager{
                 params.put("user_phone", user_phone);
                 params.put("user_id_num",user_id_num);
                 params.put("user_name", user_name);
+                params.put("user_img", user_img);
                 return params;
             }
         };
