@@ -102,11 +102,9 @@ public class SeverManager{
     }
 
     private  SeverManager(Context context, Sever_call_back callback) {
-        if (severManager==null) {
             this.mContext = context;
-            this.showLoading();
             this.callback = callback;
-        }
+            this.showLoading();
     }
 
 //    *******************************User******************************************************
@@ -214,7 +212,7 @@ public class SeverManager{
 
     public void user_alter(Context context, final String user_nick, final String user_gender,final
     String user_years,final String user_email,final String user_phone,final String user_id_num, final
-                         String user_name,final String user_img) {
+                         String user_name,final String user_img,final String user_point) {
         RequestQueue requestQueue= Volley.newRequestQueue(context);
 
         StringRequest stringR = new StringRequest( Request.Method.POST,
@@ -253,6 +251,7 @@ public class SeverManager{
                 params.put("user_id_num",user_id_num);
                 params.put("user_name", user_name);
                 params.put("user_img", user_img);
+                params.put("user_point",user_point);
                 return params;
             }
         };
@@ -1066,7 +1065,12 @@ public class SeverManager{
     }
 
     public static void dissmissLoading(){
-        severManager.dialog.dismiss();
-        severManager=null;
+        if (severManager!=null) {
+            if (severManager.dialog.isShowing()){
+                severManager.dialog.dismiss();
+            }
+            severManager = null;
+        }
+
     }
 }

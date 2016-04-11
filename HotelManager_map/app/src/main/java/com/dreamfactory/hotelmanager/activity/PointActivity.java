@@ -87,7 +87,7 @@ public class PointActivity extends AppCompatActivity implements View.OnClickList
                 }
             }).user_alter(PointActivity.this,me.getUser_nick(),me.getUser_gender()+"",me
                     .getUser_years()+"",me.getUser_email(),me.getUser_phone()+"",me
-                    .getUser_id_num(),me.getUser_name(),me.getUser_img()+"");
+                    .getUser_id_num(),me.getUser_name(),me.getUser_img()+"",point+"");
         }
     }
 }

@@ -209,7 +209,11 @@ public class UserInfoActivity extends AppCompatActivity {
                             m_btn_submit.setEnabled(true);
 
                         }
-                    }).user_alter(UserInfoActivity.this, m_et_nick_name.getText().toString(), m_gender+"", m_et_years.getText().toString(), m_et_email.getText().toString(), m_et_phone.getText().toString(), m_et_id_num.getText().toString(), m_et_name.getText().toString(),img_position+1+"");
+                    }).user_alter(UserInfoActivity.this, m_et_nick_name.getText().toString(),
+                            m_gender+"", m_et_years.getText().toString(), m_et_email.getText()
+                                    .toString(), m_et_phone.getText().toString(), m_et_id_num
+                                    .getText().toString(), m_et_name.getText().toString(),
+                            img_position+1+"",me.getUser_point()+"");
 
                 
             }

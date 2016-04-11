@@ -36,6 +36,10 @@ public class IndentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_indent);
 
+        me=UserManager
+                .getInstance
+                        (mContext).getUser();
+
         SeverManager.getInstance(mContext, new SeverManager.Sever_call_back() {
             @Override
             public void onResponseSuccess(String obj) {
@@ -131,9 +135,6 @@ public class IndentActivity extends AppCompatActivity {
                                                                     SeverManager.getInstance(mContext, new SeverManager.Sever_call_back() {
                                                                         @Override
                                                                         public void onResponseSuccess(String obj) {
-                                                                            me=UserManager
-                                                                                    .getInstance
-                                                                                            (mContext).getUser();
                                                                             me.setUser_point(me.getUser_point()+(int)indent.getCost());
                                                                             UserManager
                                                                                     .getInstance
@@ -165,7 +166,9 @@ public class IndentActivity extends AppCompatActivity {
                                                                             me.getUser_phone()+"",
                                                                             me.getUser_id_num(),
                                                                             me.getUser_name(),
-                                                                            me.getUser_img()+"");
+                                                                            me.getUser_img()+"",
+                                                                            me.getUser_point()+(int)indent.getCost()+""
+                                                                    );
 
 
                                                                 }
