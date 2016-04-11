@@ -23,7 +23,7 @@ public class ChoosePic extends Activity {
     private List<Map<String,Object>> data_list;
     private SimpleAdapter simpleAdapter;
     private final Context mContext=ChoosePic.this;
-    public static final int PUT_KEY = 0x3423423;
+    public static final int PUT_KEY = 0x3423;
     public static final int[] icons ={R.drawable.n1,R.drawable.n2,R.drawable.n3,R.drawable.n4,R.drawable.n5,R.drawable.n6,R.drawable.n7,R.drawable.n8,R.drawable.n9,R.drawable.n10};
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -51,7 +51,8 @@ public class OrderRoomActivity extends AppCompatActivity {
                 SeverManager.getInstance(OrderRoomActivity.this, new SeverManager.Sever_call_back() {
                     @Override
                     public void onResponseSuccess(String obj) {
-                        Toast.makeText(OrderRoomActivity.this,"预订成功",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(OrderRoomActivity.this,"预订成功,请在40分钟内支付，否则失效!",Toast
+                                .LENGTH_SHORT).show();
                         finish();
                     }
 

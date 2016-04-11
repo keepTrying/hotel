@@ -156,7 +156,8 @@ public class MyRoomActivity extends AppCompatActivity implements View.OnClickLis
                                 SeverManager.getInstance(MyRoomActivity.this, new SeverManager.Sever_call_back() {
                                     @Override
                                     public void onResponseSuccess(String obj) {
-                                        Toast.makeText(MyRoomActivity.this,"申请成功！请在40分钟内支付，否则失效",Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(MyRoomActivity.this,"申请成功!",Toast
+                                                .LENGTH_SHORT).show();
                                     }
 
                                     @Override
@@ -189,7 +190,7 @@ public class MyRoomActivity extends AppCompatActivity implements View.OnClickLis
                                 SeverManager.getInstance(MyRoomActivity.this, new SeverManager.Sever_call_back() {
                                     @Override
                                     public void onResponseSuccess(String obj) {
-                                        Toast.makeText(MyRoomActivity.this,"申请成功！请在40分钟内支付，否则失效",Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(MyRoomActivity.this,"申请成功！",Toast.LENGTH_SHORT).show();
                                     }
 
                                     @Override

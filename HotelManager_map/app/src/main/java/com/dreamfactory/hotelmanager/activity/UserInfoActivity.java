@@ -135,7 +135,7 @@ public class UserInfoActivity extends AppCompatActivity {
         m_et_id_num.setText(me.getUser_id_num());
         m_et_name.setText(me.getUser_name());
         m_rg.check(m_gender == 1 ? R.id.radioButton_male : R.id.radioButton_female);
-        m_img2.setImageDrawable(getDrawable(ChoosePic.icons[img_position]));
+        m_img2.setImageResource(ChoosePic.icons[img_position]);
 
 //        SeverManager.loadImage(mContext,m_img,me.getUser_img(),R.mipmap.ic_launcher,R.mipmap.ic_launcher);
         m_img2.setOnClickListener(new OnClickListener() {
@@ -187,6 +187,7 @@ public class UserInfoActivity extends AppCompatActivity {
                             me.setUser_id_num(m_et_id_num.getText().toString());
                             me.setUser_name(m_et_name.getText().toString());
                             me.setUser_gender(m_gender);
+                            me.setUser_img(img_position+1);
 
                             UserManager.getInstance(UserInfoActivity.this).setUser(me);
 
@@ -300,9 +301,8 @@ public class UserInfoActivity extends AppCompatActivity {
             }
 
         }else if(requestCode==ChoosePic.PUT_KEY){
-
-            img_position=getIntent().getIntExtra("image",0);
-            m_img2.setImageDrawable(getDrawable(ChoosePic.icons[img_position]));
+            img_position=data.getIntExtra("image", 0);
+            m_img2.setImageResource(ChoosePic.icons[img_position]);
 
         }
 

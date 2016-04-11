@@ -14,6 +14,7 @@ import com.dreamfactory.hotelmanager.module.Indent;
 import com.dreamfactory.hotelmanager.adapter.IndentAdapter;
 import com.dreamfactory.hotelmanager.module.IndentHash;
 import com.dreamfactory.hotelmanager.R;
+import com.dreamfactory.hotelmanager.module.User;
 import com.dreamfactory.hotelmanager.tools.SeverManager;
 import com.dreamfactory.hotelmanager.tools.UserManager;
 
@@ -28,6 +29,7 @@ public class IndentActivity extends AppCompatActivity {
     private IndentAdapter adapter = null;
     private final Context mContext = IndentActivity.this;
     private int status_offset;
+    private User me;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,8 +126,48 @@ public class IndentActivity extends AppCompatActivity {
                                                             SeverManager.getInstance(mContext, new SeverManager.Sever_call_back() {
                                                                 @Override
                                                                 public void onResponseSuccess(String obj) {
-                                                                    Toast.makeText(mContext, "付款成功！", Toast.LENGTH_SHORT).show();
-                                                                    finish();
+                                                                    //add point
+
+                                                                    SeverManager.getInstance(mContext, new SeverManager.Sever_call_back() {
+                                                                        @Override
+                                                                        public void onResponseSuccess(String obj) {
+                                                                            me=UserManager
+                                                                                    .getInstance
+                                                                                            (mContext).getUser();
+                                                                            me.setUser_point(me.getUser_point()+(int)indent.getCost());
+                                                                            UserManager
+                                                                                    .getInstance
+                                                                                            (mContext).setUser(me);
+                                                                            Toast.makeText(mContext, "付款成功！", Toast.LENGTH_SHORT).show();
+                                                                            finish();
+                                                                        }
+
+                                                                        @Override
+                                                                        public void onResponseError(int code) {
+                                                                            Toast.makeText
+                                                                                    (mContext,
+                                                                                            "付款成功！积分失败，错误码："+code, Toast.LENGTH_SHORT).show();
+                                                                            finish();
+                                                                        }
+
+                                                                        @Override
+                                                                        public void onErrorResponse(String volleyError) {
+                                                                            Toast.makeText
+                                                                                    (mContext,
+                                                                                            "付款成功！积分失败，错误："+volleyError, Toast.LENGTH_SHORT).show();
+                                                                            finish();
+                                                                        }
+                                                                    }).user_alter(mContext,
+                                                                            me.getUser_nick(),
+                                                                            me.getUser_gender() +"",
+                                                                            me.getUser_years()+"",
+                                                                            me.getUser_email(),
+                                                                            me.getUser_phone()+"",
+                                                                            me.getUser_id_num(),
+                                                                            me.getUser_name(),
+                                                                            me.getUser_img()+"");
+
+
                                                                 }
 
                                                                 @Override
