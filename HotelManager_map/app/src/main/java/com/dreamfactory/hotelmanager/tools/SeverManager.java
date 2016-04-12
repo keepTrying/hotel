@@ -210,9 +210,16 @@ public class SeverManager{
         requestQueue.add(stringR);
     }
 
-    public void user_alter(Context context, final String user_nick, final String user_gender,final
-    String user_years,final String user_email,final String user_phone,final String user_id_num, final
-                         String user_name,final String user_img,final String user_point) {
+    public void user_alter(Context context,
+                           final String user_nick,
+                           final String user_gender,
+                           final String user_years,
+                           final String user_email,
+                           final String user_phone,
+                           final String user_id_num,
+                           final String user_name,
+                           final String user_img,
+                           final String user_point) {
         RequestQueue requestQueue= Volley.newRequestQueue(context);
 
         StringRequest stringR = new StringRequest( Request.Method.POST,
@@ -258,8 +265,10 @@ public class SeverManager{
         requestQueue.add(stringR);
     }
 
-    public void user_query(Context context, final String user_phone,final String user_id_num, final
-                          String user_name) {
+    public void user_query(Context context,
+                           final String user_phone,
+                           final String user_id_num,
+                           final String user_name) {
         RequestQueue requestQueue= Volley.newRequestQueue(context);
 
         StringRequest stringR = new StringRequest( Request.Method.POST,
@@ -350,9 +359,7 @@ public class SeverManager{
     }
 
     public void security_get_question(Context context, final String user_phone,final String
-            user_id_num,
-                                final
-                                String user_name) {
+            user_id_num, final String user_name) {
         RequestQueue requestQueue= Volley.newRequestQueue(context);
 
         StringRequest stringR = new StringRequest( Request.Method.POST,
@@ -446,11 +453,12 @@ public class SeverManager{
 
     //    *******************************Room******************************************************
 
-    public void room_add(Context context, final String room_num,final String
-            room_type,final String
-            room_area,final String
-                                 room_cost,final String
-                                 room_img) {
+    public void room_add(Context context,
+                         final String room_num,
+                         final String room_type,
+                         final String room_area,
+                         final String room_cost,
+                         final String room_img) {
         RequestQueue requestQueue= Volley.newRequestQueue(context);
 
         StringRequest stringR = new StringRequest( Request.Method.POST,
@@ -497,11 +505,12 @@ public class SeverManager{
         requestQueue.add(stringR);
     }
 
-    public void room_alter(Context context, final String room_num,final String
-            room_type,final String
-                                 room_area,final String
-                                 room_cost,final String
-                                 room_img) {
+    public void room_alter(Context context,
+                           final String room_num,
+                           final String room_type,
+                           final String room_area,
+                           final String room_cost,
+                           final String room_img) {
         RequestQueue requestQueue= Volley.newRequestQueue(context);
 
         StringRequest stringR = new StringRequest( Request.Method.POST,
@@ -548,12 +557,13 @@ public class SeverManager{
         requestQueue.add(stringR);
     }
 
-    public void room_query(Context context, final String room_num,final String
-            room_type,final String
-                                   room_area_min,final String
-                                   room_area_max,final String
-                                   room_cost_min,final String
-            room_cost_max) {
+    public void room_query(Context context,
+                           final String room_num,
+                           final String room_type,
+                           final String room_area_min,
+                           final String room_area_max,
+                           final String room_cost_min,
+                           final String room_cost_max) {
         RequestQueue requestQueue= Volley.newRequestQueue(context);
 
         StringRequest stringR = new StringRequest( Request.Method.POST,
@@ -784,10 +794,11 @@ public class SeverManager{
     }
     //    *******************************Comment
     // ******************************************************
-    public void comment_publish(final Context context, final String user_id,final String
-            comment_text,final String
-                                     room_num,final String
-                                     comment_star) {
+    public void comment_publish(final Context context,
+                                final String user_id,
+                                final String comment_text,
+                                final String room_num,
+                                final String comment_star) {
         RequestQueue requestQueue= Volley.newRequestQueue(context);
 
         StringRequest stringR = new StringRequest( Request.Method.POST,
@@ -833,13 +844,15 @@ public class SeverManager{
         requestQueue.add(stringR);
     }
 
-    public void comment_alter(final Context context, final String user_id,final String
-            comment_text,final String
-                                        room_num,final String
-                                        comment_star,final String
-                                      comment_time,final String
-                                      comment_id,final String
-                                      comment_replay,final String user_name) {
+    public void comment_alter(final Context context,
+                              final String user_id,
+                              final String comment_text,
+                              final String room_num,
+                              final String comment_star,
+                              final String comment_time,
+                              final String comment_id,
+                              final String comment_replay,
+                              final String user_name) {
         RequestQueue requestQueue= Volley.newRequestQueue(context);
 
         StringRequest stringR = new StringRequest( Request.Method.POST,
