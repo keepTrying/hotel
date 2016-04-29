@@ -398,7 +398,7 @@ public class SeverManager{
                 HashMap<String, String> params = new HashMap<String, String>();
                 params.put("user_id_num",user_id_num);
                 params.put("user_name", user_name);
-                params.put("user_name", user_phone);
+                params.put("user_phone", user_phone);
 
                 return params;
             }
