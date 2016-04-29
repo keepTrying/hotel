@@ -210,7 +210,7 @@ public class SeverManager{
         requestQueue.add(stringR);
     }
 
-    public void user_alter(Context context,
+    public void user_alter(final Context context,
                            final String user_nick,
                            final String user_gender,
                            final String user_years,
@@ -259,6 +259,9 @@ public class SeverManager{
                 params.put("user_name", user_name);
                 params.put("user_img", user_img);
                 params.put("user_point",user_point);
+                params.put("user_point",user_point);
+                String user_id=UserManager.getInstance(context).getUser().getUser_id()+"";
+                params.put("user_id",user_id);
                 return params;
             }
         };
