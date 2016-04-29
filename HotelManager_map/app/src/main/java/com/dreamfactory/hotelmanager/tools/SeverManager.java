@@ -350,8 +350,8 @@ public class SeverManager{
             protected Map<String, String> getParams() throws AuthFailureError {
                 //用来保存post参数
                 HashMap<String, String> params = new HashMap<String, String>();
-                params.put("user_id_num",user_id);
-                params.put("user_name", user_ans);
+                params.put("user_id",user_id);
+                params.put("user_ans", user_ans);
                 return params;
             }
         };
@@ -406,7 +406,8 @@ public class SeverManager{
         requestQueue.add(stringR);
     }
 
-    public void security_modify_password(Context context, final String user_password,final String
+    public void security_modify_password(Context context, final String password_new,final
+    String
             user_id) {
         RequestQueue requestQueue= Volley.newRequestQueue(context);
 
@@ -442,8 +443,8 @@ public class SeverManager{
             protected Map<String, String> getParams() throws AuthFailureError {
                 //用来保存post参数
                 HashMap<String, String> params = new HashMap<String, String>();
-                params.put("user_id_num",user_id);
-                params.put("user_name", user_password);
+                params.put("user_id",user_id);
+                params.put("password_new", password_new);
 
                 return params;
             }
@@ -904,7 +905,7 @@ public class SeverManager{
                               final String comment_text,
                               final String room_num,
                               final String comment_star,
-                              final String comment_time_start,
+                              final String comment_time_begin,
                               final String comment_time_end,
                               final String user_name) {
         RequestQueue requestQueue= Volley.newRequestQueue(context);
@@ -943,8 +944,8 @@ public class SeverManager{
                 params.put("comment_text",comment_text);
                 params.put("user_id", user_id);
                 params.put("room_num", room_num);
-                params.put("comment_id",comment_time_end);
-                params.put("comment_time", comment_time_start);
+                params.put("comment_time_end",comment_time_end);
+                params.put("comment_time_begin", comment_time_begin);
                 params.put("user_name", user_name);
                 params.put("comment_id","");
 

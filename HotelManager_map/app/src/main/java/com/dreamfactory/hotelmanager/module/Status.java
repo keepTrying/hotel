@@ -6,6 +6,7 @@ package com.dreamfactory.hotelmanager.module;
 public class Status {
     public String status;
     public String data;
+
     public Status(){}
 
     public String getStatus() {

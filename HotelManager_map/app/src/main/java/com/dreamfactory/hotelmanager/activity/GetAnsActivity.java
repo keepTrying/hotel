@@ -60,7 +60,7 @@ public class GetAnsActivity extends AppCompatActivity {
                         Question question=JSON.parseObject(obj, Question.class);
                         Bundle bundle = new Bundle();
                         bundle.putString("user_id", question.getUser_id());
-                        bundle.putString("user_que", question.getAnswer());
+                        bundle.putString("user_que", question.getUser_que());
                         Intent intent = new Intent(GetAnsActivity.this,AnswerActivity.class);
                         intent.putExtras(bundle);
                         startActivity(intent);

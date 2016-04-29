@@ -39,7 +39,7 @@ public class RestorePwActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restore_pw);
 
-        final String user_id = savedInstanceState.getString("user_id");
+        final String user_id = getIntent().getExtras().getString("user_id");
 
         submit_btn = (Button) findViewById(R.id.btn_submit);
         m_et_pw = (EditText) findViewById(R.id.et_pw);
@@ -64,8 +64,7 @@ public class RestorePwActivity extends AppCompatActivity {
                     @Override
                     public void onResponseSuccess(String obj) {
                         Toast.makeText(RestorePwActivity.this, "修改密码成功", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(RestorePwActivity.this, RestorePwActivity.class);
-                        startActivity(intent);
+
                         finish();
                     }
 

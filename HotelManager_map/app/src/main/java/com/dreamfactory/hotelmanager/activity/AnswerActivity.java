@@ -25,12 +25,12 @@ public class AnswerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_answer);
-        submit_btn = (Button) findViewById(R.id.button_submit);
+        submit_btn = (Button) findViewById(R.id.btn_submit);
         m_tv_que = (TextView) findViewById(R.id.tv_que);
         m_et_ans = (EditText) findViewById(R.id.et_ans);
 
-        final String user_id = savedInstanceState.getString("user_id");
-        final String user_que = savedInstanceState.getString("usr_que");
+        final String user_id = getIntent().getExtras().getString("user_id");
+        final String user_que = getIntent().getExtras().getString("user_que");
 
         m_tv_que.setText(user_que);
 

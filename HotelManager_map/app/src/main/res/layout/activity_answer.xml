@@ -12,7 +12,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:id="@+id/tv_que"
@@ -21,7 +21,7 @@
 
     <EditText
         android:id="@+id/et_ans"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="请输入答案"
         android:imeActionId="@+id/login"
@@ -38,6 +38,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="提交"
-        android:id="@+id/btb_submit"
+        android:id="@+id/btn_submit"
         android:layout_gravity="right" />
 </LinearLayout>
