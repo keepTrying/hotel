@@ -189,24 +189,24 @@ public class SeverManager{
                         callback.onErrorResponse(volleyError.getLocalizedMessage());
                     }
                 }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                //用来保存post参数
-                HashMap<String, String> params = new HashMap<String, String>();
-                params.put("user_nick", user_nick);
-                params.put("user_gender",user_gender);
-                params.put("user_years", user_years);
-                params.put("user_email",user_email);
-                params.put("user_phone", user_phone);
-                params.put("user_id_num",user_id_num);
-                params.put("user_name", user_name);
-                params.put("user_que",user_que);
-                params.put("user_ans", user_ans);
-                params.put("user_password",user_password);
-                params.put("user_type",1+"");
-                return params;
-            }
-        };
+        @Override
+        protected Map<String, String> getParams() throws AuthFailureError {
+            //用来保存post参数
+            HashMap<String, String> params = new HashMap<String, String>();
+            params.put("user_nick", user_nick);
+            params.put("user_gender",user_gender);
+            params.put("user_years", user_years);
+            params.put("user_email",user_email);
+            params.put("user_phone", user_phone);
+            params.put("user_id_num",user_id_num);
+            params.put("user_name", user_name);
+            params.put("user_que",user_que);
+            params.put("user_ans", user_ans);
+            params.put("user_password",user_password);
+            params.put("user_type",1+"");
+            return params;
+        }
+    };
         requestQueue.add(stringR);
     }
 

@@ -23,7 +23,8 @@
         android:layout_alignLeft="@+id/room_grid_item_img"
         android:layout_alignStart="@+id/room_grid_item_img"
         android:textSize="10sp"
-        android:layout_marginTop="1dp" />
+        android:layout_marginTop="1dp"
+        android:textColor="#000"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -33,7 +34,7 @@
         android:id="@+id/room_grid_item_room_num"
         android:layout_below="@+id/room_grid_item_img"
         android:layout_toRightOf="@+id/textView60"
-        android:textSize="12sp"
+        android:textSize="10sp"
         android:layout_alignRight="@+id/room_grid_item_img"
         android:layout_alignEnd="@+id/room_grid_item_img" />
 
@@ -44,5 +45,7 @@
         android:text="100元/天"
         android:id="@+id/room_grid_item_price"
         android:layout_below="@+id/room_grid_item_room_num"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textColor="#0a2580"
+        android:textSize="12sp"/>
 </RelativeLayout>

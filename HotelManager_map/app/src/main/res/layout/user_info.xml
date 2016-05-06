@@ -46,8 +46,9 @@
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="昵称"
                     android:id="@+id/nick_name_tv"
-                    android:textSize="26sp"
-                    android:layout_gravity="center" />
+                    android:textSize="21sp"
+                    android:layout_gravity="center"
+                    android:textColor="#000"/>
 
                 <EditText
                     android:id="@+id/editText_nick"
@@ -79,7 +80,8 @@
                     android:text="性别"
                     android:id="@+id/textView10"
                     android:layout_gravity="top"
-                    android:textSize="26sp" />
+                    android:textSize="21sp"
+                    android:textColor="#000"/>
 
                 <RadioGroup
                     android:layout_width="wrap_content"
@@ -117,7 +119,8 @@
                     android:text="年龄"
                     android:id="@+id/textView11"
                     android:layout_gravity="top"
-                    android:textSize="26sp" />
+                    android:textSize="21sp"
+                    android:textColor="#000"/>
 
                 <EditText
                     android:id="@+id/editText_years"
@@ -146,7 +149,8 @@
                     android:text="邮箱"
                     android:id="@+id/textView12"
                     android:layout_gravity="top"
-                    android:textSize="26sp" />
+                    android:textSize="21sp"
+                    android:textColor="#000"/>
 
                 <EditText
                     android:id="@+id/editText_email"
@@ -175,7 +179,8 @@
                     android:text="手机"
                     android:id="@+id/textView15"
                     android:layout_gravity="top"
-                    android:textSize="26sp" />
+                    android:textSize="21sp"
+                    android:textColor="#000"/>
 
                 <EditText
                     android:id="@+id/editText_phone"
@@ -204,7 +209,8 @@
                     android:text="身份证号"
                     android:id="@+id/textView16"
                     android:layout_gravity="top"
-                    android:textSize="26sp" />
+                    android:textSize="21sp"
+                    android:textColor="#000"/>
 
                 <EditText
                     android:id="@+id/editText_id_num"
@@ -233,7 +239,8 @@
                     android:text="姓名"
                     android:id="@+id/textView17"
                     android:layout_gravity="top"
-                    android:textSize="26sp" />
+                    android:textSize="21sp"
+                    android:textColor="#000"/>
 
                 <EditText
                     android:id="@+id/editText_name"

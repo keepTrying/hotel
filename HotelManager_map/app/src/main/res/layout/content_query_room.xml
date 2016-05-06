@@ -10,7 +10,7 @@
     tools:showIn="@layout/activity_query_room"
     tools:context="com.dreamfactory.hotelmanager.activity.QueryRoomActivity"
     android:columnCount="2"
-    android:rowCount="9">
+    android:rowCount="10">
 
 
     <TextView
@@ -23,7 +23,8 @@
         android:height="0dp"
         android:width="0dp"
         android:layout_gravity="fill"
-        android:gravity="center" />
+        android:gravity="center"
+        android:textColor="#000"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -47,7 +48,8 @@
         android:layout_columnWeight="1"
         android:height="0dp"
         android:layout_gravity="fill"
-        android:gravity="center" />
+        android:gravity="center"
+        android:textColor="#000"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -71,7 +73,8 @@
         android:layout_columnWeight="1"
         android:height="0dp"
         android:layout_gravity="fill"
-        android:gravity="center" />
+        android:gravity="center"
+        android:textColor="#000"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -95,7 +98,8 @@
         android:layout_columnWeight="1"
         android:height="0dp"
         android:layout_gravity="fill"
-        android:gravity="center" />
+        android:gravity="center"
+        android:textColor="#000"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -107,7 +111,8 @@
         android:width="0px"
         android:height="0dp"
         android:layout_gravity="fill|left"
-        android:hint="单位：平米" />
+        android:hint="单位：平米"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -119,7 +124,8 @@
         android:layout_columnWeight="1"
         android:height="0dp"
         android:layout_gravity="fill"
-        android:gravity="center" />
+        android:gravity="center"
+        android:textColor="#000"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -145,7 +151,8 @@
         android:gravity="center"
         android:layout_row="5"
         android:layout_column="0"
-        android:autoText="false" />
+        android:autoText="false"
+        android:textColor="#000"/>
 
     <Spinner
         android:layout_width="wrap_content"
@@ -214,5 +221,17 @@
         android:layout_gravity="center"
         android:layout_columnSpan="2"
         android:layout_marginTop="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnSpan="2"
+        android:layout_marginTop="80dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="温馨提示：您可以酌情输入，不需要输入全部检索条件！"
+        android:id="@+id/textView23"
+        android:background="#167cc0"
+        android:padding="2dp"
+        android:textColor="#f6efef" />
 
 </GridLayout>

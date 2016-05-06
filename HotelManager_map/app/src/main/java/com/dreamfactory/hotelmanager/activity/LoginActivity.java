@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
         mPasswordView=(EditText)findViewById(R.id.pw_tv);
 
         mPhoneView.setText("1332232223");
-        mPasswordView.setText("34323432344refee3feeeeeeeeeeefde");
+        mPasswordView.setText("3432343234");
 
 
     }

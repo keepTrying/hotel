@@ -15,6 +15,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:id="@+id/imageView3"
+                android:adjustViewBounds="false"
+                android:background="@drawable/banner" />
+
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -23,22 +30,20 @@
                 <Button
                     android:id="@+id/btn_recommend"
                     android:layout_width="wrap_content"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_height="80dp"
                     android:layout_weight="0.5"
-                    android:layout_marginLeft="16dp"
-                    android:layout_margin="16dp"
-                    android:text="房间推荐" />
+                    android:layout_margin="8dp"
+                    android:text="房间分类"
+                    android:background="#d2e72626" />
 
                 <Button
                     android:layout_width="wrap_content"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_height="80dp"
                     android:text="房间查询"
                     android:id="@+id/btn_query"
                     android:layout_weight="0.5"
-                    android:layout_marginRight="16dp"
-                    android:layout_margin="16dp" />
+                    android:layout_margin="8dp"
+                    android:background="#b7212fad" />
             </LinearLayout>
 
             <LinearLayout
@@ -49,22 +54,26 @@
                 <Button
                     android:id="@+id/btn_my"
                     android:layout_width="wrap_content"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_height="80dp"
                     android:text="个人管理"
                     android:layout_weight="0.5"
-                    android:layout_marginLeft="16dp"
-                    android:layout_margin="16dp" />
+                    android:layout_marginTop="0dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="#a629a029" />
 
                 <Button
                     android:layout_width="wrap_content"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_height="80dp"
                     android:text="我的订单"
                     android:id="@+id/btn_history"
                     android:layout_weight="0.5"
-                    android:layout_marginRight="16dp"
-                    android:layout_margin="16dp" />
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="#a7d4c222" />
             </LinearLayout>
 
             <LinearLayout
@@ -75,22 +84,26 @@
                 <Button
                     android:id="@+id/btn_point"
                     android:layout_width="wrap_content"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_height="80dp"
                     android:text="积分管理"
                     android:layout_weight="0.5"
-                    android:layout_marginLeft="16dp"
-                    android:layout_margin="16dp" />
+                    android:layout_marginTop="0dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="#aee83718" />
 
                 <Button
                     android:layout_width="wrap_content"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_height="80dp"
                     android:text="我的房间"
                     android:id="@+id/btn_room"
                     android:layout_weight="0.5"
-                    android:layout_marginRight="16dp"
-                    android:layout_margin="16dp" />
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="#a3166476" />
             </LinearLayout>
 
             <LinearLayout
@@ -101,22 +114,26 @@
                 <Button
                     android:id="@+id/btn_surround"
                     android:layout_width="wrap_content"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_height="80dp"
                     android:text="周边服务"
                     android:layout_weight="0.5"
-                    android:layout_marginLeft="16dp"
-                    android:layout_margin="16dp" />
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="#a3c214a0" />
 
                 <Button
                     android:layout_width="wrap_content"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_height="80dp"
                     android:text="关于我们"
                     android:id="@+id/btn_about"
                     android:layout_weight="0.5"
-                    android:layout_marginRight="16dp"
-                    android:layout_margin="16dp" />
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="#af7daf5f" />
 
             </LinearLayout>
 

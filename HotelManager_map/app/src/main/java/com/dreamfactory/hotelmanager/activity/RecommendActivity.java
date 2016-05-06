@@ -42,8 +42,10 @@ public class RecommendActivity extends AppCompatActivity implements AdapterView.
         LayoutInflater inflater = LayoutInflater.from(this);
         mData = new LinkedList<RecommendItem>();
         mData.add(new RecommendItem("单人间"));
-        mData.add(new RecommendItem("双人间"));
-        mData.add(new RecommendItem("三人间"));
+        mData.add(new RecommendItem("标准间"));
+        mData.add(new RecommendItem("商务间"));
+        mData.add(new RecommendItem("行政间"));
+        mData.add(new RecommendItem("套间"));
         mAdapter = new RecommendAdapter(mContext,(LinkedList<RecommendItem>)mData);
         list_recommend.setAdapter(mAdapter);
         list_recommend.setOnItemClickListener(this);

@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="#d5d5ac">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -14,7 +15,9 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="房间号："
-            android:id="@+id/textView26" />
+            android:id="@+id/textView26"
+            android:textSize="18sp"
+            android:textColor="#000"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -29,7 +32,9 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="订单类型："
             android:id="@+id/textView31"
-            android:layout_marginLeft="20dp" />
+            android:layout_marginLeft="20dp"
+            android:textSize="18sp"
+            android:textColor="#000"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -49,7 +54,9 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="金额："
-            android:id="@+id/textView33" />
+            android:id="@+id/textView33"
+            android:textSize="18sp"
+            android:textColor="#000"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -69,13 +76,16 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="时间："
-            android:id="@+id/textView35" />
+            android:id="@+id/textView35"
+            android:textSize="18sp"
+            android:textColor="#000"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="2014年2月23日23:35:01"
-            android:id="@+id/indent_time" />
+            android:text="2014年2月23日 23:35:01"
+            android:id="@+id/indent_time"
+            android:textColor="#3777d1" />
     </LinearLayout>
 </LinearLayout>

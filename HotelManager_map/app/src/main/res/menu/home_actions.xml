@@ -6,5 +6,6 @@
     <item android:id="@+id/action_login"
         android:icon="@drawable/hotel"
         android:title="登录"
-        android:showAsAction="never" />
+        android:showAsAction="never"
+        />
 </menu>
