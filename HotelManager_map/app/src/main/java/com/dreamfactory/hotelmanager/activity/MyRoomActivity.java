@@ -2,15 +2,18 @@ package com.dreamfactory.hotelmanager.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,6 +31,7 @@ import com.dreamfactory.hotelmanager.tools.TimeHelper;
 import com.dreamfactory.hotelmanager.tools.UserManager;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
@@ -99,10 +103,16 @@ public class MyRoomActivity extends AppCompatActivity implements View.OnClickLis
                         room_type="单人间";
                         break;
                     case 2:
-                        room_type="双人间";
+                        room_type="标准间";
                         break;
                     case 3:
-                        room_type="三人间";
+                        room_type="商务间";
+                        break;
+                    case 4:
+                        room_type="行政间";
+                        break;
+                    case 5:
+                        room_type="套间";
                         break;
                     default:
                         break;
@@ -216,12 +226,28 @@ public class MyRoomActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.btn_continue :
                 LayoutInflater factory = LayoutInflater.from(MyRoomActivity.this);
                 final View textEntryView = factory.inflate(R.layout.continue_room_dialog, null);
+                final EditText editText = (EditText) textEntryView.findViewById(R.id.editText_time);
+                final Calendar c = Calendar.getInstance();
+                editText.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        DatePickerDialog dialog = new DatePickerDialog(MyRoomActivity.this, new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                c.set(year, monthOfYear, dayOfMonth);
+                                editText.setText(DateFormat.format("yyy-MM-dd", c));
+                            }
+                        }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
+                        dialog.show();
+                    }
+                });
                 AlertDialog dlg = new AlertDialog.Builder(MyRoomActivity.this)
                         .setView(textEntryView)
                         .setPositiveButton("确认", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
 
-                                EditText editText = (EditText) textEntryView.findViewById(R.id.editText_time);
+
+
                                 final String input = editText.getText().toString();
                                 try {
                                     if (TimeHelper.getDays(history.getTime_end(),input)>0)

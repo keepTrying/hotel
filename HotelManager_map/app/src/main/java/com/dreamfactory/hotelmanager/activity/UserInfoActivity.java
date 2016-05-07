@@ -166,15 +166,29 @@ public class UserInfoActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 m_btn_submit.setEnabled(false);
+                String text=null;
                 if (m_et_nick_name.getText().toString().isEmpty()||m_et_years.getText().toString
                         ().isEmpty()||m_et_email.getText().toString().isEmpty()
                         ||m_et_phone.getText().toString().isEmpty()||m_et_id_num.getText()
                         .toString().isEmpty()||m_et_name.getText().toString().isEmpty()
                         ||m_et_name.getText().toString().isEmpty()){
-                    Toast.makeText(UserInfoActivity.this, "请认真填写所有内容！", Toast.LENGTH_SHORT).show();
+                   text="请认真填写所有内容！";
+                }
+                if (m_et_nick_name.getText().toString().length()>40){
+                    text="昵称过长，最多允许40个字符！";
+                }
+                if(Integer.parseInt(m_et_years.getText().toString())<18){
+                    text="对不起，用户年龄最小为18周岁！";
+                }
+                if(Integer.parseInt(m_et_years.getText().toString())>130){
+                    text="请核对年龄信息！";
+                }
+
+                if (text!=null){
+                    Toast.makeText(UserInfoActivity.this, text, Toast.LENGTH_SHORT).show();
+                    m_btn_submit.setEnabled(true);
                     return;
                 }
-                
 
 
                     SeverManager.getInstance(UserInfoActivity.this, new SeverManager.Sever_call_back() {

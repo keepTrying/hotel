@@ -70,22 +70,22 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="date"
         android:ems="10"
         android:id="@+id/editText_begin"
         android:layout_toEndOf="@+id/textView4"
         android:layout_alignBottom="@+id/textView_begin"
-        android:hint="例：2015-01-03"/>
+        android:hint="例：2015-01-03"
+        android:editable="false" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="date"
         android:ems="10"
         android:id="@+id/editText_end"
         android:layout_toEndOf="@+id/textView_end"
         android:layout_alignBottom="@+id/textView_end"
         android:hint="例：2015-01-03"
+        android:editable="false"
         />
 
     <TextView

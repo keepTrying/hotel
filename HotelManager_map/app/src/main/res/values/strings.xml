@@ -3,8 +3,10 @@
     <string name="title_activity_query_room">房间查询</string>
     <string-array name="room_type">
         <item>单人间</item>
-        <item>双人间</item>
-        <item>三人间</item>
+        <item>标准间</item>
+        <item>商务间</item>
+        <item>行政间</item>
+        <item>套间</item>
     </string-array>
     <string-array name="room_service">
         <item>早餐</item>

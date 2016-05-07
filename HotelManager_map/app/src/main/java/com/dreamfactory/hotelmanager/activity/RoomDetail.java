@@ -2,6 +2,7 @@ package com.dreamfactory.hotelmanager.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -70,7 +71,7 @@ public class RoomDetail extends AppCompatActivity {
         tv_room_num.setText(room.getRoom_num()+"");
         tv_room_type.setText(room_type);
         tv_room_cost.setText(room.getRoom_cost()+"元/天");
-        tv_room_area.setText(room.getRoom_area()+"平米");
+        tv_room_area.setText(room.getRoom_area() + "平米");
         tv_room_facility.setText(room.getRoom_facility());
 
         //TODO set pic for imageview
@@ -82,16 +83,28 @@ public class RoomDetail extends AppCompatActivity {
         btn_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(RoomDetail.this,OrderRoomActivity.class);
-                intent.putExtra(PUT_KEY_ROOM_NUM,room.getRoom_num());
-                intent.putExtra(PUT_KEY_ROOM_COST,room.getRoom_cost());
+
+                Intent intent = null;
+                SharedPreferences sp = getSharedPreferences("user", MODE_PRIVATE);
+                if (!sp.getBoolean("login", false)) {
+                    Toast.makeText(RoomDetail.this, "请先登录！", Toast.LENGTH_SHORT).show();
+                    intent = new Intent(RoomDetail.this, LoginActivity.class);
+                } else {
+                    intent = new Intent(RoomDetail.this, OrderRoomActivity.class);
+                    intent.putExtra(PUT_KEY_ROOM_NUM, room.getRoom_num());
+                    intent.putExtra(PUT_KEY_ROOM_COST, room.getRoom_cost());
+                }
                 startActivity(intent);
             }
+
+
         });
 
-        SeverManager.getInstance(RoomDetail.this, new SeverManager.Sever_call_back() {
-            @Override
-            public void onResponseSuccess(String obj) {
+            SeverManager.getInstance(RoomDetail.this,new SeverManager.Sever_call_back()
+
+            {
+                @Override
+                public void onResponseSuccess (String obj){
 
                 mData = JSON.parseArray(obj, Comment.class);
                 ScrollView sv = (ScrollView) findViewById(R.id.scrollView5);
@@ -110,23 +123,27 @@ public class RoomDetail extends AppCompatActivity {
                 list_comment.setAdapter(mAdapter);
             }
 
-            @Override
-            public void onResponseError(int code) {
+                @Override
+                public void onResponseError ( int code){
                 if (code == 433)
                     Toast.makeText(RoomDetail.this, String.format("当前房间没有评论信息！"), Toast.LENGTH_SHORT).show();
                 else
                     Toast.makeText(RoomDetail.this, String.format("评论显示失败！错误码：%d", code), Toast.LENGTH_SHORT).show();
             }
 
-            @Override
-            public void onErrorResponse(String volleyError) {
+                @Override
+                public void onErrorResponse (String volleyError){
                 Toast.makeText(RoomDetail.this, String.format("评论显示失败！错误：%s", volleyError), Toast.LENGTH_SHORT).show();
             }
-        }).comment_query(RoomDetail.this, "", "", room.getRoom_num() + "", "", "", "", "");
+            }
+
+            ).
+
+            comment_query(RoomDetail.this, "", "", room.getRoom_num()
+
+                    + "", "", "", "", "");
 
 
-
+        }
 
     }
-
-}

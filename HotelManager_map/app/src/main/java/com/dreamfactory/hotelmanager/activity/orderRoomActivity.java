@@ -1,10 +1,13 @@
 package com.dreamfactory.hotelmanager.activity;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,6 +16,8 @@ import com.dreamfactory.hotelmanager.R;
 import com.dreamfactory.hotelmanager.tools.SeverManager;
 import com.dreamfactory.hotelmanager.tools.TimeHelper;
 import com.dreamfactory.hotelmanager.tools.UserManager;
+
+import java.util.Calendar;
 
 public class OrderRoomActivity extends AppCompatActivity {
 
@@ -38,14 +43,52 @@ public class OrderRoomActivity extends AppCompatActivity {
         textView_room_num.setText(room_num+"");
         textView_cost.setText(room_cost+"元/天");
 
+        final Calendar c = Calendar.getInstance();
+        editText_start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerDialog dialog = new DatePickerDialog(OrderRoomActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                        c.set(year, monthOfYear, dayOfMonth);
+                        editText_start.setText(DateFormat.format("yyy-MM-dd", c));
+                    }
+                }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
+                dialog.show();
+            }
+        });
+        editText_end.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerDialog dialog = new DatePickerDialog(OrderRoomActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                        c.set(year, monthOfYear, dayOfMonth);
+                        editText_end.setText(DateFormat.format("yyy-MM-dd", c));
+                    }
+                }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
+                dialog.show();
+            }
+        });
+
+
+
+
+
         btn_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 long days=0;
-
+                long daysfromnow=0;
                 try {
                     days = TimeHelper.getDays( editText_end.getText().toString(),editText_start.getText().toString());
+                    daysfromnow=TimeHelper.getDaysFromNow(editText_start.getText().toString());
+                    if(days<=0||daysfromnow<=0){
+                        Toast.makeText(OrderRoomActivity.this,"您所输入的日期错误，请核对！",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                 }catch (Exception e){
+
                     return;
                 }
                 SeverManager.getInstance(OrderRoomActivity.this, new SeverManager.Sever_call_back() {

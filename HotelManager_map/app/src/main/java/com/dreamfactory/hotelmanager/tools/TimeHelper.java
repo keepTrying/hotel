@@ -232,4 +232,8 @@ public class TimeHelper {
     public static String date2Time(String date){
         return date+" 00:00:00";
     }
+
+    public static long getDaysFromNow(String date){
+        return getDays(date,getStringDateShort());
+    }
 }
