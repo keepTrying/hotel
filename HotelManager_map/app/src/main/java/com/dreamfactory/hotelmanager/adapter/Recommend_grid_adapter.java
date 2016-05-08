@@ -52,7 +52,7 @@ public class Recommend_grid_adapter extends BaseAdapter {
         TextView tv_room_num = (TextView) convertView.findViewById(R.id.room_grid_item_room_num);
         TextView tv_room_price = (TextView) convertView.findViewById(R.id.room_grid_item_price);
 
-        SeverManager.loadImage(mContext,imageView,mData.get(position).getRoom_img(),R.mipmap.ic_launcher,R.mipmap.ic_launcher);
+        SeverManager.loadImage(mContext,imageView,mData.get(position).getRoom_img(),R.drawable.nopig,R.drawable.nopig);
         tv_room_num.setText(mData.get(position).getRoom_num()+"");
         tv_room_price.setText(mData.get(position).getRoom_cost()+"元/天");
 

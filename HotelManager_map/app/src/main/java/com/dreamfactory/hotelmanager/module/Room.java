@@ -10,14 +10,14 @@ import static java.lang.String.format;
  * Created by yangpeidong on 16/3/24.
  */
 public class Room implements Parcelable{
-    private int room_num;
+    private String room_num;
     private int room_type;
     private float room_area;
     private float room_cost;
     private String room_img;
     private String room_facility;
 
-    public Room(int room_num, int room_type, float room_area, float room_cost, String room_img, String room_facility) {
+    public Room(String room_num, int room_type, float room_area, float room_cost, String room_img, String room_facility) {
         this.room_num = room_num;
         this.room_type = room_type;
         this.room_area = room_area;
@@ -30,11 +30,11 @@ public class Room implements Parcelable{
 
 
 
-    public int getRoom_num() {
+    public String getRoom_num() {
         return room_num;
     }
 
-    public void setRoom_num(int room_num) {
+    public void setRoom_num(String room_num) {
         this.room_num = room_num;
     }
 
@@ -85,7 +85,7 @@ public class Room implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(room_num);
+        dest.writeString(room_num);
         dest.writeInt(room_type);
         dest.writeFloat(room_area);
         dest.writeFloat(room_cost);
@@ -94,7 +94,7 @@ public class Room implements Parcelable{
     }
 
     protected Room(Parcel in) {
-        room_num = in.readInt();
+        room_num = in.readString();
         room_type = in.readInt();
         room_area = in.readFloat();
         room_cost = in.readFloat();

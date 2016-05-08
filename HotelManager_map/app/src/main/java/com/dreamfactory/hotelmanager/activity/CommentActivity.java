@@ -40,7 +40,7 @@ public class CommentActivity extends AppCompatActivity {
         tv_comment_time=(TextView)findViewById(R.id.comment_time);
         tv_user_name=(TextView)findViewById(R.id.comment_name);
 
-        networkImageView.setDefaultImageResId(R.mipmap.ic_launcher);
+        networkImageView.setDefaultImageResId(ChoosePic.icons[UserManager.getInstance(CommentActivity.this).getUser().getUser_img()-1]);
         tv_user_name.setText(UserManager.getInstance(CommentActivity.this).getUser().getUser_name());
         tv_comment_time.setText(TimeHelper.getStringDate());
 

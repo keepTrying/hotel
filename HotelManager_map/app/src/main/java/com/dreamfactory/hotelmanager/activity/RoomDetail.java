@@ -91,7 +91,7 @@ public class RoomDetail extends AppCompatActivity {
                     intent = new Intent(RoomDetail.this, LoginActivity.class);
                 } else {
                     intent = new Intent(RoomDetail.this, OrderRoomActivity.class);
-                    intent.putExtra(PUT_KEY_ROOM_NUM, room.getRoom_num());
+                    intent.putExtra(PUT_KEY_ROOM_NUM, Integer.parseInt(room.getRoom_num()));
                     intent.putExtra(PUT_KEY_ROOM_COST, room.getRoom_cost());
                 }
                 startActivity(intent);

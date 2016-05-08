@@ -13,9 +13,12 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.dreamfactory.hotelmanager.R;
+import com.dreamfactory.hotelmanager.module.Indent;
 import com.dreamfactory.hotelmanager.module.User;
 import com.dreamfactory.hotelmanager.module.UserHistory;
+import com.dreamfactory.hotelmanager.tools.SeverManager;
 import com.dreamfactory.hotelmanager.tools.TimeHelper;
 import com.dreamfactory.hotelmanager.tools.UserManager;
 
@@ -112,21 +115,43 @@ public class HomeActivity extends AppCompatActivity implements OnClickListener {
             }else {
                 //if living in a room now
                 User user= UserManager.getInstance(HomeActivity.this).getUser();
-                List<UserHistory> histories = user.getUser_history();
-                for (UserHistory history : histories){
-                    String time_begin = history.getTime_begin();
-                    String time_end = history.getTime_end();
-                    if (TimeHelper.isNowBetweenDates(time_begin,time_end)){
+//                List<UserHistory> histories = user.getUser_history();
+//                for (UserHistory history : histories){
+//                    String time_begin = history.getTime_begin();
+//                    String time_end = history.getTime_end();
+//                    if (TimeHelper.isNowBetweenDates(time_begin,time_end)){
+//                        Bundle bundle = new Bundle();
+//                        bundle.putSerializable("myroom", history);
+//                        intent = new Intent(HomeActivity.this, MyRoomActivity.class);
+//                        intent.putExtras(bundle);
+//                        startActivity(intent);
+//                        return;
+//                    }
+//                }
+                SeverManager.getInstance(HomeActivity.this, new SeverManager.Sever_call_back() {
+                    @Override
+                    public void onResponseSuccess(String obj) {
+                        List<Indent> indents = JSON.parseArray(obj, Indent.class);
+                        Indent indent = indents.get(0);
+                        UserHistory history = new UserHistory(indent.getTime_begin(), indent.getTime_end(), indent.getRoom_num());
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("myroom", history);
                         intent = new Intent(HomeActivity.this, MyRoomActivity.class);
                         intent.putExtras(bundle);
                         startActivity(intent);
-                        return;
                     }
-                }
-                Toast.makeText(HomeActivity.this,"对不起，您当前没有入住我们的酒店",Toast.LENGTH_SHORT).show();
-                return;
+
+                    @Override
+                    public void onResponseError(int code) {
+                        Toast.makeText(HomeActivity.this, "对不起，您当前没有入住我们的酒店。", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onErrorResponse(String volleyError) {
+                        Toast.makeText(HomeActivity.this,"对不起，请检查您的网络连接！",Toast.LENGTH_SHORT).show();
+                    }
+                }).indent_query(HomeActivity.this, "", "", "", "", "", "", "", "", "6", user.getUser_id() + "", 1 + "");
+
             }
 
         }else if(v==btn_surround){

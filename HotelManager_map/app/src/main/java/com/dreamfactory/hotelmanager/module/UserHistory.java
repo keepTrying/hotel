@@ -34,4 +34,10 @@ public class UserHistory implements Serializable{
     public void setRoom_num(int room_num) {
         this.room_num = room_num;
     }
+
+    public UserHistory(String time_begin, String time_end, int room_num) {
+        this.time_begin = time_begin;
+        this.time_end = time_end;
+        this.room_num = room_num;
+    }
 }

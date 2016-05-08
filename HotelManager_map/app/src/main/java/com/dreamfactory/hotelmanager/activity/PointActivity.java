@@ -51,11 +51,11 @@ public class PointActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         if (v==btn_reward_0){
-            reward=999999;
-        }else if (v==btn_reward_1){
-            reward=99999;
-        }else if (v==btn_reward_2){
             reward=9999;
+        }else if (v==btn_reward_1){
+            reward=5999;
+        }else if (v==btn_reward_2){
+            reward=2999;
         }else if (v==btn_reward_3){
             reward=999;
         }

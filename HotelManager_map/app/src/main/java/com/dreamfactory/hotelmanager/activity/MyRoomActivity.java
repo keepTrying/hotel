@@ -269,7 +269,7 @@ public class MyRoomActivity extends AppCompatActivity implements View.OnClickLis
                                             if (var.getUser_id() == UserManager.getInstance(MyRoomActivity.this).getUser().getUser_id() && var.getTime_end().equals(history.getTime_end()) && var.getIndent_type() == 1 && var.getIndent_status() == 2) {
                                                 indent = var;
                                                 continue;
-                                            } else if (var.getIndent_type() != 1 || var.getIndent_status() >2 || TimeHelper.getDays(var.getTime_begin(), history.getTime_end()) < 0) {
+                                            } else if (var.getIndent_type() != 1 || var.getIndent_status() ==3 ||var.getIndent_status() ==4 ||var.getIndent_status() == 5 || TimeHelper.getDays(var.getTime_begin(), history.getTime_end()) < 0) {
                                                 continue;
                                             }
 
@@ -388,7 +388,7 @@ public class MyRoomActivity extends AppCompatActivity implements View.OnClickLis
                                 public void onErrorResponse(String volleyError) {
                                     Toast.makeText(MyRoomActivity.this,String.format("退房失败，错误：%s",volleyError),Toast.LENGTH_SHORT).show();
                                 }
-                            }).indent_alter(MyRoomActivity.this,indent.getTime_begin(),indent.getTime_end(),indent.getRoom_num()+"",indent.getUser_id()+"",indent.getCost()+"",indent.getIndent_type()+"",indent.getIndent_status()+1+"",indent.getIndent_id()+"");
+                            }).indent_alter(MyRoomActivity.this,indent.getTime_begin(),indent.getTime_end(),indent.getRoom_num()+"",indent.getUser_id()+"",indent.getCost()+"",indent.getIndent_type()+"",3+"",indent.getIndent_id()+"");
                         }
 
                         @Override

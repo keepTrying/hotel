@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="1105"
+        android:text="0"
         android:id="@+id/textView_point"
         android:layout_alignTop="@+id/textView28"
         android:layout_toRightOf="@+id/textView28" />
@@ -80,7 +80,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="iPad Pro"
+                        android:text="剃须产品"
                         android:id="@+id/textView49"
                         android:textSize="18sp"
                         android:layout_marginRight="2dp"
@@ -92,16 +92,16 @@
                     android:layout_height="50dp"
                     android:id="@+id/imageView2"
                     android:layout_gravity="center"
-                    android:background="#aa3737"
-                    android:layout_marginRight="20dp" />
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/mall_img04"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="999999分"
+                    android:text="9999分"
                     android:id="@+id/textView37"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="8dp"
                     android:layout_gravity="center"
                     android:minWidth="80dp"
                     android:width="80dp" />
@@ -147,7 +147,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="iPad3"
+                        android:text="茶道器具"
                         android:id="@+id/textView51"
                         android:textSize="18sp"
                         android:layout_marginRight="2dp"
@@ -159,16 +159,16 @@
                     android:layout_height="50dp"
                     android:id="@+id/imageView4"
                     android:layout_gravity="center"
-                    android:background="#aa3737"
-                    android:layout_marginRight="20dp" />
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/mall_img03"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="99999分"
+                    android:text="5999分"
                     android:id="@+id/textView52"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="8dp"
                     android:layout_gravity="center"
                     android:minWidth="80dp"
                     android:width="80dp" />
@@ -213,7 +213,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="iPad2"
+                        android:text="十元免单"
                         android:id="@+id/textView54"
                         android:textSize="18sp"
                         android:layout_marginRight="2dp"
@@ -225,16 +225,16 @@
                     android:layout_height="50dp"
                     android:id="@+id/imageView5"
                     android:layout_gravity="center"
-                    android:background="#aa3737"
-                    android:layout_marginRight="20dp" />
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/mall_img06"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="99999分"
+                    android:text="2999分"
                     android:id="@+id/textView55"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="8dp"
                     android:layout_gravity="center"
                     android:width="80dp" />
 
@@ -278,7 +278,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="iPad"
+                        android:text="时尚套装"
                         android:id="@+id/textView57"
                         android:textSize="18sp"
                         android:layout_marginRight="2dp"
@@ -290,16 +290,16 @@
                     android:layout_height="50dp"
                     android:id="@+id/imageView6"
                     android:layout_gravity="center"
-                    android:background="#aa3737"
-                    android:layout_marginRight="20dp" />
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/mall_img02"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="99999分"
+                    android:text="999分 "
                     android:id="@+id/textView58"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="8dp"
                     android:layout_gravity="center"
                     android:width="80dp" />
 

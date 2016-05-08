@@ -22,7 +22,7 @@ public class IndentHash {
         List<Indent> outdated = new ArrayList<>();
 
         for (Indent var:list) {
-            indent_status status = indent_status.values()[var.getIndent_status()-1];
+            indent_status status = indent_status.values()[var.getIndent_status()==6?1:var.getIndent_status()-1];
             switch (status){
                 case WILL_PAY:
                     will_pay.add(var);

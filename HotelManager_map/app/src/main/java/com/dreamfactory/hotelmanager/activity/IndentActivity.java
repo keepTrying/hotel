@@ -49,7 +49,12 @@ public class IndentActivity extends AppCompatActivity {
                 adapter = new IndentAdapter(mContext,titles,listHashMap);
 
                 elv = (ExpandableListView)findViewById(R.id.indent_list);
+
                 elv.setAdapter(adapter);
+
+                for(int i=0;i<5;i++){
+                    elv.expandGroup(i);
+                }
 
                 //去掉箭头
 //		elv.setGr oupIndicator(null);
