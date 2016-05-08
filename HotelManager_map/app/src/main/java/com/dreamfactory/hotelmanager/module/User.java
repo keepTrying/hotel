@@ -18,7 +18,7 @@ public class User implements Serializable{
     private String user_time;
     private String user_password;
     private int user_point;
-    private int user_phone;
+    private String user_phone;
     private String user_id_num;
     private String user_name;
     private String user_que;
@@ -100,11 +100,11 @@ public class User implements Serializable{
         this.user_point = user_point;
     }
 
-    public int getUser_phone() {
+    public String getUser_phone() {
         return user_phone;
     }
 
-    public void setUser_phone(int user_phone) {
+    public void setUser_phone(String user_phone) {
         this.user_phone = user_phone;
     }
 

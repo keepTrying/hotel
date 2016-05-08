@@ -120,7 +120,7 @@ public class MyRoomActivity extends AppCompatActivity implements View.OnClickLis
 
                 //TODO set image
                 SeverManager.loadImage(MyRoomActivity.this, imageView, room.getRoom_img(), R
-                        .mipmap.ic_launcher, R.mipmap.ic_launcher);
+                        .drawable.nopig, R.drawable.nopig);
 
                 tv_room_num.setText(room.getRoom_num() + "");
                 tv_room_type.setText(room_type);

@@ -58,8 +58,8 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
         mPhoneView=(AutoCompleteTextView)findViewById(R.id.phone_tv);
         mPasswordView=(EditText)findViewById(R.id.pw_tv);
 
-        mPhoneView.setText("1332232223");
-        mPasswordView.setText("3432343234");
+        mPhoneView.setText("15708445678");
+        mPasswordView.setText("123456");
 
 
     }

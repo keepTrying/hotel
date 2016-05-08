@@ -45,6 +45,7 @@ import com.android.volley.toolbox.NetworkImageView;
 import com.dreamfactory.hotelmanager.R;
 import com.dreamfactory.hotelmanager.module.User;
 import com.dreamfactory.hotelmanager.tools.SeverManager;
+import com.dreamfactory.hotelmanager.tools.TextCheck;
 import com.dreamfactory.hotelmanager.tools.UserManager;
 
 import org.json.JSONException;
@@ -183,6 +184,18 @@ public class UserInfoActivity extends AppCompatActivity {
                 if(Integer.parseInt(m_et_years.getText().toString())>130){
                     text="请核对年龄信息！";
                 }
+                if (!TextCheck.isEmail(m_et_email.getText().toString())){
+                    text="请核对Email格式！";
+                }
+                if (!TextCheck.isMobileNum(m_et_phone.getText().toString())){
+                    text="请核对手机号码！";
+                }
+                if (!TextCheck.isChineseName(m_et_name.getText().toString())){
+                    text="请核对姓名信息！";
+                }
+                if (!TextCheck.isIdNum(m_et_id_num.getText().toString())){
+                    text="请核对身份证号！";
+                }
 
                 if (text!=null){
                     Toast.makeText(UserInfoActivity.this, text, Toast.LENGTH_SHORT).show();
@@ -197,7 +210,7 @@ public class UserInfoActivity extends AppCompatActivity {
                             me.setUser_nick(m_et_nick_name.getText().toString());
                             me.setUser_years(Integer.parseInt(m_et_years.getText().toString()));
                             me.setUser_email(m_et_email.getText().toString());
-                            me.setUser_phone(Integer.parseInt(m_et_phone.getText().toString()));
+                            me.setUser_phone(m_et_phone.getText().toString());
                             me.setUser_id_num(m_et_id_num.getText().toString());
                             me.setUser_name(m_et_name.getText().toString());
                             me.setUser_gender(m_gender);

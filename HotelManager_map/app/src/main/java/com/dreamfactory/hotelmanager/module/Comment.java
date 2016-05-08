@@ -14,8 +14,15 @@ public class Comment {
     public int room_num;
     public int user_id;
     public String user_name;
+    public int user_img;
 
+    public int getUser_img() {
+        return user_img;
+    }
 
+    public void setUser_img(int user_img) {
+        this.user_img = user_img;
+    }
 
     public Comment(){}
 

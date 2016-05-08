@@ -75,7 +75,7 @@ public class RoomDetail extends AppCompatActivity {
         tv_room_facility.setText(room.getRoom_facility());
 
         //TODO set pic for imageview
-        SeverManager.loadImage(RoomDetail.this,imgview,room.getRoom_img(),R.mipmap.ic_launcher,R.mipmap.ic_launcher);
+        SeverManager.loadImage(RoomDetail.this,imgview,room.getRoom_img(),R.drawable.nopig,R.drawable.nopig);
 
 
 

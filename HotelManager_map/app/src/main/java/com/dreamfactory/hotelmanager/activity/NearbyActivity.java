@@ -20,9 +20,9 @@ public class NearbyActivity extends AppCompatActivity implements View.OnClickLis
     private Button btn_medicine;
     private Button btn_bank;
 
-    // 天安门坐标
-    final double mLat1 = 39.915291;
-    final double mLon1 = 116.403857;
+    // 学校坐标
+    final double mLat1 = 30.734606;
+    final double mLon1 = 103.972929;
 
 
     @Override
@@ -83,11 +83,11 @@ public class NearbyActivity extends AppCompatActivity implements View.OnClickLis
      * 启动百度地图Poi周边检索
      */
     public void startPoiNearbySearch(String search_condition) {
-        LatLng ptCenter = new LatLng(mLat1, mLon1); // 天安门
+        LatLng ptCenter = new LatLng(mLat1, mLon1);
         PoiParaOption para = new PoiParaOption()
                 .key(search_condition)
                 .center(ptCenter)
-                .radius(2000);
+                .radius(10);
 
         try {
             BaiduMapPoiSearch.openBaiduMapPoiNearbySearch(para, this);

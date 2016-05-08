@@ -10,6 +10,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.dreamfactory.hotelmanager.R;
+import com.dreamfactory.hotelmanager.activity.ChoosePic;
 import com.dreamfactory.hotelmanager.module.Comment;
 
 import java.util.LinkedList;
@@ -55,7 +56,7 @@ public class Comment_adapter extends BaseAdapter {
         RatingBar ratingBar = (RatingBar) convertView.findViewById(R.id.comment_rate);
 
         //pic.setBackgroundResource(mData.get(position).get());
-        pic.setBackgroundResource(R.mipmap.ic_launcher);
+        pic.setBackgroundResource(ChoosePic.icons[mData.get(position).getUser_img()-1]);
         txt_nick.setText(mData.get(position).getUser_name());
         txt_content.setText(mData.get(position).getComment_text());
         txt_time.setText(mData.get(position).getComment_time());
