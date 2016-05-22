@@ -23,6 +23,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -149,8 +150,14 @@ public class SeverManager{
             }
         };
 
+        stringR.setRetryPolicy(new DefaultRetryPolicy(
+                10000,//timeout
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        ));
 
-            requestQueue.add(stringR);
+
+        requestQueue.add(stringR);
     }
 
     public void user_register(Context context,
