@@ -25,6 +25,8 @@ import com.dreamfactory.hotelmanager.tools.UserManager;
 import java.io.Serializable;
 import java.util.List;
 
+import cn.jpush.android.api.JPushInterface;
+
 
 public class HomeActivity extends AppCompatActivity implements OnClickListener {
 
@@ -207,5 +209,15 @@ public class HomeActivity extends AppCompatActivity implements OnClickListener {
         return super.onPrepareOptionsMenu(menu);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        JPushInterface.onResume(HomeActivity.this);
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        JPushInterface.onPause(HomeActivity.this);
+    }
 }

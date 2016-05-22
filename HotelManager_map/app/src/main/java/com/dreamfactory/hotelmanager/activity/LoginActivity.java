@@ -29,8 +29,11 @@ import com.dreamfactory.hotelmanager.tools.UserManager;
 
 import org.json.JSONObject;
 
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
+import cn.jpush.android.api.JPushInterface;
 
 
 public class LoginActivity extends AppCompatActivity implements OnClickListener {
@@ -67,6 +70,11 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
     @Override
     public void onClick(View v) {
         if (v==login){
+            String deviceId = JPushInterface.getUdid(LoginActivity.this);
+            Set<String> set = new HashSet<>();
+            set.add(deviceId);
+            JPushInterface.setTags(LoginActivity.this,set,null);
+
             SeverManager.getInstance(this,new SeverManager.Sever_call_back(){
                 @Override
                 public void onResponseSuccess(String obj) {
@@ -96,11 +104,13 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
 
                 @Override
                 public void onErrorResponse(String volleyError) {
-                    Log.d("login","fail");
-                    Toast.makeText(LoginActivity.this,volleyError,Toast.LENGTH_SHORT).show();
+                    Log.d("login", "fail");
+//                    Toast.makeText(LoginActivity.this,volleyError,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this,"登录失败，请重试！",Toast.LENGTH_SHORT).show();
+
                 }
             }).user_login(this,mPhoneView.getText().toString(),
-                    mPasswordView.getText().toString());
+                    mPasswordView.getText().toString(),deviceId);
         }else if (v==register){
             Intent intent =new Intent(this,RegisterActivity.class);
             startActivity(intent);

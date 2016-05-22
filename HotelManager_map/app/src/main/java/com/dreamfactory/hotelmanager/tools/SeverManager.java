@@ -109,7 +109,7 @@ public class SeverManager{
 
 //    *******************************User******************************************************
 
-    public void user_login(Context context, final String phone_num, final String passwd) {
+    public void user_login(Context context, final String phone_num, final String passwd, final String tag) {
         RequestQueue requestQueue= Volley.newRequestQueue(context);
 
         StringRequest stringR = new StringRequest( Request.Method.POST,
@@ -144,6 +144,7 @@ public class SeverManager{
                 HashMap<String, String> params = new HashMap<String, String>();
                 params.put("user_phone", phone_num);
                 params.put("user_password",passwd);
+                params.put("tag",tag);
                 return params;
             }
         };
