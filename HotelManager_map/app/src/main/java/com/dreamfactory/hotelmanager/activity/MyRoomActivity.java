@@ -276,9 +276,11 @@ public class MyRoomActivity extends AppCompatActivity implements View.OnClickLis
                                             filter_indents.add(var);
                                         }
 
-                                        for (Indent var : filter_indents) {
-                                            if (TimeHelper.getDays(var.getTime_begin(), input) < 0) {
-                                                Toast.makeText(MyRoomActivity.this, String.format("对不起，%s 至 %s 已经有人预定本房间！", var.getTime_begin(), var.getTime_end()), Toast.LENGTH_SHORT).show();
+                                        for (Indent var1 : filter_indents) {
+                                            if (TimeHelper.getDays(var1.getTime_begin(), input) <
+                                                    0) {
+                                                Toast.makeText(MyRoomActivity.this, String.format
+                                                        ("对不起，%s 至 %s 已经有人预定本房间！", var1.getTime_begin(), var1.getTime_end()), Toast.LENGTH_SHORT).show();
                                                 return;
                                             }
                                         }
@@ -372,23 +374,32 @@ public class MyRoomActivity extends AppCompatActivity implements View.OnClickLis
                     SeverManager.getInstance(MyRoomActivity.this, new SeverManager.Sever_call_back() {
                         @Override
                         public void onResponseSuccess(String obj) {
-                            Indent indent = (Indent) JSON.parseArray(obj,Indent.class).get(0);
-                            SeverManager.getInstance(MyRoomActivity.this, new SeverManager.Sever_call_back() {
-                                @Override
-                                public void onResponseSuccess(String obj) {
-                                    Toast.makeText(MyRoomActivity.this,"退房成功，请到前台办理手续!",Toast.LENGTH_SHORT).show();
-                                }
+                            try {
+                                Indent indent = (Indent) JSON.parseArray(obj,Indent.class).get(0);
 
-                                @Override
-                                public void onResponseError(int code) {
-                                    Toast.makeText(MyRoomActivity.this,String.format("退房失败，错误码：%d",code),Toast.LENGTH_SHORT).show();
-                                }
+                                SeverManager.getInstance(MyRoomActivity.this, new SeverManager.Sever_call_back() {
+                                    @Override
+                                    public void onResponseSuccess(String obj) {
+                                        Toast.makeText(MyRoomActivity.this, "退房成功，请到前台办理手续!", Toast.LENGTH_SHORT).show();
+                                        finish();
+                                    }
 
-                                @Override
-                                public void onErrorResponse(String volleyError) {
-                                    Toast.makeText(MyRoomActivity.this,String.format("退房失败，错误：%s",volleyError),Toast.LENGTH_SHORT).show();
-                                }
-                            }).indent_alter(MyRoomActivity.this,indent.getTime_begin(),indent.getTime_end(),indent.getRoom_num()+"",indent.getUser_id()+"",indent.getCost()+"",indent.getIndent_type()+"",3+"",indent.getIndent_id()+"");
+                                    @Override
+                                    public void onResponseError(int code) {
+                                        Toast.makeText(MyRoomActivity.this, String.format("退房失败，错误码：%d", code), Toast.LENGTH_SHORT).show();
+                                    }
+
+                                    @Override
+                                    public void onErrorResponse(String volleyError) {
+                                        Toast.makeText(MyRoomActivity.this, String.format("退房失败，错误：%s", volleyError), Toast.LENGTH_SHORT).show();
+                                    }
+                                }).indent_alter(MyRoomActivity.this, indent.getTime_begin(), indent.getTime_end(), indent.getRoom_num() + "", indent.getUser_id() + "", indent.getCost() + "", indent.getIndent_type() + "", 3 + "", indent.getIndent_id() + "");
+                            }catch(Exception e) {
+                                Toast.makeText(MyRoomActivity.this, "退房成功，请到前台办理手续!", Toast.LENGTH_SHORT).show();
+                                finish();
+                                return;
+                            }
+
                         }
 
                         @Override
@@ -400,7 +411,7 @@ public class MyRoomActivity extends AppCompatActivity implements View.OnClickLis
                         public void onErrorResponse(String volleyError) {
                             Toast.makeText(MyRoomActivity.this,String.format("退房失败，错误：%s",volleyError),Toast.LENGTH_SHORT).show();
                         }
-                    }).indent_query(MyRoomActivity.this, history.getTime_begin(), history.getTime_end(), "", "", "", "", room_num, "", 6 + "", UserManager.getInstance(MyRoomActivity.this).getUser().getUser_id() + "", 1 + "");
+                    }).indent_query(MyRoomActivity.this, "", "", "", "", "", "", room_num, "", 6 + "", UserManager.getInstance(MyRoomActivity.this).getUser().getUser_id() + "", 1 + "");
 
 
                 break;
