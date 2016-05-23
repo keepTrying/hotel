@@ -29,7 +29,9 @@
                 android:text="预订房间"
                 android:id="@+id/btn_order"
                 android:layout_below="@+id/textView_room_facility"
-                android:layout_centerHorizontal="true" />
+                android:layout_centerHorizontal="true"
+                android:textColor="#ffffff"
+                android:background="@drawable/yuanjiao" />
 
             <com.android.volley.toolbox.NetworkImageView
                 android:layout_width="150dp"

@@ -367,7 +367,9 @@ android:paddingTop="@dimen/activity_vertical_margin" tools:context=".LoginActivi
             android:textAlignment="center"
             android:textSize="26sp"
             android:enabled="true"
-            android:focusable="false" />
+            android:focusable="false"
+            android:textColor="#eeeeee"
+            android:background="@drawable/yuanjiao" />
 
     </LinearLayout>
 </ScrollView>

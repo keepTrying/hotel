@@ -22,11 +22,14 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="O K"
+        android:text="O   K"
         android:id="@+id/button_ok"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="58dp" />
+        android:layout_marginBottom="58dp"
+        android:textColor="#ffffff"
+        android:background="@drawable/yuanjiao"
+        android:textSize="18sp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -42,8 +45,8 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_marginRight="5dp"
-        android:background="#e5a9a9"
-        android:backgroundTint="#9a8b8b"
+        android:background="@drawable/yuanjiao2"
         android:textIsSelectable="false"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:padding="20dp" />
 </RelativeLayout>

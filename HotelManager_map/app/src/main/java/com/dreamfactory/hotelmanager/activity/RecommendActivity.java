@@ -41,11 +41,11 @@ public class RecommendActivity extends AppCompatActivity implements AdapterView.
         mContext=RecommendActivity.this;
         LayoutInflater inflater = LayoutInflater.from(this);
         mData = new LinkedList<RecommendItem>();
-        mData.add(new RecommendItem("单人间"));
-        mData.add(new RecommendItem("标准间"));
-        mData.add(new RecommendItem("商务间"));
-        mData.add(new RecommendItem("行政间"));
-        mData.add(new RecommendItem("套间"));
+        mData.add(new RecommendItem("单人间","单人间：一间面积为16~20平方米的房间，内有卫生间和其他附属设备组成。房内设一张单人床。"));
+        mData.add(new RecommendItem("标准间","标准间：房内设两张单人床或一张双人床的叫标准间，这样的房间适合住两位客人和夫妻同住，适合旅游团体住用。"));
+        mData.add(new RecommendItem("商务间","房内设两张单人床或一张双人床，房内可以上网，满足商务客人的需求。"));
+        mData.add(new RecommendItem("行政间","多为一张双人床，此类型房间单独为一楼层，并配有专用的商务中心，咖啡厅。"));
+        mData.add(new RecommendItem("套间","是由两间或两间以上的房间（内有卫生间和其他附属设施）组成。"));
         mAdapter = new RecommendAdapter(mContext,(LinkedList<RecommendItem>)mData);
         list_recommend.setAdapter(mAdapter);
         list_recommend.setOnItemClickListener(this);

@@ -4,14 +4,44 @@
     android:layout_height="match_parent"
     android:background="#1c8ac9">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="单人间"
-        android:id="@+id/tv_type"
-        android:layout_gravity="center_horizontal"
-        android:textSize="25sp"
-        android:textColor="#f8f8f8"
-        android:textAlignment="center" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center|center_vertical|clip_horizontal">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="单人间"
+                android:id="@+id/tv_type"
+                android:layout_gravity="center"
+                android:textSize="25sp"
+                android:textColor="#f8f8f8"
+                android:textAlignment="center"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="info"
+                android:id="@+id/button_info"
+                android:layout_gravity="center_vertical|right"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:textSize="8sp"
+                android:clickable="true"
+                android:contextClickable="true" />
+        </RelativeLayout>
+    </LinearLayout>
+
 </LinearLayout>

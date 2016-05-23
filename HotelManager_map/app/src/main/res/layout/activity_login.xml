@@ -36,22 +36,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="登录" />
+                android:text="登    录"
+                android:textColor="#ffffff"
+                android:background="@drawable/yuanjiao"
+                android:textSize="18sp" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="注册"
-                android:id="@+id/btn_register" />
+                android:text="注    册"
+                android:id="@+id/btn_register"
+                android:textColor="#ffffff"
+                android:background="@drawable/yuanjiao"
+                android:textSize="18sp" />
 
             <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="101dp"
+                android:layout_height="32dp"
                 android:layout_marginTop="16dp"
                 android:text="忘记密码"
                 android:id="@+id/btn_forget_pw"
-                android:layout_gravity="right" />
+                android:textSize="10sp"
+                android:layout_gravity="right"
+                android:backgroundTint="#00ffffff"
+                android:contextClickable="false"
+                android:drawableTint="#1b1963"
+                android:nestedScrollingEnabled="false"
+                android:singleLine="false"
+                android:textColor="#18286d" />
 
         </LinearLayout>
     </ScrollView>

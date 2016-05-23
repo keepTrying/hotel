@@ -216,11 +216,13 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="查询"
+        android:text="查  询"
         android:id="@+id/btn_query_room"
         android:layout_gravity="center"
         android:layout_columnSpan="2"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="20dp"
+        android:background="@drawable/yuanjiao"
+        android:textColor="#ffffff" />
 
     <TextView
         android:layout_width="wrap_content"

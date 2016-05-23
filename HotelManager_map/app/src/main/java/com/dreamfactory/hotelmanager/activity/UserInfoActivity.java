@@ -9,6 +9,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -25,6 +26,10 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
+import android.renderscript.Allocation;
+import android.renderscript.Element;
+import android.renderscript.RenderScript;
+import android.renderscript.ScriptIntrinsicBlur;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -66,6 +71,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class UserInfoActivity extends AppCompatActivity {
 
     // UI references.
@@ -79,7 +86,8 @@ public class UserInfoActivity extends AppCompatActivity {
     private RadioGroup m_rg;
     private Button m_btn_submit;
 //    private NetworkImageView m_img;
-    private ImageView m_img2;
+    private CircleImageView m_img2;
+    private ImageView m_img_bg;
 
     private  int img_position;
 //    private Bitmap mBitmap;
@@ -110,16 +118,19 @@ public class UserInfoActivity extends AppCompatActivity {
         m_rb_male = (RadioButton) findViewById(R.id.radioButton_male);
         m_btn_submit = (Button) findViewById(R.id.button_modify);
 //        m_img=(NetworkImageView) findViewById(R.id.image_user);
-        m_img2=(ImageView) findViewById(R.id.image_user2);
+        m_img2=(CircleImageView) findViewById(R.id.image_user2);
         m_rg = (RadioGroup) findViewById(R.id.radiogroup);
+        m_img_bg=(ImageView) findViewById(R.id.imageView_bg);
+
+        m_img_bg.setImageBitmap(m_img_bg.getDrawingCache());
 
         m_rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId==m_rb_male.getId()){
-                    m_gender=1;
-                }else{
-                    m_gender=2;
+                if (checkedId == m_rb_male.getId()) {
+                    m_gender = 1;
+                } else {
+                    m_gender = 2;
                 }
             }
         });
@@ -132,7 +143,7 @@ public class UserInfoActivity extends AppCompatActivity {
         m_et_nick_name.setText(me.getUser_nick());
         m_et_years.setText(me.getUser_years()+"");
         m_et_email.setText(me.getUser_email());
-        m_et_phone.setText(me.getUser_phone()+"");
+        m_et_phone.setText(me.getUser_phone() + "");
         m_et_id_num.setText(me.getUser_id_num());
         m_et_name.setText(me.getUser_name());
         m_rg.check(m_gender == 1 ? R.id.radioButton_male : R.id.radioButton_female);
@@ -273,6 +284,9 @@ public class UserInfoActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (data==null){
+            return;
+        }
         if (requestCode == PHOTO_REQUEST_GALLERY) {
             // 从相册返回的数据
             if (data != null) {
@@ -334,6 +348,9 @@ public class UserInfoActivity extends AppCompatActivity {
         }else if(requestCode==ChoosePic.PUT_KEY){
             img_position=data.getIntExtra("image", 0);
             m_img2.setImageResource(ChoosePic.icons[img_position]);
+//            Resources res = getResources();
+//            Bitmap bmp = BitmapFactory.decodeResource(res,ChoosePic.icons[img_position]);
+//            m_img2.setImageBitmap(bmp);
 
         }
 
@@ -393,5 +410,40 @@ public class UserInfoActivity extends AppCompatActivity {
 
     }
 
+    public Bitmap blurBitmap(Bitmap bitmap){
+
+        //Let's create an empty bitmap with the same size of the bitmap we want to blur
+        Bitmap outBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+
+        //Instantiate a new Renderscript
+        RenderScript rs = RenderScript.create(getApplicationContext());
+
+        //Create an Intrinsic Blur Script using the Renderscript
+        ScriptIntrinsicBlur blurScript = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));
+
+        //Create the Allocations (in/out) with the Renderscript and the in/out bitmaps
+        Allocation allIn = Allocation.createFromBitmap(rs, bitmap);
+        Allocation allOut = Allocation.createFromBitmap(rs, outBitmap);
+
+        //Set the radius of the blur
+        blurScript.setRadius(25.f);
+
+        //Perform the Renderscript
+        blurScript.setInput(allIn);
+        blurScript.forEach(allOut);
+
+        //Copy the final bitmap created by the out Allocation to the outBitmap
+        allOut.copyTo(outBitmap);
+
+        //recycle the original bitmap
+        bitmap.recycle();
+
+        //After finishing everything, we destroy the Renderscript.
+        rs.destroy();
+
+        return outBitmap;
+
+
+    }
 
 }

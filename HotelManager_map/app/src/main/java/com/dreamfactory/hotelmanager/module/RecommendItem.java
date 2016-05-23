@@ -6,9 +6,11 @@ package com.dreamfactory.hotelmanager.module;
 public class RecommendItem {
 
     String type;
+    String desc;
 
-    public RecommendItem(String type) {
+    public RecommendItem(String type, String desc) {
         this.type = type;
+        this.desc = desc;
     }
 
     public String getType() {
@@ -17,5 +19,13 @@ public class RecommendItem {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 }
