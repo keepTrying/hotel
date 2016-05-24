@@ -375,12 +375,34 @@ public class MyRoomActivity extends AppCompatActivity implements View.OnClickLis
                         @Override
                         public void onResponseSuccess(String obj) {
                             try {
-                                Indent indent = (Indent) JSON.parseArray(obj,Indent.class).get(0);
+                                final Indent indent = (Indent) JSON.parseArray(obj,Indent.class).get(0);
 
                                 SeverManager.getInstance(MyRoomActivity.this, new SeverManager.Sever_call_back() {
                                     @Override
                                     public void onResponseSuccess(String obj) {
+
+                                        User me = UserManager.getInstance(MyRoomActivity.this).getUser();
+                                        me.setUser_point((int) (me.getUser_point()+indent.getCost()));
+                                        UserManager.getInstance(MyRoomActivity.this).setUser(me);
+
                                         Toast.makeText(MyRoomActivity.this, "退房成功，请到前台办理手续!", Toast.LENGTH_SHORT).show();
+                                        SeverManager.getInstance(MyRoomActivity.this, new SeverManager.Sever_call_back() {
+                                            @Override
+                                            public void onResponseSuccess(String obj) {
+
+                                            }
+
+                                            @Override
+                                            public void onResponseError(int code) {
+
+                                            }
+
+                                            @Override
+                                            public void onErrorResponse(String volleyError) {
+
+                                            }
+                                        }).user_alter(MyRoomActivity.this,me.getUser_nick(),me.getUser_gender()+"",me.getUser_years()+"",me.getUser_email(),me.getUser_phone(),me.getUser_id_num(),me.getUser_name(),me.getUser_img()+"",me.getUser_point()+"");
+
                                         finish();
                                     }
 
